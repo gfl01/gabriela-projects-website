@@ -14,7 +14,7 @@
       font-family: 'Montserrat', sans-serif;
       background: #faf8f5;
       color: #2c2c2c;
-      padding: 40px 20px;
+      padding: 40px 20px 80px;
     }
     h1 {
       font-family: 'Cormorant Garamond', serif;
@@ -31,6 +31,22 @@
       letter-spacing: 0.2em;
       margin-bottom: 50px;
     }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 24px;
+      text-align: center;
+      margin: 60px 0 10px;
+      color: #2c2c2c;
+    }
+    .section-desc {
+      text-align: center;
+      font-weight: 300;
+      font-size: 12px;
+      color: #999;
+      letter-spacing: 0.1em;
+      margin-bottom: 30px;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -46,6 +62,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
     }
     .card .label {
       font-size: 11px;
@@ -76,56 +97,6 @@
       text-align: center;
       line-height: 1.5;
     }
-    /* Dark background variant */
-    .dark-row {
-      margin-top: 50px;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .dark-row h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 22px;
-      text-align: center;
-      margin-bottom: 24px;
-      color: #999;
-    }
-    .dark-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 30px;
-    }
-    .dark-card {
-      background: #2c2c2c;
-      border-radius: 8px;
-      padding: 40px 30px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .dark-card .label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      color: #b8976a;
-      margin-bottom: 20px;
-    }
-    .dark-card .logo-wrap {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100px;
-    }
-    .dark-card .logo-wrap img {
-      max-width: 100%;
-      height: auto;
-      filter: brightness(0) invert(1);
-    }
-    .dark-card .logo-wrap.badge img {
-      max-width: 160px;
-    }
     .current {
       border: 2px solid #b8976a;
     }
@@ -133,12 +104,27 @@
       content: ' (CURRENT)';
       color: #ccc;
     }
+    .divider {
+      max-width: 1200px;
+      margin: 50px auto 0;
+      border: none;
+      border-top: 1px solid #e0dbd4;
+    }
+    @media (max-width: 500px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
 
   <h1>Logo Options</h1>
   <p class="subtitle">GABRIELA PROJECTS</p>
+
+  <!-- ==================== CURRENT + ORIGINAL GOLD ==================== -->
+  <h2 class="section-title">Current + Gold Variations</h2>
+  <p class="section-desc">Classic gold tones — keeping the current brand palette</p>
 
   <div class="grid">
     <div class="card current">
@@ -227,6 +213,198 @@
         <img src="logo-10-badge.svg" alt="Logo option 10">
       </div>
       <p class="desc">Circular Badge — Round seal-style mark with curved text and GP monogram</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== TERRACOTTA RED ==================== -->
+  <h2 class="section-title">Warm Terracotta</h2>
+  <p class="section-desc">Subtle terracotta red accent — inspired by Peruvian textiles and earth tones</p>
+
+  <div class="grid">
+    <div class="card">
+      <span class="label">OPTION 11</span>
+      <div class="logo-wrap">
+        <img src="logo-11-terracotta-bar.svg" alt="Logo option 11">
+      </div>
+      <p class="desc">Terracotta Bar — Classic layout with warm red-clay separator and text</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 12</span>
+      <div class="logo-wrap">
+        <img src="logo-12-terracotta-monogram.svg" alt="Logo option 12">
+      </div>
+      <p class="desc">Terracotta Monogram — Filled red circle with white GP initials</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 13</span>
+      <div class="logo-wrap">
+        <img src="logo-13-terracotta-frame.svg" alt="Logo option 13">
+      </div>
+      <p class="desc">Terracotta Frame — Single red border with clean centered text</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 14</span>
+      <div class="logo-wrap">
+        <img src="logo-14-terracotta-initial.svg" alt="Logo option 14">
+      </div>
+      <p class="desc">Terracotta Initial — Large italic G in warm red as a brand mark</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 15</span>
+      <div class="logo-wrap">
+        <img src="logo-15-terracotta-diamond.svg" alt="Logo option 15">
+      </div>
+      <p class="desc">Terracotta Diamond — Red diamond accent with flanking lines</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== EARTH TONES ==================== -->
+  <h2 class="section-title">Rich Earth Tones</h2>
+  <p class="section-desc">Burgundy, copper, and deep clay — warm luxury with heritage warmth</p>
+
+  <div class="grid">
+    <div class="card">
+      <span class="label">OPTION 16</span>
+      <div class="logo-wrap">
+        <img src="logo-16-burgundy-elegant.svg" alt="Logo option 16">
+      </div>
+      <p class="desc">Burgundy Elegant — Deep wine-red text with gold accent line</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 17</span>
+      <div class="logo-wrap">
+        <img src="logo-17-copper-arch.svg" alt="Logo option 17">
+      </div>
+      <p class="desc">Copper Arch — Graceful arch over text in warm copper tones</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 18</span>
+      <div class="logo-wrap">
+        <img src="logo-18-clay-stacked.svg" alt="Logo option 18">
+      </div>
+      <p class="desc">Clay Stacked — "Design + Build" tagline with mixed-case Gabriela</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 19</span>
+      <div class="logo-wrap">
+        <img src="logo-19-deep-red-dot.svg" alt="Logo option 19">
+      </div>
+      <p class="desc">Deep Red Dot — Clean horizontal layout with single red dot separator</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 20</span>
+      <div class="logo-wrap badge">
+        <img src="logo-20-earth-badge.svg" alt="Logo option 20">
+      </div>
+      <p class="desc">Earth Badge — Circular seal in copper and terracotta tones</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== PERUVIAN GEOMETRIC ==================== -->
+  <h2 class="section-title">Peruvian Geometric Motifs</h2>
+  <p class="section-desc">Subtle Inca-inspired patterns — angular geometry that pairs with luxury branding</p>
+
+  <div class="grid">
+    <div class="card">
+      <span class="label">OPTION 21</span>
+      <div class="logo-wrap">
+        <img src="logo-21-inca-step.svg" alt="Logo option 21">
+      </div>
+      <p class="desc">Chakana Cross — Inca stepped-cross symbol as brand icon</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 22</span>
+      <div class="logo-wrap">
+        <img src="logo-22-geometric-border.svg" alt="Logo option 22">
+      </div>
+      <p class="desc">Geometric Border — Zigzag pattern inspired by Peruvian textiles</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 23</span>
+      <div class="logo-wrap">
+        <img src="logo-23-woven-lines.svg" alt="Logo option 23">
+      </div>
+      <p class="desc">Woven Lines — Three parallel threads in red and gold, textile-inspired</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 24</span>
+      <div class="logo-wrap">
+        <img src="logo-24-stepped-frame.svg" alt="Logo option 24">
+      </div>
+      <p class="desc">Stepped Frame — Angular corner marks inspired by Inca architecture</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 25</span>
+      <div class="logo-wrap">
+        <img src="logo-25-chakana-small.svg" alt="Logo option 25">
+      </div>
+      <p class="desc">Chakana Accent — Small filled cross replacing the diamond separator</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== BOLD / CREATIVE ==================== -->
+  <h2 class="section-title">Bold &amp; Creative</h2>
+  <p class="section-desc">Pushing the boundaries — modern, distinctive, and memorable</p>
+
+  <div class="grid">
+    <div class="card">
+      <span class="label">OPTION 26</span>
+      <div class="logo-wrap">
+        <img src="logo-26-bold-split.svg" alt="Logo option 26">
+      </div>
+      <p class="desc">Bold Split — PROJECTS in a filled terracotta block for contrast</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 27</span>
+      <div class="logo-wrap">
+        <img src="logo-27-modern-slash.svg" alt="Logo option 27">
+      </div>
+      <p class="desc">Modern Slash — Angled terracotta slash separating the two words</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 28</span>
+      <div class="logo-wrap">
+        <img src="logo-28-luxury-dual-tone.svg" alt="Logo option 28">
+      </div>
+      <p class="desc">Luxury Dual-Tone — "New York City" tagline with gold and terracotta accents</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 29</span>
+      <div class="logo-wrap">
+        <img src="logo-29-vertical-bar.svg" alt="Logo option 29">
+      </div>
+      <p class="desc">Vertical Bar — Thick terracotta bar as a strong left accent</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 30</span>
+      <div class="logo-wrap">
+        <img src="logo-30-mixed-heritage.svg" alt="Logo option 30">
+      </div>
+      <p class="desc">Mixed Heritage — Gold and terracotta corner marks, dual-tone elegance</p>
     </div>
   </div>
 

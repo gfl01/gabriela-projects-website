@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370 84" fill="none">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:wght@300;400;500&amp;display=swap');
+  </style>
+  <!-- Stepped corner frame (Inca-inspired angular corners) -->
+  <!-- Top-left corner -->
+  <polyline points="10,24 10,8 26,8" stroke="#C45B3E" stroke-width="1" fill="none"/>
+  <polyline points="18,24 18,16 26,16" stroke="#C45B3E" stroke-width="0.5" fill="none"/>
+  <!-- Top-right corner -->
+  <polyline points="344,8 360,8 360,24" stroke="#C45B3E" stroke-width="1" fill="none"/>
+  <polyline points="344,16 352,16 352,24" stroke="#C45B3E" stroke-width="0.5" fill="none"/>
+  <!-- Bottom-left corner -->
+  <polyline points="10,60 10,76 26,76" stroke="#C45B3E" stroke-width="1" fill="none"/>
+  <polyline points="18,60 18,68 26,68" stroke="#C45B3E" stroke-width="0.5" fill="none"/>
+  <!-- Bottom-right corner -->
+  <polyline points="344,76 360,76 360,60" stroke="#C45B3E" stroke-width="1" fill="none"/>
+  <polyline points="344,68 352,68 352,60" stroke="#C45B3E" stroke-width="0.5" fill="none"/>
+  <!-- Text -->
+  <text x="185" y="40" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="24" fill="#2c2c2c" letter-spacing="0.2em">GABRIELA</text>
+  <text x="185" y="58" text-anchor="middle" font-family="'Montserrat', Helvetica, sans-serif" font-weight="300" font-size="9" fill="#C45B3E" letter-spacing="0.4em">PROJECTS</text>
+</svg>
