@@ -10,20 +10,44 @@ function updateHeader() {
 window.addEventListener('scroll', updateHeader, { passive: true });
 updateHeader();
 
-// === Mobile nav toggle ===
+// === Mobile nav toggle (slide-in side panel) ===
 const hamburger = document.getElementById('hamburger');
 const nav = document.getElementById('nav');
+
+// Create backdrop element for mobile nav
+const navBackdrop = document.createElement('div');
+navBackdrop.className = 'nav-backdrop';
+document.body.appendChild(navBackdrop);
+
+function closeNav() {
+  hamburger.classList.remove('open');
+  nav.classList.remove('open');
+  navBackdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function openNav() {
+  hamburger.classList.add('open');
+  nav.classList.add('open');
+  navBackdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
 if (hamburger) {
   hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    nav.classList.toggle('open');
+    if (nav.classList.contains('open')) {
+      closeNav();
+    } else {
+      openNav();
+    }
   });
+
+  // Close nav when backdrop is clicked
+  navBackdrop.addEventListener('click', closeNav);
+
   // Close nav when a link is clicked
   nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      nav.classList.remove('open');
-    });
+    link.addEventListener('click', closeNav);
   });
 }
 
