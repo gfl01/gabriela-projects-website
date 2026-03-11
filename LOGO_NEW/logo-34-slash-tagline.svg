@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 80" fill="none">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Montserrat:wght@300;400;500&amp;display=swap');
+  </style>
+  <!-- Modern slash style (like #27) with Alma Bernan elegance -->
+  <text x="15" y="40" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="34" fill="#2c2c2c" letter-spacing="0.1em">GABRIELA</text>
+  <line x1="248" y1="10" x2="236" y2="52" stroke="#C45B3E" stroke-width="2"/>
+  <text x="256" y="40" font-family="'Cormorant Garamond', Georgia, serif" font-weight="300" font-size="16" fill="#2c2c2c" letter-spacing="0.3em">PROJECTS</text>
+  <!-- Tagline -->
+  <text x="15" y="68" font-family="'Cormorant Garamond', Georgia, serif" font-weight="300" font-size="11" fill="#888" font-style="italic" letter-spacing="0.08em">Where Vision Meets Craftsmanship.</text>
+</svg>

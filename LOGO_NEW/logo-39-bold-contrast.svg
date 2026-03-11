@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 90" fill="none">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Montserrat:wght@300;400;500&amp;display=swap');
+  </style>
+  <!-- Bold GABRIELA, light PROJECTS, red bar — high contrast like Alma Bernan -->
+  <text x="195" y="40" text-anchor="end" font-family="'Cormorant Garamond', Georgia, serif" font-weight="700" font-size="34" fill="#2c2c2c" letter-spacing="0.1em">GABRIELA</text>
+  <rect x="205" y="14" width="2.5" height="34" fill="#C45B3E" rx="0.5"/>
+  <text x="220" y="40" font-family="'Cormorant Garamond', Georgia, serif" font-weight="300" font-size="34" fill="#2c2c2c" letter-spacing="0.1em">PROJECTS</text>
+  <!-- Tagline -->
+  <text x="230" y="68" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="300" font-size="12" fill="#888" font-style="italic" letter-spacing="0.08em">Design. Build. Transform. Deliver.</text>
+</svg>
