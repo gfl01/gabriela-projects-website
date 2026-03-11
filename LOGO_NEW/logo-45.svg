@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:ital,wght@0,400;1,300&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Arch with Keystone surrounding GP monogram -->
+  <g transform="translate(35, 10)">
+    <!-- Outer arch with voussoirs (wedge stones) -->
+    <path d="M10,130 L10,55 A55,55 0 0,1 120,55 L120,130"
+          fill="none" stroke="#b8976a" stroke-width="2.5"/>
+    <!-- Inner arch -->
+    <path d="M22,130 L22,60 A43,43 0 0,1 108,60 L108,130"
+          fill="none" stroke="#b8976a" stroke-width="1.2"/>
+
+    <!-- Keystone at top - prominent trapezoid shape -->
+    <path d="M56,8 L58,0 L72,0 L74,8 L72,18 L58,18 Z"
+          fill="#b8976a" opacity="0.15" stroke="#b8976a" stroke-width="1.5"/>
+    <!-- Keystone inner detail -->
+    <line x1="65" y1="3" x2="65" y2="15" stroke="#b8976a" stroke-width="0.6" opacity="0.5"/>
+
+    <!-- Voussoir lines radiating from keystone -->
+    <line x1="56" y1="10" x2="38" y2="22" stroke="#b8976a" stroke-width="0.6" opacity="0.4"/>
+    <line x1="46" y1="4" x2="26" y2="18" stroke="#b8976a" stroke-width="0.6" opacity="0.4"/>
+    <line x1="74" y1="10" x2="92" y2="22" stroke="#b8976a" stroke-width="0.6" opacity="0.4"/>
+    <line x1="84" y1="4" x2="104" y2="18" stroke="#b8976a" stroke-width="0.6" opacity="0.4"/>
+
+    <!-- Column bases -->
+    <rect x="6" y="130" width="20" height="5" fill="none" stroke="#b8976a" stroke-width="1.2" rx="0.5"/>
+    <rect x="104" y="130" width="20" height="5" fill="none" stroke="#b8976a" stroke-width="1.2" rx="0.5"/>
+
+    <!-- Impost blocks -->
+    <rect x="8" y="52" width="16" height="5" fill="none" stroke="#b8976a" stroke-width="0.8" rx="0.5"/>
+    <rect x="106" y="52" width="16" height="5" fill="none" stroke="#b8976a" stroke-width="0.8" rx="0.5"/>
+
+    <!-- GP Monogram centered in the arch -->
+    <text x="65" y="82" font-family="'Cormorant Garamond', serif" font-size="32" font-weight="700" fill="#b8976a" text-anchor="middle" opacity="0.8">G</text>
+    <text x="65" y="112" font-family="'Cormorant Garamond', serif" font-size="32" font-weight="700" fill="#b8976a" text-anchor="middle" opacity="0.8">P</text>
+
+    <!-- Base line -->
+    <line x1="4" y1="135" x2="126" y2="135" stroke="#b8976a" stroke-width="1.5"/>
+  </g>
+
+  <!-- Text stacked to the right -->
+  <text x="190" y="55" font-family="'Cormorant Garamond', serif" font-size="24" font-weight="300" fill="#2c2c2c" letter-spacing="6">GABRIELA</text>
+  <text x="190" y="82" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="300" fill="#2c2c2c" letter-spacing="8">PROJECTS</text>
+
+  <!-- Decorative separator -->
+  <line x1="190" y1="93" x2="375" y2="93" stroke="#b8976a" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Tagline -->
+  <text x="190" y="108" font-family="'Montserrat', sans-serif" font-size="7" font-style="italic" font-weight="300" fill="#b8976a" letter-spacing="1.5">Custom Design + Quality Construction</text>
+</svg>

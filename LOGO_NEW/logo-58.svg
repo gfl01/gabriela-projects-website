@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 130">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:ital,wght@0,400;1,300&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Inline layout: GF icon | GABRIELA PROJECTS -->
+  <!-- GF Monogram - small, inline -->
+  <g transform="translate(22, 25)">
+    <circle cx="22" cy="22" r="21" fill="none" stroke="#2c2c2c" stroke-width="2.5"/>
+    <path d="M22 8 C14 8 9 14 9 22 C9 30 14 36 22 36 C28 36 32 33 34 28 L34 23 L24 23 L24 27 L30 27 L30 28 C28 32 26 33 22 33 C17 33 13 28 13 22 C13 16 17 11 22 11 C26 11 28 12 30 15 L33 13 C31 9 27 8 22 8Z" fill="#2c2c2c"/>
+    <rect x="24" y="19" width="9" height="3" fill="#2c2c2c" rx="0.5"/>
+  </g>
+  <!-- Slash separator -->
+  <line x1="78" y1="30" x2="68" y2="78" stroke="#C45B3E" stroke-width="2"/>
+  <!-- Text -->
+  <text x="92" y="50" font-family="'Cormorant Garamond', serif" font-size="24" font-weight="400" fill="#2c2c2c" letter-spacing="5">GABRIELA</text>
+  <text x="92" y="76" font-family="'Cormorant Garamond', serif" font-size="24" font-weight="300" fill="#2c2c2c" letter-spacing="5">PROJECTS</text>
+  <line x1="92" y1="84" x2="370" y2="84" stroke="#b8976a" stroke-width="0.5"/>
+  <text x="92" y="97" font-family="'Montserrat', sans-serif" font-size="7" font-weight="300" font-style="italic" fill="#888" letter-spacing="1.5">Custom Design + Quality Construction</text>
+</svg>

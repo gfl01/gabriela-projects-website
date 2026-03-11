@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:ital,wght@0,400;1,300&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Horseshoe / Moorish Arch (wider at top than spring line) -->
+  <g transform="translate(30, 10)">
+    <!-- Outer horseshoe arch - curves inward below the spring line -->
+    <path d="M18,132 L18,65
+             C18,60 15,55 12,50
+             C8,40 8,30 14,20
+             C22,8 38,2 55,2
+             C72,2 88,8 96,20
+             C102,30 102,40 98,50
+             C95,55 92,60 92,65
+             L92,132"
+          fill="none" stroke="#C45B3E" stroke-width="2.5"/>
+
+    <!-- Inner horseshoe arch -->
+    <path d="M28,132 L28,68
+             C28,63 26,58 23,53
+             C20,45 20,36 25,27
+             C32,16 42,11 55,11
+             C68,11 78,16 85,27
+             C90,36 90,45 87,53
+             C84,58 82,63 82,68
+             L82,132"
+          fill="none" stroke="#C45B3E" stroke-width="1" opacity="0.5"/>
+
+    <!-- Decorative alternating voussoir pattern (striped arch stones - Moorish style) -->
+    <path d="M23,46 L32,28" stroke="#C45B3E" stroke-width="0.6" opacity="0.35"/>
+    <path d="M18,38 L28,22" stroke="#C45B3E" stroke-width="0.6" opacity="0.35"/>
+    <path d="M14,28 L30,12" stroke="#C45B3E" stroke-width="0.6" opacity="0.35"/>
+    <path d="M87,46 L78,28" stroke="#C45B3E" stroke-width="0.6" opacity="0.35"/>
+    <path d="M92,38 L82,22" stroke="#C45B3E" stroke-width="0.6" opacity="0.35"/>
+    <path d="M96,28 L80,12" stroke="#C45B3E" stroke-width="0.6" opacity="0.35"/>
+
+    <!-- Keystone at top -->
+    <path d="M50,3 L55,0 L60,3" fill="none" stroke="#C45B3E" stroke-width="1" opacity="0.6"/>
+
+    <!-- Spring line markers (where arch meets columns) -->
+    <rect x="10" y="48" width="12" height="4" fill="none" stroke="#C45B3E" stroke-width="0.8" rx="0.5"/>
+    <rect x="88" y="48" width="12" height="4" fill="none" stroke="#C45B3E" stroke-width="0.8" rx="0.5"/>
+
+    <!-- Column detail -->
+    <line x1="22" y1="54" x2="22" y2="130" stroke="#C45B3E" stroke-width="0.4" opacity="0.3"/>
+    <line x1="88" y1="54" x2="88" y2="130" stroke="#C45B3E" stroke-width="0.4" opacity="0.3"/>
+
+    <!-- Alfiz (rectangular frame around horseshoe arch - common in Moorish design) -->
+    <line x1="5" y1="0" x2="5" y2="132" stroke="#C45B3E" stroke-width="0.7" opacity="0.3"/>
+    <line x1="105" y1="0" x2="105" y2="132" stroke="#C45B3E" stroke-width="0.7" opacity="0.3"/>
+    <line x1="5" y1="0" x2="105" y2="0" stroke="#C45B3E" stroke-width="0.7" opacity="0.3"/>
+
+    <!-- Base line -->
+    <line x1="3" y1="132" x2="107" y2="132" stroke="#C45B3E" stroke-width="2"/>
+  </g>
+
+  <!-- Text stacked to the right -->
+  <text x="180" y="55" font-family="'Cormorant Garamond', serif" font-size="24" font-weight="300" fill="#2c2c2c" letter-spacing="6">GABRIELA</text>
+  <text x="180" y="83" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="300" fill="#2c2c2c" letter-spacing="8">PROJECTS</text>
+
+  <!-- Decorative separator -->
+  <line x1="180" y1="94" x2="380" y2="94" stroke="#C45B3E" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Tagline -->
+  <text x="180" y="110" font-family="'Montserrat', sans-serif" font-size="7" font-style="italic" font-weight="300" fill="#C45B3E" letter-spacing="1.5">Custom Design + Quality Construction</text>
+</svg>

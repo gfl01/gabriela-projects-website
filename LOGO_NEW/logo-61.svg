@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:ital,wght@0,400;1,300&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Horizontal layout: text | GF monogram on the right -->
+  <!-- Text on left -->
+  <text x="30" y="48" font-family="'Cormorant Garamond', serif" font-size="24" font-weight="400" fill="#2c2c2c" letter-spacing="5">GABRIELA</text>
+  <text x="30" y="75" font-family="'Cormorant Garamond', serif" font-size="24" font-weight="300" fill="#2c2c2c" letter-spacing="5">PROJECTS</text>
+  <line x1="30" y1="84" x2="280" y2="84" stroke="#b8976a" stroke-width="0.5"/>
+  <text x="30" y="98" font-family="'Montserrat', sans-serif" font-size="7" font-weight="300" font-style="italic" fill="#888" letter-spacing="1.5">Custom Design + Quality Construction</text>
+  <!-- Gold separator line -->
+  <line x1="296" y1="22" x2="296" y2="112" stroke="#b8976a" stroke-width="1"/>
+  <!-- GF monogram right side -->
+  <g transform="translate(310, 22)">
+    <circle cx="35" cy="35" r="34" fill="#2c2c2c" stroke="#b8976a" stroke-width="1"/>
+    <path d="M35 14 C24 14 17 22 17 35 C17 48 24 56 35 56 C44 56 50 51 52 44 L52 36 L38 36 L38 42 L47 42 L47 44 C45 49 41 52 35 52 C27 52 22 45 22 35 C22 25 27 18 35 18 C41 18 45 21 47 25 L52 22 C49 16 43 14 35 14Z" fill="#ffffff"/>
+    <rect x="38" y="31" width="13" height="4" fill="#ffffff" rx="0.5"/>
+  </g>
+</svg>

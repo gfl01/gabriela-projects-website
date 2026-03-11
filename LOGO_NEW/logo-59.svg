@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 150">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:ital,wght@0,400;1,300&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Large GF monogram centered, text below, elegant layout -->
+  <g transform="translate(160, 5)">
+    <!-- Outer ring -->
+    <circle cx="40" cy="40" r="38" fill="none" stroke="#b8976a" stroke-width="1"/>
+    <!-- Inner filled circle -->
+    <circle cx="40" cy="40" r="34" fill="#2c2c2c" stroke="none"/>
+    <!-- GF letters -->
+    <path d="M40 16 C28 16 20 26 20 40 C20 54 28 64 40 64 C50 64 57 58 60 50 L60 41 L43 41 L43 48 L54 48 L54 50 C51 57 46 60 40 60 C31 60 25 52 25 40 C25 28 31 20 40 20 C47 20 52 23 55 28 L60 24 C56 18 49 16 40 16Z" fill="#ffffff"/>
+    <rect x="43" y="35" width="15" height="5" fill="#ffffff" rx="0.5"/>
+    <!-- Subtle gold accent dots -->
+    <circle cx="40" cy="4" r="1.5" fill="#b8976a"/>
+    <circle cx="40" cy="76" r="1.5" fill="#b8976a"/>
+  </g>
+  <!-- Text below -->
+  <text x="200" y="100" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="400" fill="#2c2c2c" letter-spacing="8" text-anchor="middle">GABRIELA</text>
+  <text x="200" y="120" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="300" fill="#2c2c2c" letter-spacing="8" text-anchor="middle">PROJECTS</text>
+  <text x="200" y="140" font-family="'Montserrat', sans-serif" font-size="7" font-weight="300" font-style="italic" fill="#888" letter-spacing="2" text-anchor="middle">Custom Design + Quality Construction</text>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:ital,wght@0,400;1,300&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Arch Window with Mullions - centered above text -->
+  <g transform="translate(160, 5)">
+    <!-- Outer window frame -->
+    <path d="M0,90 L0,30 A40,38 0 0,1 80,30 L80,90 Z"
+          fill="none" stroke="#b8976a" stroke-width="2.5"/>
+    <!-- Inner window frame -->
+    <path d="M6,88 L6,33 A34,32 0 0,1 74,33 L74,88 Z"
+          fill="none" stroke="#b8976a" stroke-width="1"/>
+
+    <!-- Vertical mullion (center) -->
+    <line x1="40" y1="6" x2="40" y2="88" stroke="#b8976a" stroke-width="2"/>
+
+    <!-- Horizontal mullion (transom bar) -->
+    <line x1="6" y1="55" x2="74" y2="55" stroke="#b8976a" stroke-width="1.5"/>
+
+    <!-- Upper section sub-mullions (curved to follow arch) -->
+    <!-- Left upper - vertical sub-mullion -->
+    <line x1="23" y1="18" x2="23" y2="55" stroke="#b8976a" stroke-width="0.8" opacity="0.6"/>
+    <!-- Right upper - vertical sub-mullion -->
+    <line x1="57" y1="18" x2="57" y2="55" stroke="#b8976a" stroke-width="0.8" opacity="0.6"/>
+
+    <!-- Upper horizontal sub-mullion -->
+    <line x1="8" y1="38" x2="38" y2="38" stroke="#b8976a" stroke-width="0.7" opacity="0.5"/>
+    <line x1="42" y1="38" x2="72" y2="38" stroke="#b8976a" stroke-width="0.7" opacity="0.5"/>
+
+    <!-- Lower section sub-mullions -->
+    <!-- Lower vertical sub-mullions -->
+    <line x1="23" y1="55" x2="23" y2="88" stroke="#b8976a" stroke-width="0.8" opacity="0.6"/>
+    <line x1="57" y1="55" x2="57" y2="88" stroke="#b8976a" stroke-width="0.8" opacity="0.6"/>
+
+    <!-- Lower horizontal sub-mullion -->
+    <line x1="6" y1="72" x2="38" y2="72" stroke="#b8976a" stroke-width="0.7" opacity="0.5"/>
+    <line x1="42" y1="72" x2="74" y2="72" stroke="#b8976a" stroke-width="0.7" opacity="0.5"/>
+
+    <!-- Decorative tracery at top of arch (small arches within upper panes) -->
+    <!-- Left pane top arch -->
+    <path d="M8,33 A15,12 0 0,1 38,33" fill="none" stroke="#b8976a" stroke-width="0.5" opacity="0.35"/>
+    <!-- Right pane top arch -->
+    <path d="M42,33 A15,12 0 0,1 72,33" fill="none" stroke="#b8976a" stroke-width="0.5" opacity="0.35"/>
+
+    <!-- Window sill -->
+    <rect x="-3" y="90" width="86" height="4" fill="none" stroke="#b8976a" stroke-width="1.2" rx="0.5"/>
+  </g>
+
+  <!-- Text centered below -->
+  <text x="200" y="118" font-family="'Cormorant Garamond', serif" font-size="23" font-weight="300" fill="#2c2c2c" letter-spacing="7" text-anchor="middle">GABRIELA</text>
+
+  <!-- Thin line separator -->
+  <line x1="130" y1="126" x2="270" y2="126" stroke="#b8976a" stroke-width="0.5" opacity="0.5"/>
+
+  <text x="200" y="140" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="300" fill="#2c2c2c" letter-spacing="9" text-anchor="middle">PROJECTS</text>
+
+  <!-- Tagline -->
+  <text x="200" y="155" font-family="'Montserrat', sans-serif" font-size="7" font-style="italic" font-weight="300" fill="#b8976a" letter-spacing="1.2" text-anchor="middle">Custom Design + Quality Construction</text>
+</svg>

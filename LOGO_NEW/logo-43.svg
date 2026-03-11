@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:ital,wght@0,400;1,300&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Double Interlocking Pointed Arches (Moorish/Gothic) -->
+  <g transform="translate(145, 8)">
+    <!-- Left pointed arch -->
+    <path d="M10,95 L10,45 Q10,18 35,5 Q60,18 60,45 L60,95"
+          fill="none" stroke="#C45B3E" stroke-width="2.2" stroke-linejoin="round"/>
+    <!-- Right pointed arch -->
+    <path d="M50,95 L50,45 Q50,18 75,5 Q100,18 100,45 L100,95"
+          fill="none" stroke="#C45B3E" stroke-width="2.2" stroke-linejoin="round"/>
+    <!-- Inner left arch detail -->
+    <path d="M18,95 L18,50 Q18,26 35,14 Q52,26 52,50 L52,95"
+          fill="none" stroke="#C45B3E" stroke-width="0.8" opacity="0.5"/>
+    <!-- Inner right arch detail -->
+    <path d="M58,95 L58,50 Q58,26 75,14 Q92,26 92,50 L92,95"
+          fill="none" stroke="#C45B3E" stroke-width="0.8" opacity="0.5"/>
+    <!-- Base line -->
+    <line x1="6" y1="95" x2="104" y2="95" stroke="#C45B3E" stroke-width="2"/>
+    <!-- Center column where arches meet -->
+    <line x1="55" y1="30" x2="55" y2="95" stroke="#C45B3E" stroke-width="1.8"/>
+    <!-- Column capitals -->
+    <rect x="51" y="28" width="8" height="4" fill="none" stroke="#C45B3E" stroke-width="0.8" rx="0.5"/>
+    <!-- Decorative rosette at intersection -->
+    <circle cx="55" cy="22" r="3" fill="none" stroke="#C45B3E" stroke-width="0.8"/>
+    <circle cx="55" cy="22" r="1" fill="#C45B3E" opacity="0.4"/>
+    <!-- Top finial accents -->
+    <line x1="35" y1="5" x2="35" y2="1" stroke="#C45B3E" stroke-width="1" stroke-linecap="round"/>
+    <line x1="75" y1="5" x2="75" y2="1" stroke="#C45B3E" stroke-width="1" stroke-linecap="round"/>
+  </g>
+
+  <!-- Text centered below -->
+  <text x="200" y="125" font-family="'Cormorant Garamond', serif" font-size="23" font-weight="300" fill="#2c2c2c" letter-spacing="7" text-anchor="middle">GABRIELA</text>
+  <text x="200" y="143" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="300" fill="#2c2c2c" letter-spacing="9" text-anchor="middle">PROJECTS</text>
+
+  <!-- Tagline -->
+  <text x="200" y="156" font-family="'Montserrat', sans-serif" font-size="7" font-style="italic" font-weight="300" fill="#C45B3E" letter-spacing="1.2" text-anchor="middle">Custom Design + Quality Construction</text>
+</svg>

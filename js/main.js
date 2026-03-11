@@ -19,22 +19,39 @@ const navBackdrop = document.createElement('div');
 navBackdrop.className = 'nav-backdrop';
 document.body.appendChild(navBackdrop);
 
+function isMobile() {
+  return window.innerWidth <= 768;
+}
+
 function closeNav() {
   hamburger.classList.remove('open');
   nav.classList.remove('open');
   navBackdrop.classList.remove('open');
   document.body.style.overflow = '';
+  // Move nav back into header after transition
+  setTimeout(function() {
+    if (!nav.classList.contains('open') && nav.parentElement !== header) {
+      header.appendChild(nav);
+    }
+  }, 400);
 }
 
 function openNav() {
-  hamburger.classList.add('open');
-  nav.classList.add('open');
-  navBackdrop.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  // Move nav to body to escape header's backdrop-filter containing block
+  if (isMobile() && nav.parentElement !== document.body) {
+    document.body.appendChild(nav);
+  }
+  // Small delay to let DOM update before triggering transition
+  requestAnimationFrame(function() {
+    hamburger.classList.add('open');
+    nav.classList.add('open');
+    navBackdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
 }
 
 if (hamburger) {
-  hamburger.addEventListener('click', () => {
+  hamburger.addEventListener('click', function() {
     if (nav.classList.contains('open')) {
       closeNav();
     } else {
@@ -46,8 +63,18 @@ if (hamburger) {
   navBackdrop.addEventListener('click', closeNav);
 
   // Close nav when a link is clicked
-  nav.querySelectorAll('a').forEach(link => {
+  nav.querySelectorAll('a').forEach(function(link) {
     link.addEventListener('click', closeNav);
+  });
+
+  // If window is resized to desktop while nav is open, close it and move nav back
+  window.addEventListener('resize', function() {
+    if (!isMobile() && nav.classList.contains('open')) {
+      closeNav();
+    }
+    if (!isMobile() && nav.parentElement !== header) {
+      header.appendChild(nav);
+    }
   });
 }
 

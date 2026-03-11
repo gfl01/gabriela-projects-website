@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:ital,wght@0,400;1,300&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Arch Doorway with Steps -->
+  <g transform="translate(30, 8)">
+    <!-- Outer arch doorway -->
+    <path d="M10,140 L10,50 A50,50 0 0,1 110,50 L110,140"
+          fill="none" stroke="#C45B3E" stroke-width="2.5"/>
+    <!-- Inner arch doorway -->
+    <path d="M22,140 L22,55 A38,38 0 0,1 98,55 L98,140"
+          fill="none" stroke="#C45B3E" stroke-width="1.2"/>
+    <!-- Door panel lines -->
+    <line x1="60" y1="65" x2="60" y2="118" stroke="#C45B3E" stroke-width="0.8" opacity="0.4"/>
+    <!-- Door panels left -->
+    <rect x="30" y="72" width="24" height="40" fill="none" stroke="#C45B3E" stroke-width="0.5" opacity="0.35" rx="1"/>
+    <!-- Door panels right -->
+    <rect x="66" y="72" width="24" height="40" fill="none" stroke="#C45B3E" stroke-width="0.5" opacity="0.35" rx="1"/>
+    <!-- Door handle dots -->
+    <circle cx="55" cy="95" r="1.2" fill="#C45B3E" opacity="0.5"/>
+    <circle cx="65" cy="95" r="1.2" fill="#C45B3E" opacity="0.5"/>
+    <!-- Impost moldings -->
+    <rect x="8" y="47" width="16" height="4" fill="none" stroke="#C45B3E" stroke-width="0.8" rx="0.5"/>
+    <rect x="96" y="47" width="16" height="4" fill="none" stroke="#C45B3E" stroke-width="0.8" rx="0.5"/>
+    <!-- Fanlight detail at top of inner arch -->
+    <path d="M38,58 L60,45 L82,58" fill="none" stroke="#C45B3E" stroke-width="0.5" opacity="0.4"/>
+    <line x1="60" y1="45" x2="60" y2="55" stroke="#C45B3E" stroke-width="0.5" opacity="0.35"/>
+
+    <!-- Three steps -->
+    <!-- Step 3 (bottom, widest) -->
+    <rect x="-5" y="140" width="130" height="6" fill="none" stroke="#C45B3E" stroke-width="1.5" rx="0.5"/>
+    <line x1="-3" y1="143" x2="123" y2="143" stroke="#C45B3E" stroke-width="0.4" opacity="0.3"/>
+    <!-- Step 2 (middle) -->
+    <rect x="5" y="134" width="110" height="6" fill="none" stroke="#C45B3E" stroke-width="1.2" rx="0.5"/>
+    <line x1="7" y1="137" x2="113" y2="137" stroke="#C45B3E" stroke-width="0.4" opacity="0.3"/>
+    <!-- Step 1 (top, narrowest - threshold) -->
+    <rect x="15" y="128" width="90" height="6" fill="none" stroke="#C45B3E" stroke-width="1" rx="0.5"/>
+    <line x1="17" y1="131" x2="103" y2="131" stroke="#C45B3E" stroke-width="0.4" opacity="0.3"/>
+
+    <!-- Column fluting -->
+    <line x1="14" y1="53" x2="14" y2="128" stroke="#C45B3E" stroke-width="0.4" opacity="0.3"/>
+    <line x1="106" y1="53" x2="106" y2="128" stroke="#C45B3E" stroke-width="0.4" opacity="0.3"/>
+  </g>
+
+  <!-- Text stacked to the right -->
+  <text x="185" y="62" font-family="'Cormorant Garamond', serif" font-size="24" font-weight="300" fill="#2c2c2c" letter-spacing="6">GABRIELA</text>
+  <text x="185" y="90" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="300" fill="#2c2c2c" letter-spacing="8">PROJECTS</text>
+
+  <!-- Decorative separator -->
+  <line x1="185" y1="100" x2="375" y2="100" stroke="#C45B3E" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Tagline -->
+  <text x="185" y="115" font-family="'Montserrat', sans-serif" font-size="7" font-style="italic" font-weight="300" fill="#C45B3E" letter-spacing="1.5">Custom Design + Quality Construction</text>
+</svg>

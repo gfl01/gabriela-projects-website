@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:ital,wght@0,400;1,300&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Arch Frame Border enclosing the entire logo -->
+  <!-- Outer arch frame -->
+  <path d="M100,150 L100,55 A100,90 0 0,1 300,55 L300,150 Z"
+        fill="none" stroke="#b8976a" stroke-width="2.5"/>
+  <!-- Inner arch frame -->
+  <path d="M110,148 L110,60 A90,82 0 0,1 290,60 L290,148 Z"
+        fill="none" stroke="#b8976a" stroke-width="0.8" opacity="0.5"/>
+  <!-- Decorative corner details bottom-left -->
+  <path d="M100,150 L95,150 L95,145" fill="none" stroke="#b8976a" stroke-width="1.5"/>
+  <!-- Decorative corner details bottom-right -->
+  <path d="M300,150 L305,150 L305,145" fill="none" stroke="#b8976a" stroke-width="1.5"/>
+  <!-- Keystone ornament at top of arch -->
+  <path d="M192,10 L200,5 L208,10" fill="none" stroke="#b8976a" stroke-width="1.2"/>
+  <line x1="200" y1="5" x2="200" y2="2" stroke="#b8976a" stroke-width="0.8" stroke-linecap="round"/>
+  <!-- Impost molding lines -->
+  <line x1="100" y1="60" x2="110" y2="60" stroke="#b8976a" stroke-width="1" opacity="0.6"/>
+  <line x1="290" y1="60" x2="300" y2="60" stroke="#b8976a" stroke-width="1" opacity="0.6"/>
+
+  <!-- Text inside the arch frame -->
+  <text x="200" y="72" font-family="'Cormorant Garamond', serif" font-size="23" font-weight="300" fill="#2c2c2c" letter-spacing="8" text-anchor="middle">GABRIELA</text>
+
+  <!-- Small decorative element between names -->
+  <line x1="160" y1="82" x2="240" y2="82" stroke="#b8976a" stroke-width="0.5" opacity="0.6"/>
+  <circle cx="200" cy="82" r="1.5" fill="#b8976a" opacity="0.5"/>
+
+  <text x="200" y="100" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="300" fill="#2c2c2c" letter-spacing="9" text-anchor="middle">PROJECTS</text>
+
+  <!-- Decorative line -->
+  <line x1="140" y1="112" x2="260" y2="112" stroke="#b8976a" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Tagline inside arch -->
+  <text x="200" y="126" font-family="'Montserrat', sans-serif" font-size="7" font-style="italic" font-weight="300" fill="#b8976a" letter-spacing="1.2" text-anchor="middle">Custom Design + Quality Construction</text>
+
+  <!-- Bottom decorative flourish -->
+  <line x1="170" y1="136" x2="230" y2="136" stroke="#b8976a" stroke-width="0.4" opacity="0.4"/>
+</svg>
