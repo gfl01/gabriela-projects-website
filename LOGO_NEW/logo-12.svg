@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 80" fill="none">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:wght@300;400;500&amp;display=swap');</style>
+  <g stroke="#C45B3E" stroke-width="0.8" fill="none">
+    <polyline points="40,10 48,4 56,10 64,4 72,10 80,4 88,10 96,4 104,10 112,4 120,10 128,4 136,10 144,4 152,10 160,4 168,10 176,4 184,10 192,4 200,10 208,4 216,10 224,4 232,10 240,4 248,10 256,4 264,10 272,4 280,10 288,4 296,10 304,4 312,10 320,4 328,10 336,4 340,7"/>
+  </g>
+  <text x="190" y="36" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="22" fill="#2c2c2c" letter-spacing="0.18em">GABRIELA</text>
+  <text x="190" y="56" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="18" fill="#C45B3E" letter-spacing="0.22em">PROJECTS</text>
+  <g stroke="#C45B3E" stroke-width="0.8" fill="none">
+    <polyline points="40,70 48,76 56,70 64,76 72,70 80,76 88,70 96,76 104,70 112,76 120,70 128,76 136,70 144,76 152,70 160,76 168,70 176,76 184,70 192,76 200,70 208,76 216,70 224,76 232,70 240,76 248,70 256,76 264,70 272,76 280,70 288,76 296,70 304,76 312,70 320,76 328,70 336,76 340,73"/>
+  </g>
+</svg>

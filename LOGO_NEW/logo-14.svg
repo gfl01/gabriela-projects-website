@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 60" fill="none">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:wght@300;400;500&amp;display=swap');</style>
+  <text x="15" y="38" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="26" fill="#2c2c2c" letter-spacing="0.1em">GABRIELA</text>
+  <line x1="228" y1="14" x2="218" y2="48" stroke="#C45B3E" stroke-width="1.8"/>
+  <text x="236" y="38" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="22" fill="#A0734B" letter-spacing="0.12em">PROJECTS</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 95" fill="none">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Montserrat:wght@300;400;500&amp;display=swap');</style>
+  <text x="220" y="34" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="28" fill="#2c2c2c" letter-spacing="0.2em">GABRIELA</text>
+  <line x1="120" y1="48" x2="178" y2="48" stroke="#ddd" stroke-width="0.5"/>
+  <rect x="186" y="42" width="2" height="14" fill="#C45B3E" rx="0.5"/>
+  <text x="220" y="54" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="20" fill="#2c2c2c" letter-spacing="0.25em">PROJECTS</text>
+  <rect x="252" y="42" width="2" height="14" fill="#C45B3E" rx="0.5"/>
+  <line x1="262" y1="48" x2="320" y2="48" stroke="#ddd" stroke-width="0.5"/>
+  <text x="220" y="80" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="300" font-size="11" fill="#888" font-style="italic" letter-spacing="0.06em">Designed With Intention. Built With Care.</text>
+</svg>

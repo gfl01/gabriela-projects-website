@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" fill="none">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:wght@300;400;500&amp;display=swap');
-  </style>
-  <rect x="10" y="8" width="340" height="64" rx="1" stroke="#C45B3E" stroke-width="1.2" fill="none"/>
-  <text x="180" y="38" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="24" fill="#2c2c2c" letter-spacing="0.2em">GABRIELA</text>
-  <text x="180" y="56" text-anchor="middle" font-family="'Montserrat', Helvetica, sans-serif" font-weight="300" font-size="9" fill="#C45B3E" letter-spacing="0.4em">PROJECTS</text>
-</svg>

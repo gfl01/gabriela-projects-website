@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 80" fill="none">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Montserrat:wght@300;400;500&amp;display=swap');</style>
+  <text x="190" y="28" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="24" fill="#2c2c2c" letter-spacing="0.18em">GABRIELA</text>
+  <line x1="75" y1="40" x2="172" y2="40" stroke="#C45B3E" stroke-width="0.5"/>
+  <polygon points="190,34 196,40 190,46 184,40" fill="#C45B3E"/>
+  <line x1="208" y1="40" x2="305" y2="40" stroke="#C45B3E" stroke-width="0.5"/>
+  <text x="190" y="58" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="24" fill="#2c2c2c" letter-spacing="0.18em">PROJECTS</text>
+  <text x="190" y="76" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="300" font-size="10" fill="#888" font-style="italic" letter-spacing="0.06em">Thoughtfully Designed. Beautifully Built.</text>
+</svg>

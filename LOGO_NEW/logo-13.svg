@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 70" fill="none">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:wght@300;400;500&amp;display=swap');</style>
+  <text x="190" y="26" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="22" fill="#2c2c2c" letter-spacing="0.18em">GABRIELA</text>
+  <line x1="80" y1="37" x2="172" y2="37" stroke="#b8976a" stroke-width="0.5"/>
+  <g transform="translate(190, 37) scale(0.35)">
+    <polygon points="0,-18 6,-18 6,-12 12,-12 12,-6 18,-6 18,0 18,6 12,6 12,12 6,12 6,18 0,18 -6,18 -6,12 -12,12 -12,6 -18,6 -18,0 -18,-6 -12,-6 -12,-12 -6,-12 -6,-18" fill="#C45B3E"/>
+  </g>
+  <line x1="208" y1="37" x2="300" y2="37" stroke="#b8976a" stroke-width="0.5"/>
+  <text x="190" y="58" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="18" fill="#b8976a" letter-spacing="0.22em">PROJECTS</text>
+</svg>

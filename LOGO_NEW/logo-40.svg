@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 95" fill="none">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Montserrat:wght@300;400;500&amp;display=swap');</style>
+  <g transform="translate(32, 42)">
+    <polyline points="-20,-20 -20,22 22,22" stroke="#C45B3E" stroke-width="1.5" fill="none" stroke-linejoin="miter"/>
+    <line x1="-20" y1="-10" x2="-12" y2="-10" stroke="#C45B3E" stroke-width="0.7"/>
+    <line x1="-20" y1="0" x2="-14" y2="0" stroke="#C45B3E" stroke-width="0.7"/>
+    <line x1="-20" y1="10" x2="-12" y2="10" stroke="#C45B3E" stroke-width="0.7"/>
+    <line x1="-10" y1="22" x2="-10" y2="14" stroke="#C45B3E" stroke-width="0.7"/>
+    <line x1="0" y1="22" x2="0" y2="16" stroke="#C45B3E" stroke-width="0.7"/>
+    <line x1="10" y1="22" x2="10" y2="14" stroke="#C45B3E" stroke-width="0.7"/>
+  </g>
+  <line x1="68" y1="16" x2="68" y2="70" stroke="#C45B3E" stroke-width="1"/>
+  <text x="82" y="36" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="24" fill="#2c2c2c" letter-spacing="0.12em">GABRIELA</text>
+  <text x="82" y="58" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="20" fill="#2c2c2c" letter-spacing="0.15em">PROJECTS</text>
+  <text x="82" y="82" font-family="'Cormorant Garamond', Georgia, serif" font-weight="300" font-size="10" fill="#888" font-style="italic" letter-spacing="0.06em">Design. Build. Transform. Deliver.</text>
+</svg>
