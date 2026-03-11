@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&amp;display=swap');
+    .mono { font-family: 'Cormorant Garamond', 'Georgia', serif; font-weight: 400; font-size: 36px; fill: #2c2c2c; }
+  </style>
+  <rect width="64" height="64" rx="8" fill="#faf8f5"/>
+  <text x="32" y="44" text-anchor="middle" class="mono">G</text>
+  <line x1="16" y1="52" x2="48" y2="52" stroke="#b8976a" stroke-width="1"/>
+</svg>

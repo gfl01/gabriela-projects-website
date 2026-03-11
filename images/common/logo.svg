@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" fill="none">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:wght@300;400&amp;display=swap');
+    .brand-name { font-family: 'Cormorant Garamond', 'Georgia', serif; font-weight: 400; font-size: 28px; fill: #2c2c2c; letter-spacing: 0.15em; }
+    .brand-sub { font-family: 'Montserrat', 'Helvetica Neue', sans-serif; font-weight: 300; font-size: 9px; fill: #b8976a; letter-spacing: 0.35em; }
+    .brand-line { stroke: #b8976a; stroke-width: 0.5; }
+  </style>
+  <text x="160" y="30" text-anchor="middle" class="brand-name">GABRIELA</text>
+  <line x1="90" y1="38" x2="230" y2="38" class="brand-line"/>
+  <text x="160" y="52" text-anchor="middle" class="brand-sub">PROJECTS</text>
+</svg>

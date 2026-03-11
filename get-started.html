@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Started | GABRIELA PROJECTS</title>
+  <meta name="description" content="Start your project with Gabriela Projects. Tell us about your vision.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="images/common/favicon.svg">
+  <link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header scrolled" id="header">
+    <a href="index.html" class="logo">
+      <img src="images/common/logo.svg" alt="Gabriela Projects" class="logo-img">
+      <span class="logo-text">GABRIELA PROJECTS</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="get-started.html" class="nav-cta active">Get Started</a>
+    </nav>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <img src="images/home/home_3.jpg" alt="Luxury marble kitchen design" loading="eager">
+    <div class="overlay"></div>
+    <h1>Get Started</h1>
+  </section>
+
+  <!-- Form Section -->
+  <section class="get-started-content">
+    <div class="reveal">
+      <p class="section-label">Start Your Project</p>
+      <h2 class="section-heading">Tell Us About Your Project</h2>
+      <p>Let's bring your vision to life. Fill out the brief questionnaire below to help us understand your specific needs, and we will be in touch shortly to discuss the next steps.</p>
+    </div>
+
+    <form class="project-form reveal" id="projectForm" action="https://formsubmit.co/info@gabrielaprojects.com" method="POST">
+      <!-- Honeypot for spam -->
+      <input type="text" name="_honey" style="display:none">
+      <!-- Disable captcha page -->
+      <input type="hidden" name="_captcha" value="false">
+      <!-- Subject (updated dynamically) -->
+      <input type="hidden" name="_subject" value="New Project Inquiry - Gabriela Projects" id="formSubject">
+
+      <!-- Q1: Project Type (shared) -->
+      <div class="form-group">
+        <label class="form-label">Let's get started! Is this a residential or commercial project? <span class="required">*</span></label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="project_type" value="Residential" required id="typeResidential">
+            <span class="radio-custom"></span>
+            Residential
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="project_type" value="Commercial" id="typeCommercial">
+            <span class="radio-custom"></span>
+            Commercial
+          </label>
+        </div>
+      </div>
+
+      <!-- ======================== -->
+      <!-- RESIDENTIAL QUESTIONS    -->
+      <!-- ======================== -->
+      <div id="residentialQuestions" class="conditional-section" style="display:none;">
+
+        <!-- R-Q2: Residence Type -->
+        <div class="form-group">
+          <label class="form-label">Is the residence a single family home or condo? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="residence_type" value="Single family home">
+              <span class="radio-custom"></span>
+              Single family home
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="residence_type" value="Condo or Co-op">
+              <span class="radio-custom"></span>
+              Condo or Co-op
+            </label>
+          </div>
+        </div>
+
+        <!-- R-Q3: Ownership -->
+        <div class="form-group">
+          <label class="form-label">Do you own the residence? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="ownership" value="About to close">
+              <span class="radio-custom"></span>
+              I'm about to close and have access to the property to do a site survey.
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="ownership" value="Yes">
+              <span class="radio-custom"></span>
+              Yes
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="ownership" value="No">
+              <span class="radio-custom"></span>
+              No
+            </label>
+          </div>
+        </div>
+
+        <!-- R-Q4: Zip Code -->
+        <div class="form-group">
+          <label class="form-label" for="zipcode">Zip Code</label>
+          <input type="text" id="zipcode" name="zip_code" class="form-input" placeholder="Your zip code" maxlength="10">
+        </div>
+
+        <!-- R-Q5: Spaces -->
+        <div class="form-group">
+          <label class="form-label">What spaces are involved with your project? <span class="required">*</span></label>
+          <div class="checkbox-group">
+            <label class="checkbox-option">
+              <input type="checkbox" name="spaces" value="Kitchen">
+              <span class="checkbox-custom"></span>
+              Kitchen
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="spaces" value="Bathroom">
+              <span class="checkbox-custom"></span>
+              Bathroom
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="spaces" value="Living Space">
+              <span class="checkbox-custom"></span>
+              Living Space
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="spaces" value="Bedroom">
+              <span class="checkbox-custom"></span>
+              Bedroom
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="spaces" value="Laundry">
+              <span class="checkbox-custom"></span>
+              Laundry
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="spaces" value="New Construction">
+              <span class="checkbox-custom"></span>
+              New Construction
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="spaces" value="Something else">
+              <span class="checkbox-custom"></span>
+              Something else
+            </label>
+          </div>
+        </div>
+
+        <!-- R-Q6: Timeline -->
+        <div class="form-group">
+          <label class="form-label">When are you looking to meet with a contractor to discuss your project? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="timeline" value="Next few weeks">
+              <span class="radio-custom"></span>
+              In the next few weeks &ndash; We'll start reviewing your information and call you in a couple of weeks.
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="timeline" value="Just exploring">
+              <span class="radio-custom"></span>
+              I'm just exploring options for now &ndash; Take your time, we'll be here whenever you're ready.
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="timeline" value="Ready now">
+              <span class="radio-custom"></span>
+              I'm ready to book a meeting now &ndash; We will contact you right away!
+            </label>
+          </div>
+        </div>
+
+        <!-- R-Q7: Design Support -->
+        <div class="form-group">
+          <label class="form-label">Are you looking for design support to achieve your dream space? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="design_support" value="Extensive Help">
+              <span class="radio-custom"></span>
+              Extensive Help &ndash; I want a designer with me throughout the project.
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="design_support" value="Moderate Help">
+              <span class="radio-custom"></span>
+              Moderate Help &ndash; I need some guidance but can handle most of it myself.
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="design_support" value="No Help">
+              <span class="radio-custom"></span>
+              No Help &ndash; I plan to handle the design myself.
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="design_support" value="Unsure">
+              <span class="radio-custom"></span>
+              Unsure &ndash; I need assistance in deciding.
+            </label>
+          </div>
+        </div>
+
+        <!-- R-Q8: Involvement -->
+        <div class="form-group">
+          <label class="form-label">How involved do you want to be in your project, excluding design? <span class="required">*</span></label>
+          <p class="form-hint">Renovations involve many moving parts, such as managing communications, deliveries, and coordinating with your contractor. More involvement can save costs, while less involvement may increase expenses.</p>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="involvement" value="Highly Involved">
+              <span class="radio-custom"></span>
+              Highly Involved &ndash; I prefer to be actively involved or I'm looking to save on budget.
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="involvement" value="Somewhat Involved">
+              <span class="radio-custom"></span>
+              Somewhat Involved &ndash; I want to stay updated and assist in some tasks.
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="involvement" value="Minimally Involved">
+              <span class="radio-custom"></span>
+              Minimally Involved &ndash; I prefer to be as hands-off as possible.
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="involvement" value="Unsure">
+              <span class="radio-custom"></span>
+              Unsure &ndash; I need help deciding on my level of involvement.
+            </label>
+          </div>
+        </div>
+
+        <!-- R-Q9: Priority -->
+        <div class="form-group">
+          <label class="form-label" for="priority">If you have to choose one of these, which one would it be: Speed, quality or price. <span class="required">*</span></label>
+          <input type="text" id="priority" name="priority" class="form-input" placeholder="Your answer">
+        </div>
+
+        <!-- R-Q10: Quality Flexibility -->
+        <div class="form-group">
+          <label class="form-label">How flexible are you with quality? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="quality_flexibility" value="Not very">
+              <span class="radio-custom"></span>
+              Not very &ndash; I'm willing to invest to achieve the right quality.
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="quality_flexibility" value="Somewhat">
+              <span class="radio-custom"></span>
+              Somewhat &ndash; I'd like to learn more about cost and what I can achieve.
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="quality_flexibility" value="Very">
+              <span class="radio-custom"></span>
+              Very &ndash; If necessary, I'm willing to change my renovation priorities to keep costs down.
+            </label>
+          </div>
+        </div>
+
+      </div><!-- /residentialQuestions -->
+
+
+      <!-- ======================== -->
+      <!-- COMMERCIAL QUESTIONS     -->
+      <!-- ======================== -->
+      <div id="commercialQuestions" class="conditional-section" style="display:none;">
+
+        <!-- C-Q2: Type of Commercial Space -->
+        <div class="form-group">
+          <label class="form-label">What type of commercial space is this project for? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="commercial_space_type" value="Office">
+              <span class="radio-custom"></span>
+              Office
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_space_type" value="Retail / Storefront">
+              <span class="radio-custom"></span>
+              Retail / Storefront
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_space_type" value="Restaurant / Food Service">
+              <span class="radio-custom"></span>
+              Restaurant / Food Service
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_space_type" value="Medical / Healthcare">
+              <span class="radio-custom"></span>
+              Medical / Healthcare
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_space_type" value="Other">
+              <span class="radio-custom"></span>
+              Other
+            </label>
+          </div>
+        </div>
+
+        <!-- C-Q3: Project Scope -->
+        <div class="form-group">
+          <label class="form-label">What best describes this project? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="commercial_project_scope" value="Renovation of current space">
+              <span class="radio-custom"></span>
+              Renovation of a space we currently occupy
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_project_scope" value="Build-out of new/vacant space">
+              <span class="radio-custom"></span>
+              Build-out of a new or vacant space
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_project_scope" value="Addition to existing structure">
+              <span class="radio-custom"></span>
+              Addition to an existing structure
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_project_scope" value="Complete gut and redesign">
+              <span class="radio-custom"></span>
+              Complete gut and redesign
+            </label>
+          </div>
+        </div>
+
+        <!-- C-Q4: Zip Code -->
+        <div class="form-group">
+          <label class="form-label" for="comm_zipcode">Zip Code</label>
+          <input type="text" id="comm_zipcode" name="zip_code" class="form-input" placeholder="Project location zip code" maxlength="10">
+        </div>
+
+        <!-- C-Q5: Approximate Square Footage -->
+        <div class="form-group">
+          <label class="form-label">What is the approximate square footage of the space? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="square_footage" value="Under 1,000 sq ft">
+              <span class="radio-custom"></span>
+              Under 1,000 sq ft
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="square_footage" value="1,000 - 2,500 sq ft">
+              <span class="radio-custom"></span>
+              1,000 &ndash; 2,500 sq ft
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="square_footage" value="2,500 - 5,000 sq ft">
+              <span class="radio-custom"></span>
+              2,500 &ndash; 5,000 sq ft
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="square_footage" value="5,000 - 10,000 sq ft">
+              <span class="radio-custom"></span>
+              5,000 &ndash; 10,000 sq ft
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="square_footage" value="Over 10,000 sq ft">
+              <span class="radio-custom"></span>
+              Over 10,000 sq ft
+            </label>
+          </div>
+        </div>
+
+        <!-- C-Q6: Ownership / Lease -->
+        <div class="form-group">
+          <label class="form-label">Do you own the property or are you leasing? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="commercial_ownership" value="Own">
+              <span class="radio-custom"></span>
+              I own the property
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_ownership" value="Lease with TI allowance">
+              <span class="radio-custom"></span>
+              Leasing &ndash; my lease includes a tenant improvement (TI) allowance
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_ownership" value="Lease without TI allowance">
+              <span class="radio-custom"></span>
+              Leasing &ndash; no TI allowance or not sure
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_ownership" value="Not sure">
+              <span class="radio-custom"></span>
+              Not sure yet
+            </label>
+          </div>
+        </div>
+
+        <!-- C-Q7: Business Operating During Renovation -->
+        <div class="form-group">
+          <label class="form-label">Will the business continue operating during the renovation? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="operating_during" value="Yes">
+              <span class="radio-custom"></span>
+              Yes &ndash; we need to remain open during construction
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="operating_during" value="No">
+              <span class="radio-custom"></span>
+              No &ndash; the space will be vacant during construction
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="operating_during" value="Partially">
+              <span class="radio-custom"></span>
+              Partially &ndash; we can phase parts of the work
+            </label>
+          </div>
+        </div>
+
+        <!-- C-Q8: Budget Range -->
+        <div class="form-group">
+          <label class="form-label">What is your estimated budget range for this project? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="commercial_budget" value="Under $50K">
+              <span class="radio-custom"></span>
+              Under $50,000
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_budget" value="$50K - $100K">
+              <span class="radio-custom"></span>
+              $50,000 &ndash; $100,000
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_budget" value="$100K - $250K">
+              <span class="radio-custom"></span>
+              $100,000 &ndash; $250,000
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_budget" value="$250K+">
+              <span class="radio-custom"></span>
+              $250,000+
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_budget" value="Not sure yet">
+              <span class="radio-custom"></span>
+              Not sure yet
+            </label>
+          </div>
+        </div>
+
+        <!-- C-Q9: Timeline -->
+        <div class="form-group">
+          <label class="form-label">What is your desired timeline for completion? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="commercial_timeline" value="Within 3 months">
+              <span class="radio-custom"></span>
+              Within 3 months
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_timeline" value="3 - 6 months">
+              <span class="radio-custom"></span>
+              3 &ndash; 6 months
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_timeline" value="6 - 12 months">
+              <span class="radio-custom"></span>
+              6 &ndash; 12 months
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="commercial_timeline" value="Flexible">
+              <span class="radio-custom"></span>
+              Flexible &ndash; no hard deadline
+            </label>
+          </div>
+        </div>
+
+        <!-- C-Q10: Compliance Requirements -->
+        <div class="form-group">
+          <label class="form-label">Are there specific compliance or regulatory requirements for your space?</label>
+          <p class="form-hint">Select all that apply. If unsure, we'll help you figure it out during our consultation.</p>
+          <div class="checkbox-group">
+            <label class="checkbox-option">
+              <input type="checkbox" name="compliance" value="ADA Accessibility">
+              <span class="checkbox-custom"></span>
+              ADA Accessibility
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="compliance" value="Health Department">
+              <span class="checkbox-custom"></span>
+              Health Department
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="compliance" value="Fire Safety / Suppression">
+              <span class="checkbox-custom"></span>
+              Fire Safety / Suppression
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="compliance" value="HIPAA">
+              <span class="checkbox-custom"></span>
+              HIPAA
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="compliance" value="Zoning / Permits">
+              <span class="checkbox-custom"></span>
+              Zoning / Permits
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="compliance" value="Not sure">
+              <span class="checkbox-custom"></span>
+              Not sure
+            </label>
+          </div>
+        </div>
+
+        <!-- C-Q11: Brief Description -->
+        <div class="form-group">
+          <label class="form-label" for="business_description">Please briefly describe your business and how you envision the space.</label>
+          <textarea id="business_description" name="business_description" class="form-input form-textarea" placeholder="Tell us about your business, how the space will be used, and any special requirements..." rows="4"></textarea>
+        </div>
+
+      </div><!-- /commercialQuestions -->
+
+
+      <!-- Q-SHARED: Contact Info (always visible after project type selected) -->
+      <div id="sharedQuestions" class="conditional-section" style="display:none;">
+        <div class="form-group">
+          <label class="form-label" for="contact_info">Please leave us your name and phone number to contact you. <span class="required">*</span></label>
+          <input type="text" id="contact_info" name="contact_info" class="form-input" placeholder="Your name and phone number">
+        </div>
+
+        <!-- Submit -->
+        <div class="form-group form-submit">
+          <button type="submit" class="btn-submit" id="submitBtn">Submit</button>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- Success Message (hidden by default) -->
+    <div class="form-success" id="formSuccess" style="display:none;">
+      <div class="success-icon">&#10003;</div>
+      <h3>Thank You!</h3>
+      <p>Your project inquiry has been submitted successfully. We'll review your information and be in touch shortly.</p>
+      <a href="index.html" class="btn-back">Back to Home</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/common/logo.svg" alt="Gabriela Projects" class="footer-logo">
+        <p>Custom design and quality construction, all in one. A woman-owned, women-led firm based in New York City.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="get-started.html">Get Started</a>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p><a href="mailto:info@gabrielaprojects.com">info@gabrielaprojects.com</a></p>
+        <p>New York City, NY</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Gabriela Projects. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // ================================
+    // Conditional Form Logic
+    // ================================
+    const typeResidential = document.getElementById('typeResidential');
+    const typeCommercial = document.getElementById('typeCommercial');
+    const residentialSection = document.getElementById('residentialQuestions');
+    const commercialSection = document.getElementById('commercialQuestions');
+    const sharedSection = document.getElementById('sharedQuestions');
+
+    function showResidential() {
+      residentialSection.style.display = 'block';
+      commercialSection.style.display = 'none';
+      sharedSection.style.display = 'block';
+      // Enable residential required fields, disable commercial
+      toggleRequired(residentialSection, true);
+      toggleRequired(commercialSection, false);
+      // Update subject line
+      document.getElementById('formSubject').value = 'New Residential Project Inquiry - Gabriela Projects';
+    }
+
+    function showCommercial() {
+      residentialSection.style.display = 'none';
+      commercialSection.style.display = 'block';
+      sharedSection.style.display = 'block';
+      // Enable commercial required fields, disable residential
+      toggleRequired(commercialSection, true);
+      toggleRequired(residentialSection, false);
+      // Update subject line
+      document.getElementById('formSubject').value = 'New Commercial Project Inquiry - Gabriela Projects';
+    }
+
+    function toggleRequired(section, enable) {
+      // Clear all selections in hidden sections
+      if (!enable) {
+        section.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+        section.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+        section.querySelectorAll('input[type="text"], textarea').forEach(t => t.value = '');
+      }
+    }
+
+    typeResidential.addEventListener('change', showResidential);
+    typeCommercial.addEventListener('change', showCommercial);
+
+    // ================================
+    // AJAX Form Submission
+    // ================================
+    const form = document.getElementById('projectForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('formSuccess');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Disable button and show loading state
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Hide form, show success message
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+          successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          throw new Error('Submission failed');
+        }
+      })
+      .catch(error => {
+        // Show error, re-enable button
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit';
+        alert('Something went wrong. Please try again or email us directly at info@gabrielaprojects.com');
+      });
+    });
+  </script>
+</body>
+</html>
