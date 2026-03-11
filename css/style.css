@@ -688,7 +688,7 @@ img {
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.social-icon:hover {
+.footer-contact .social-icon:hover {
   color: #E1306C;
   transform: translateY(-2px);
 }
@@ -1305,6 +1305,10 @@ img {
 
   .about-image {
     height: 400px;
+  }
+
+  .about-image img {
+    object-position: top center;
   }
 
   .about-content {

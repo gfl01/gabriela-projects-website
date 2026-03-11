@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.gabrielaprojects.com/sitemap.xml
+
+# Block private portfolio from crawlers
+Disallow: /portfolio2.html
