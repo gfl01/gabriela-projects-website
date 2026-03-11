@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" fill="none">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:wght@300;400;500&amp;display=swap');
+  </style>
+  <!-- Architectural roofline icon -->
+  <polyline points="15,50 35,20 55,50" stroke="#b8976a" stroke-width="1.5" fill="none" stroke-linejoin="miter"/>
+  <line x1="22" y1="50" x2="48" y2="50" stroke="#b8976a" stroke-width="1.5"/>
+  <rect x="30" y="37" width="10" height="13" stroke="#b8976a" stroke-width="1" fill="none"/>
+  <!-- Vertical separator -->
+  <line x1="72" y1="15" x2="72" y2="65" stroke="#b8976a" stroke-width="0.5"/>
+  <!-- Brand text -->
+  <text x="90" y="37" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="26" fill="#2c2c2c" letter-spacing="0.15em">GABRIELA</text>
+  <text x="90" y="56" font-family="'Montserrat', Helvetica, sans-serif" font-weight="300" font-size="10" fill="#b8976a" letter-spacing="0.35em">PROJECTS</text>
+</svg>

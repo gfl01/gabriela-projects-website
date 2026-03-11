@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logo Options — Gabriela Projects</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #faf8f5;
+      color: #2c2c2c;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      text-align: center;
+      font-weight: 300;
+      font-size: 14px;
+      color: #b8976a;
+      letter-spacing: 0.2em;
+      margin-bottom: 50px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 40px 30px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: #b8976a;
+      margin-bottom: 20px;
+    }
+    .card .logo-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100px;
+      margin-bottom: 16px;
+    }
+    .card .logo-wrap img {
+      max-width: 100%;
+      height: auto;
+    }
+    .card .logo-wrap.badge img {
+      max-width: 160px;
+    }
+    .card .desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: #888;
+      text-align: center;
+      line-height: 1.5;
+    }
+    /* Dark background variant */
+    .dark-row {
+      margin-top: 50px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .dark-row h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 22px;
+      text-align: center;
+      margin-bottom: 24px;
+      color: #999;
+    }
+    .dark-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+    }
+    .dark-card {
+      background: #2c2c2c;
+      border-radius: 8px;
+      padding: 40px 30px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .dark-card .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: #b8976a;
+      margin-bottom: 20px;
+    }
+    .dark-card .logo-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100px;
+    }
+    .dark-card .logo-wrap img {
+      max-width: 100%;
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+    .dark-card .logo-wrap.badge img {
+      max-width: 160px;
+    }
+    .current {
+      border: 2px solid #b8976a;
+    }
+    .current .label::after {
+      content: ' (CURRENT)';
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Logo Options</h1>
+  <p class="subtitle">GABRIELA PROJECTS</p>
+
+  <div class="grid">
+    <div class="card current">
+      <span class="label">OPTION 0</span>
+      <div class="logo-wrap">
+        <img src="../images/common/logo.svg" alt="Current logo">
+      </div>
+      <p class="desc">Current logo — Classic centered text with thin gold separator line</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 1</span>
+      <div class="logo-wrap">
+        <img src="logo-01-monogram.svg" alt="Logo option 1">
+      </div>
+      <p class="desc">GP Monogram Circle — Elegant circled initials alongside brand name</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 2</span>
+      <div class="logo-wrap">
+        <img src="logo-02-framed.svg" alt="Logo option 2">
+      </div>
+      <p class="desc">Double Frame — Refined rectangular border with nested inner line</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 3</span>
+      <div class="logo-wrap">
+        <img src="logo-03-bold-serif.svg" alt="Logo option 3">
+      </div>
+      <p class="desc">Bold Serif — Strong Garamond with thick gold bar separator</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 4</span>
+      <div class="logo-wrap">
+        <img src="logo-04-initial-cap.svg" alt="Logo option 4">
+      </div>
+      <p class="desc">Decorative Initial — Large italic G as a distinctive brand mark</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 5</span>
+      <div class="logo-wrap">
+        <img src="logo-05-diamond-accent.svg" alt="Logo option 5">
+      </div>
+      <p class="desc">Diamond Accent — Gold diamond centerpiece with flanking lines</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 6</span>
+      <div class="logo-wrap">
+        <img src="logo-06-stacked-minimal.svg" alt="Logo option 6">
+      </div>
+      <p class="desc">Stacked Minimal — Montserrat on top, elegant Garamond "Projects" below</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 7</span>
+      <div class="logo-wrap">
+        <img src="logo-07-architectural.svg" alt="Logo option 7">
+      </div>
+      <p class="desc">Architectural Icon — House silhouette with vertical separator</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 8</span>
+      <div class="logo-wrap">
+        <img src="logo-08-dual-line.svg" alt="Logo option 8">
+      </div>
+      <p class="desc">Dual Line — Horizontal layout with dot separator and border lines</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 9</span>
+      <div class="logo-wrap">
+        <img src="logo-09-elegant-ampersand.svg" alt="Logo option 9">
+      </div>
+      <p class="desc">Elegant Ampersand — Italic "&amp;" with gold flanking lines</p>
+    </div>
+
+    <div class="card">
+      <span class="label">OPTION 10</span>
+      <div class="logo-wrap badge">
+        <img src="logo-10-badge.svg" alt="Logo option 10">
+      </div>
+      <p class="desc">Circular Badge — Round seal-style mark with curved text and GP monogram</p>
+    </div>
+  </div>
+
+</body>
+</html>

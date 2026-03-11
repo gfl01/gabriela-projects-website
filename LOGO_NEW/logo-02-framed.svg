@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" fill="none">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:wght@300;400;500&amp;display=swap');
+  </style>
+  <!-- Thin rectangular frame -->
+  <rect x="10" y="8" width="340" height="64" rx="1" stroke="#b8976a" stroke-width="1" fill="none"/>
+  <rect x="14" y="12" width="332" height="56" rx="0" stroke="#2c2c2c" stroke-width="0.3" fill="none"/>
+  <!-- Text centered inside -->
+  <text x="180" y="38" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="24" fill="#2c2c2c" letter-spacing="0.2em">GABRIELA</text>
+  <text x="180" y="56" text-anchor="middle" font-family="'Montserrat', Helvetica, sans-serif" font-weight="300" font-size="9" fill="#b8976a" letter-spacing="0.4em">PROJECTS</text>
+</svg>
