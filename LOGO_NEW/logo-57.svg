@@ -1,24 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 150">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 420 140">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:ital,wght@0,400;1,300&amp;display=swap');
     </style>
+    <clipPath id="clip57">
+      <circle cx="55" cy="60" r="48"/>
+    </clipPath>
+    <!-- Burgundy tint: black→#6B2737, white→white -->
+    <filter id="burg">
+      <feColorMatrix type="matrix" values="0.193 0.193 0.193 0 0.420
+                                           0.282 0.282 0.282 0 0.153
+                                           0.261 0.261 0.261 0 0.216
+                                           0     0     0     1 0"/>
+    </filter>
   </defs>
-  <!-- GF monogram inside an arch shape -->
-  <g transform="translate(155, 3)">
-    <!-- Arch shape containing monogram -->
-    <path d="M5 80 L5 40 Q5 2 45 2 Q85 2 85 40 L85 80 Z" fill="none" stroke="#b8976a" stroke-width="2"/>
-    <!-- Inner arch detail -->
-    <path d="M15 80 L15 42 Q15 12 45 12 Q75 12 75 42 L75 80" fill="none" stroke="#b8976a" stroke-width="0.5"/>
-    <!-- GF monogram centered in arch -->
-    <circle cx="45" cy="42" r="20" fill="#b8976a" stroke="none"/>
-    <path d="M45 26 C37 26 32 32 32 42 C32 52 37 58 45 58 C51 58 55 55 57 50 L57 43 L47 43 L47 47 L53 47 L53 49 C51 53 49 54 45 54 C40 54 36 49 36 42 C36 35 40 30 45 30 C49 30 51 31 53 34 L57 31 C54 28 50 26 45 26Z" fill="#ffffff"/>
-    <rect x="47" y="38" width="8" height="3.5" fill="#ffffff" rx="0.5"/>
-    <!-- Keystone -->
-    <path d="M41 3 L49 3 L47 9 L43 9 Z" fill="#b8976a"/>
-  </g>
-  <!-- Text below -->
-  <text x="200" y="102" font-family="'Cormorant Garamond', serif" font-size="24" font-weight="400" fill="#2c2c2c" letter-spacing="6" text-anchor="middle">GABRIELA</text>
-  <text x="200" y="124" font-family="'Cormorant Garamond', serif" font-size="24" font-weight="300" fill="#2c2c2c" letter-spacing="6" text-anchor="middle">PROJECTS</text>
-  <text x="200" y="142" font-family="'Montserrat', sans-serif" font-size="7" font-weight="300" font-style="italic" fill="#888" letter-spacing="1.5" text-anchor="middle">Custom Design + Quality Construction</text>
+  <!-- Burgundy-tinted GF monogram -->
+  <image href="gf-monogram.jpeg" x="7" y="12" width="96" height="96" clip-path="url(#clip57)" filter="url(#burg)" preserveAspectRatio="xMidYMid meet"/>
+  <!-- Text to the right -->
+  <text x="130" y="50" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="400" fill="#2c2c2c" letter-spacing="5">GABRIELA</text>
+  <text x="130" y="78" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="300" fill="#2c2c2c" letter-spacing="5">PROJECTS</text>
+  <line x1="130" y1="87" x2="400" y2="87" stroke="#6B2737" stroke-width="0.5"/>
+  <text x="130" y="102" font-family="'Montserrat', sans-serif" font-size="7" font-weight="300" font-style="italic" fill="#888" letter-spacing="1.5">Custom Design + Quality Construction</text>
 </svg>

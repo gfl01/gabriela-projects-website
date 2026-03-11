@@ -1,29 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 420 140">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:ital,wght@0,400;1,300&amp;display=swap');
     </style>
+    <clipPath id="clip60">
+      <circle cx="55" cy="60" r="48"/>
+    </clipPath>
+    <!-- Copper tint: black→#A0734B, white→white -->
+    <filter id="copper">
+      <feColorMatrix type="matrix" values="0.120 0.120 0.120 0 0.627
+                                           0.190 0.190 0.190 0 0.451
+                                           0.235 0.235 0.235 0 0.294
+                                           0     0     0     1 0"/>
+    </filter>
   </defs>
-  <!-- GF monogram + arch combined: monogram inside arch doorway -->
-  <g transform="translate(20, 10)">
-    <!-- Arch doorway -->
-    <path d="M10 115 L10 50 Q10 8 50 8 Q90 8 90 50 L90 115" fill="none" stroke="#C45B3E" stroke-width="2"/>
-    <!-- Column bases -->
-    <rect x="4" y="110" width="14" height="5" fill="none" stroke="#C45B3E" stroke-width="1"/>
-    <rect x="82" y="110" width="14" height="5" fill="none" stroke="#C45B3E" stroke-width="1"/>
-    <!-- Keystone -->
-    <path d="M45 9 L55 9 L53 15 L47 15Z" fill="#C45B3E"/>
-    <!-- GF monogram inside -->
-    <circle cx="50" cy="58" r="24" fill="#2c2c2c"/>
-    <path d="M50 38 C40 38 34 46 34 58 C34 70 40 78 50 78 C58 78 63 73 65 66 L65 59 L52 59 L52 65 L60 65 L60 66 C58 72 55 74 50 74 C42 74 38 67 38 58 C38 49 42 42 50 42 C55 42 58 44 60 48 L65 45 C62 40 57 38 50 38Z" fill="#ffffff"/>
-    <rect x="52" y="53" width="12" height="4.5" fill="#ffffff" rx="0.5"/>
-    <!-- Steps -->
-    <line x1="20" y1="115" x2="80" y2="115" stroke="#C45B3E" stroke-width="1"/>
-    <line x1="15" y1="120" x2="85" y2="120" stroke="#C45B3E" stroke-width="1"/>
-  </g>
+  <!-- Copper-tinted GF monogram -->
+  <image href="gf-monogram.jpeg" x="7" y="12" width="96" height="96" clip-path="url(#clip60)" filter="url(#copper)" preserveAspectRatio="xMidYMid meet"/>
   <!-- Text to the right -->
   <text x="130" y="50" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="400" fill="#2c2c2c" letter-spacing="5">GABRIELA</text>
   <text x="130" y="78" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="300" fill="#2c2c2c" letter-spacing="5">PROJECTS</text>
-  <line x1="130" y1="88" x2="390" y2="88" stroke="#C45B3E" stroke-width="0.5"/>
-  <text x="130" y="103" font-family="'Montserrat', sans-serif" font-size="7" font-weight="300" font-style="italic" fill="#888" letter-spacing="1.5">Custom Design + Quality Construction</text>
+  <line x1="130" y1="87" x2="400" y2="87" stroke="#A0734B" stroke-width="0.5"/>
+  <text x="130" y="102" font-family="'Montserrat', sans-serif" font-size="7" font-weight="300" font-style="italic" fill="#888" letter-spacing="1.5">Custom Design + Quality Construction</text>
 </svg>

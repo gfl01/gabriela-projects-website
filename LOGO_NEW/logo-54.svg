@@ -1,17 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 420 140">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&amp;family=Montserrat:ital,wght@0,400;1,300&amp;display=swap');
     </style>
+    <clipPath id="clip54">
+      <circle cx="55" cy="60" r="48"/>
+    </clipPath>
+    <!-- Terracotta tint: black→#C45B3E, white→white -->
+    <filter id="terra">
+      <feColorMatrix type="matrix" values="0.077 0.077 0.077 0 0.769
+                                           0.214 0.214 0.214 0 0.357
+                                           0.252 0.252 0.252 0 0.243
+                                           0     0     0     1 0"/>
+    </filter>
   </defs>
-  <!-- GF Monogram - Terracotta with arch frame -->
-  <g transform="translate(155, 5)">
-    <circle cx="45" cy="38" r="32" fill="#C45B3E" stroke="none"/>
-    <path d="M45 12 C30 12 20 24 20 38 C20 52 30 64 45 64 C55 64 62 58 65 50 L65 40 L48 40 L48 47 L58 47 L58 49 C55 55 51 58 45 58 C34 58 27 50 27 38 C27 26 34 18 45 18 C52 18 57 21 60 26 L67 22 C62 15 54 12 45 12Z" fill="#ffffff"/>
-    <rect x="48" y="33" width="15" height="5.5" fill="#ffffff" rx="0.5"/>
-  </g>
-  <!-- Text below centered -->
-  <text x="200" y="95" font-family="'Cormorant Garamond', serif" font-size="24" font-weight="400" fill="#2c2c2c" letter-spacing="6" text-anchor="middle">GABRIELA</text>
-  <text x="200" y="115" font-family="'Cormorant Garamond', serif" font-size="14" font-weight="400" fill="#2c2c2c" letter-spacing="8" text-anchor="middle">PROJECTS</text>
-  <text x="200" y="132" font-family="'Montserrat', sans-serif" font-size="7" font-weight="300" font-style="italic" fill="#888" letter-spacing="1.5" text-anchor="middle">Custom Design + Quality Construction</text>
+  <!-- Terracotta-tinted GF monogram -->
+  <image href="gf-monogram.jpeg" x="7" y="12" width="96" height="96" clip-path="url(#clip54)" filter="url(#terra)" preserveAspectRatio="xMidYMid meet"/>
+  <!-- Text to the right -->
+  <text x="130" y="50" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="400" fill="#2c2c2c" letter-spacing="5">GABRIELA</text>
+  <text x="130" y="78" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="300" fill="#2c2c2c" letter-spacing="5">PROJECTS</text>
+  <line x1="130" y1="87" x2="400" y2="87" stroke="#C45B3E" stroke-width="0.5"/>
+  <text x="130" y="102" font-family="'Montserrat', sans-serif" font-size="7" font-weight="300" font-style="italic" fill="#888" letter-spacing="1.5">Custom Design + Quality Construction</text>
 </svg>
