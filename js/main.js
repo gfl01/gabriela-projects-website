@@ -1,10 +1,19 @@
 // === Scroll-based header styling ===
 const header = document.getElementById('header');
+const headerLogo = header.querySelector('.logo img');
+const isHome = document.body.classList.contains('home');
+
 function updateHeader() {
   if (window.scrollY > 80) {
     header.classList.add('scrolled');
+    if (!isHome && headerLogo) {
+      headerLogo.src = 'images/common/logo.svg';
+    }
   } else {
     header.classList.remove('scrolled');
+    if (!isHome && headerLogo) {
+      headerLogo.src = 'images/common/logo-white.svg';
+    }
   }
 }
 window.addEventListener('scroll', updateHeader, { passive: true });

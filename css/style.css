@@ -91,18 +91,12 @@ img {
 }
 
 .site-header .logo img {
-  height: 40px;
+  height: 42px;
   width: auto;
-  filter: brightness(0) invert(1);
-  transition: filter var(--transition);
 }
 
 .site-header .logo-text {
   display: none;
-}
-
-.site-header.scrolled .logo img {
-  filter: none;
 }
 
 .main-nav {
@@ -637,10 +631,9 @@ img {
 }
 
 .footer-brand .footer-logo {
-  height: 50px;
+  height: 48px;
   width: auto;
   margin-bottom: 20px;
-  filter: brightness(0) invert(1);
 }
 
 .footer-brand p {
