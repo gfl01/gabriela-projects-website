@@ -2,17 +2,30 @@
 const header = document.getElementById('header');
 const headerLogo = header.querySelector('.logo img');
 const isHome = document.body.classList.contains('home');
+const heroSection = document.querySelector('.hero') || document.querySelector('.page-hero');
+
+function isHeaderOverHero() {
+  if (!heroSection) return false;
+  var heroRect = heroSection.getBoundingClientRect();
+  var headerHeight = header.offsetHeight;
+  // Header overlaps hero when hero top is above header bottom and hero bottom is below header top
+  return heroRect.top < headerHeight && heroRect.bottom > 0;
+}
 
 function updateHeader() {
+  var overHero = isHeaderOverHero();
+
   if (window.scrollY > 80) {
     header.classList.add('scrolled');
-    if (!isHome && headerLogo) {
-      headerLogo.src = 'images/common/logo.svg';
-    }
   } else {
     header.classList.remove('scrolled');
-    if (!isHome && headerLogo) {
+  }
+
+  if (!isHome && headerLogo) {
+    if (overHero && !header.classList.contains('scrolled')) {
       headerLogo.src = 'images/common/logo-white.svg';
+    } else {
+      headerLogo.src = 'images/common/logo.svg';
     }
   }
 }
@@ -104,6 +117,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealElements.forEach(el => revealObserver.observe(el));
 
 // === Inner page header (always scrolled style) ===
-if (!document.querySelector('.hero')) {
+if (!document.querySelector('.hero') && !document.querySelector('.page-hero')) {
   header.classList.add('scrolled');
 }
