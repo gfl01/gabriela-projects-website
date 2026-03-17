@@ -1296,6 +1296,158 @@ img {
   background: var(--color-gold);
 }
 
+/* === How It Works Page === */
+.hiw-intro {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+
+.hiw-timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+}
+
+.hiw-phase {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 40px;
+  margin-bottom: 0;
+}
+
+.hiw-phase-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hiw-phase-number {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.hiw-phase-line {
+  width: 1px;
+  flex: 1;
+  background: linear-gradient(to bottom, var(--color-gold), var(--color-light-gray));
+}
+
+.hiw-phase:last-child .hiw-phase-line {
+  display: none;
+}
+
+.hiw-phase-content {
+  padding-bottom: 60px;
+}
+
+.hiw-phase:last-child .hiw-phase-content {
+  padding-bottom: 0;
+}
+
+.hiw-phase-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 8px;
+}
+
+.hiw-phase-content h3 {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--color-black);
+  margin-bottom: 16px;
+}
+
+.hiw-phase-content > p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--color-charcoal);
+  margin-bottom: 30px;
+}
+
+.hiw-details {
+  display: grid;
+  gap: 24px;
+}
+
+.hiw-detail-item {
+  padding: 24px 28px;
+  background: var(--color-cream);
+  border-left: 2px solid var(--color-gold);
+}
+
+.hiw-detail-item h4 {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-black);
+  margin-bottom: 8px;
+}
+
+.hiw-detail-item p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--color-charcoal);
+  margin: 0;
+}
+
+/* Why Section */
+.hiw-why {
+  background: var(--color-off-white);
+  text-align: center;
+}
+
+.hiw-why-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hiw-why .section-text {
+  margin: 0 auto 50px;
+}
+
+.hiw-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hiw-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.hiw-stat-number {
+  font-family: var(--font-heading);
+  font-size: 56px;
+  font-weight: 300;
+  color: var(--color-gold);
+  line-height: 1;
+}
+
+.hiw-stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+}
+
 /* === Responsive === */
 @media (max-width: 1024px) {
   .section {
@@ -1336,6 +1488,10 @@ img {
 
   .project-section {
     padding: 40px;
+  }
+
+  .hiw-phase {
+    gap: 30px;
   }
 }
 
@@ -1460,6 +1616,31 @@ img {
   .gallery-grid img,
   .gallery-grid .gallery-wide {
     height: 280px;
+  }
+
+  .hiw-phase {
+    grid-template-columns: 50px 1fr;
+    gap: 20px;
+  }
+
+  .hiw-phase-number {
+    font-size: 28px;
+  }
+
+  .hiw-phase-content h3 {
+    font-size: 24px;
+  }
+
+  .hiw-detail-item {
+    padding: 20px;
+  }
+
+  .hiw-stats {
+    gap: 24px;
+  }
+
+  .hiw-stat-number {
+    font-size: 42px;
   }
 
   .site-footer {
