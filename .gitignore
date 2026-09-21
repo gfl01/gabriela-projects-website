@@ -1,1 +1,7 @@
 .DS_Store
+
+# Raw, unoptimized photo drops (hundreds of MB, files up to 47 MB).
+# The web-sized copies that the site actually uses are committed:
+#   images/portfolio/montclair-house/, images/portfolio/park-avenue/
+images/portfolio/Montclair House - Before and after for website/
+images/portfolio/Park Ave - Before and After photos website/

@@ -110,8 +110,12 @@ const revealObserver = new IntersectionObserver((entries) => {
     }
   });
 }, {
-  threshold: 0.15,
-  rootMargin: '0px 0px -50px 0px'
+  // A percentage threshold can never be met by an element taller than
+  // 1 / threshold viewports (e.g. a long before/after list), which would
+  // leave it stuck at opacity 0. Trigger on first contact instead and use
+  // the bottom margin to hold the reveal until the element is properly in view.
+  threshold: 0,
+  rootMargin: '0px 0px -120px 0px'
 });
 
 revealElements.forEach(el => revealObserver.observe(el));

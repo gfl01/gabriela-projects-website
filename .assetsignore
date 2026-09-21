@@ -2,3 +2,8 @@
 node_modules
 .wrangler
 wrangler.jsonc
+
+# Raw, unoptimized photo drops — web-sized copies live in
+# images/portfolio/montclair-house and images/portfolio/park-avenue
+images/portfolio/Montclair House - Before and after for website
+images/portfolio/Park Ave - Before and After photos website
