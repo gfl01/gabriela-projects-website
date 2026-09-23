@@ -1,0 +1,45 @@
+#!/bin/sh
+# Keep the social share image in step with the home page hero.
+#
+# The preview card that shows when someone pastes the site link into iMessage,
+# WhatsApp, Instagram or LinkedIn is a fixed image file. Nothing regenerates it
+# on its own, so without this hook it silently goes stale the moment a hero
+# photo changes.
+#
+# Enabled by:  git config core.hooksPath tools/git-hooks
+
+set -e
+
+ROOT=$(git rev-parse --show-toplevel)
+OG="images/common/og-home.jpg"
+
+# Only bother when something that feeds the hero is actually part of this commit.
+if ! git diff --cached --name-only | grep -qE '^(index\.html|css/style\.css|images/)'; then
+    exit 0
+fi
+
+if ! command -v python3 >/dev/null 2>&1; then
+    echo "pre-commit: python3 not found, leaving $OG as-is" >&2
+    exit 0
+fi
+
+before=""
+[ -f "$ROOT/$OG" ] && before=$(shasum -a 256 "$ROOT/$OG" | cut -d' ' -f1)
+
+if ! python3 "$ROOT/tools/make-og-image.py" >/dev/null 2>&1; then
+    echo >&2
+    echo "  WARNING: could not regenerate $OG" >&2
+    echo "  The link-preview image may now be out of date with the hero." >&2
+    echo "  Run: python3 tools/make-og-image.py" >&2
+    echo >&2
+    exit 0          # a stale preview is not worth blocking a commit over
+fi
+
+after=$(shasum -a 256 "$ROOT/$OG" | cut -d' ' -f1)
+
+if [ "$before" != "$after" ]; then
+    git add "$ROOT/$OG"
+    echo "pre-commit: regenerated $OG from the current hero and staged it"
+fi
+
+exit 0
