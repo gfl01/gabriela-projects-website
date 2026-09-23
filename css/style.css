@@ -824,6 +824,13 @@ img {
   clip-path: inset(0 50% 0 0);
 }
 
+/* The slider is keyboard-operable (arrows / Home / End), so it needs a
+   visible focus ring. :focus-visible keeps it off for plain mouse clicks. */
+.ba-slider:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
 .ba-img-after {
   z-index: 0;
 }

@@ -5,29 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Renovation Portfolio | GABRIELA PROJECTS NYC</title>
   <meta name="description" content="See before-and-after transformations of NYC apartments, custom bookshelves, office renovations, and more by Gabriela Projects — a woman-owned design-build firm.">
-  <link rel="canonical" href="https://www.gabrielaprojects.com/portfolio.html">
+  <link rel="canonical" href="https://gabrielaprojects.com/portfolio">
   <!-- Open Graph -->
   <meta property="og:title" content="Renovation Portfolio | Gabriela Projects NYC">
   <meta property="og:description" content="Before-and-after transformations of NYC apartments, custom millwork, office renovations, and more.">
-  <meta property="og:image" content="https://www.gabrielaprojects.com/images/portfolio/upper-east-side/after-01.jpg">
-  <meta property="og:url" content="https://www.gabrielaprojects.com/portfolio.html">
+  <meta property="og:image" content="https://gabrielaprojects.com/images/portfolio/upper-east-side/after-01.jpg">
+  <meta property="og:url" content="https://gabrielaprojects.com/portfolio">
   <meta property="og:type" content="website">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Renovation Portfolio | Gabriela Projects NYC">
   <meta name="twitter:description" content="Before-and-after transformations of NYC apartments, custom millwork, office renovations, and more.">
-  <meta name="twitter:image" content="https://www.gabrielaprojects.com/images/portfolio/upper-east-side/after-01.jpg">
+  <meta name="twitter:image" content="https://gabrielaprojects.com/images/portfolio/upper-east-side/after-01.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="images/common/favicon.svg">
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body>
 
   <!-- Header -->
   <header class="site-header scrolled" id="header">
-    <a href="index.html" class="logo">
+    <a href="/" class="logo">
       <img src="images/common/logo.svg" alt="Gabriela Projects" class="logo-img">
       <span class="logo-text">GABRIELA PROJECTS</span>
     </a>
@@ -35,10 +35,11 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="main-nav" id="nav">
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="portfolio.html" class="active">Portfolio</a>
-      <a href="get-started.html" class="nav-cta">Get Started</a>
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/how-it-works">How It Works</a>
+      <a href="/portfolio" class="active">Portfolio</a>
+      <a href="/get-started" class="nav-cta">Get Started</a>
     </nav>
   </header>
 
@@ -512,7 +513,7 @@
     <div class="overlay"></div>
     <div class="cta-content reveal">
       <h2>Ready to Start Your Project?</h2>
-      <a href="get-started.html" class="btn-outline">Get in Touch</a>
+      <a href="/get-started" class="btn-outline">Get in Touch</a>
     </div>
   </section>
 
@@ -525,10 +526,11 @@
       </div>
       <div class="footer-links">
         <h4>Navigation</h4>
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="get-started.html">Get Started</a>
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+        <a href="/how-it-works">How It Works</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/get-started">Get Started</a>
       </div>
       <div class="footer-contact">
         <h4>Contact</h4>
@@ -549,58 +551,5 @@
   </footer>
 
   <script src="js/main.js?v=9"></script>
-  <script>
-    // ================================
-    // Before / After Slider Logic
-    // ================================
-    document.querySelectorAll('.ba-slider').forEach(slider => {
-      const beforeImg = slider.querySelector('.ba-img-before');
-      const handle = slider.querySelector('.ba-handle');
-      let isDragging = false;
-
-      function updatePosition(x) {
-        const rect = slider.getBoundingClientRect();
-        let pos = ((x - rect.left) / rect.width) * 100;
-        pos = Math.max(2, Math.min(98, pos));
-
-        beforeImg.style.clipPath = `inset(0 ${100 - pos}% 0 0)`;
-        handle.style.left = pos + '%';
-        slider.dataset.position = pos;
-      }
-
-      // Mouse events
-      slider.addEventListener('mousedown', (e) => {
-        e.preventDefault();
-        isDragging = true;
-        updatePosition(e.clientX);
-      });
-
-      document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        updatePosition(e.clientX);
-      });
-
-      document.addEventListener('mouseup', () => {
-        isDragging = false;
-      });
-
-      // Touch events
-      slider.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        updatePosition(e.touches[0].clientX);
-      }, { passive: true });
-
-      slider.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        updatePosition(e.touches[0].clientX);
-      }, { passive: false });
-
-      slider.addEventListener('touchend', () => {
-        isDragging = false;
-      });
-    });
-  </script>
 </body>
 </html>

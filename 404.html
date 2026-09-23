@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | GABRIELA PROJECTS</title>
+  <meta name="description" content="That page could not be found. Explore Gabriela Projects' NYC renovation portfolio, services, and process instead.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/images/common/favicon.svg">
+  <link rel="stylesheet" href="/css/style.css?v=9">
+  <style>
+    /* This page is served from any URL depth, so it keeps its own minimal layout
+       rather than relying on a hero image to push content below the fixed header. */
+    .notfound {
+      min-height: 68vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 160px 24px 100px;
+    }
+    .notfound .notfound-code {
+      font-family: var(--font-heading);
+      font-size: clamp(72px, 14vw, 140px);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--color-gold);
+      margin-bottom: 8px;
+    }
+    .notfound h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 300;
+      color: var(--color-black);
+      margin-bottom: 18px;
+    }
+    .notfound-text {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--color-charcoal);
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+    .notfound-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+    /* Filled variant of the site's existing light-background button. */
+    .btn-back-filled {
+      background: var(--color-black);
+      color: var(--color-white);
+    }
+    .btn-back-filled:hover {
+      background: transparent;
+      color: var(--color-black);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header scrolled" id="header">
+    <a href="/" class="logo">
+      <img src="/images/common/logo.svg" alt="Gabriela Projects" class="logo-img">
+      <span class="logo-text">GABRIELA PROJECTS</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="nav">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/how-it-works">How It Works</a>
+      <a href="/portfolio">Portfolio</a>
+      <a href="/get-started" class="nav-cta">Get Started</a>
+    </nav>
+  </header>
+
+  <main class="notfound">
+    <p class="notfound-code">404</p>
+    <h1>This page doesn't exist</h1>
+    <p class="notfound-text">The page you're looking for may have moved or never existed. Have a look at our recent work, or tell us about your project.</p>
+    <div class="notfound-links">
+      <a href="/portfolio" class="btn-back btn-back-filled">View Portfolio</a>
+      <a href="/get-started" class="btn-back">Get in Touch</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="/images/common/logo-white.svg" alt="Gabriela Projects" class="footer-logo">
+        <p>Custom design and quality construction, all in one. A woman-owned, women-led firm based in New York City.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+        <a href="/how-it-works">How It Works</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/get-started">Get Started</a>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p><a href="mailto:info@gabrielaprojects.com">info@gabrielaprojects.com</a></p>
+        <p>New York City, NY</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/gabrielaprojects/" target="_blank" rel="noopener" class="social-icon" aria-label="Follow us on Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Gabriela Projects. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="/js/main.js?v=9"></script>
+</body>
+</html>

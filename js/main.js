@@ -124,3 +124,103 @@ revealElements.forEach(el => revealObserver.observe(el));
 if (!document.querySelector('.hero') && !document.querySelector('.page-hero')) {
   header.classList.add('scrolled');
 }
+
+// === Before / After sliders ===
+// Lives here rather than inline on the portfolio pages so there is one copy to
+// maintain. Pages without sliders simply match nothing.
+(function () {
+  const sliders = document.querySelectorAll('.ba-slider');
+  if (!sliders.length) return;
+
+  const MIN = 2;
+  const MAX = 98;
+  let active = null; // slider currently being dragged
+
+  sliders.forEach(function (slider) {
+    const beforeImg = slider.querySelector('.ba-img-before');
+    const afterImg = slider.querySelector('.ba-img-after');
+    const handle = slider.querySelector('.ba-handle');
+    if (!beforeImg || !handle) return;
+
+    // The control only works with JS, so the a11y contract is set up here
+    // rather than in the markup.
+    const subject = (afterImg && afterImg.getAttribute('alt') || 'Before and after')
+      .replace(/\s+after$/i, '')
+      .trim();
+    slider.setAttribute('role', 'slider');
+    slider.setAttribute('tabindex', '0');
+    slider.setAttribute('aria-label', subject + ', before and after comparison');
+    slider.setAttribute('aria-orientation', 'horizontal');
+    slider.setAttribute('aria-valuemin', String(MIN));
+    slider.setAttribute('aria-valuemax', String(MAX));
+
+    function setPosition(pos) {
+      pos = Math.max(MIN, Math.min(MAX, pos));
+      beforeImg.style.clipPath = 'inset(0 ' + (100 - pos) + '% 0 0)';
+      handle.style.left = pos + '%';
+      slider.dataset.position = pos;
+      slider.setAttribute('aria-valuenow', String(Math.round(pos)));
+      slider.setAttribute('aria-valuetext',
+        Math.round(pos) + '% before, ' + Math.round(100 - pos) + '% after');
+    }
+
+    function setFromX(x) {
+      const rect = slider.getBoundingClientRect();
+      setPosition(((x - rect.left) / rect.width) * 100);
+    }
+
+    slider.setPosition = setPosition;
+    slider.setFromX = setFromX;
+    setPosition(parseFloat(slider.dataset.position) || 50);
+
+    slider.addEventListener('mousedown', function (e) {
+      e.preventDefault();
+      active = slider;
+      slider.focus(); // preventDefault above would otherwise suppress focus
+      setFromX(e.clientX);
+    });
+
+    slider.addEventListener('touchstart', function (e) {
+      active = slider;
+      setFromX(e.touches[0].clientX);
+    }, { passive: true });
+
+    slider.addEventListener('touchmove', function (e) {
+      if (active !== slider) return;
+      e.preventDefault();
+      setFromX(e.touches[0].clientX);
+    }, { passive: false });
+
+    slider.addEventListener('touchend', function () { active = null; });
+
+    slider.addEventListener('keydown', function (e) {
+      const current = parseFloat(slider.dataset.position) || 50;
+      const step = e.shiftKey ? 10 : 2;
+      let next;
+
+      switch (e.key) {
+        case 'ArrowLeft':
+        case 'ArrowDown':  next = current - step; break;
+        case 'ArrowRight':
+        case 'ArrowUp':    next = current + step; break;
+        case 'PageDown':   next = current - 20; break;
+        case 'PageUp':     next = current + 20; break;
+        case 'Home':       next = MIN; break;
+        case 'End':        next = MAX; break;
+        default: return;
+      }
+
+      e.preventDefault();
+      setPosition(next);
+    });
+  });
+
+  // One pair of document listeners for every slider, rather than one pair each.
+  document.addEventListener('mousemove', function (e) {
+    if (!active) return;
+    e.preventDefault();
+    active.setFromX(e.clientX);
+  });
+
+  document.addEventListener('mouseup', function () { active = null; });
+})();

@@ -1,0 +1,29 @@
+# Cloudflare reads this file to set response headers.
+#
+# Before this existed everything was served with `max-age=0, must-revalidate`,
+# so a repeat visitor revalidated all ~59 portfolio images on every page view.
+
+# Photos change rarely, but they DO get replaced in place (same filename, new
+# crop), so this is a long cache rather than an `immutable` one. If you swap a
+# photo and need it live immediately, purge the cache in the Cloudflare
+# dashboard, or save it under a new filename.
+/images/*
+  Cache-Control: public, max-age=2592000
+
+# CSS and JS are versioned by query string (style.css?v=9, main.js?v=9), and a
+# changed query string is a different cache entry. That makes a long immutable
+# cache safe -- BUT ONLY IF YOU BUMP THE ?v= NUMBER IN EVERY HTML FILE whenever
+# you edit these files. Skipping that bump leaves visitors on the old version.
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts and the favicon are stable.
+/images/common/*
+  Cache-Control: public, max-age=31536000
+
+# HTML stays uncached so content edits go live immediately.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
