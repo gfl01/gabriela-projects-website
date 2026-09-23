@@ -221,7 +221,7 @@ img {
   position: absolute;
   inset: 0;
   display: grid;
-  grid-template-columns: 1fr 1.15fr 1.3fr;
+  grid-template-columns: 1.15fr 1fr 1.3fr;
   gap: 4px;
 }
 
@@ -231,10 +231,15 @@ img {
   object-fit: cover;
 }
 
-/* Third hero panel: the arched doorway sits slightly right of centre in the
-   source photo (centre 52.8%), and these outer columns are narrow, so centre
-   the crop on the arch rather than on the frame. The column is also given a
-   little more width below so the whole arch clears the crop. */
+/* Both outer hero panels are framed on an arch, and neither arch is centred
+   in its source photo, so each panel's crop is centred on its own arch. The
+   column widths above are sized so both arches clear the crop: the left arch
+   spans 15%-49% of its photo, the right one 33.2%-72.1% of its own -- the
+   right needs the wider column. */
+.hero-bg img:nth-child(1) {
+  object-position: 22% center;
+}
+
 .hero-bg img:nth-child(3) {
   object-position: 54.5% center;
 }
