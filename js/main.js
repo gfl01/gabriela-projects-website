@@ -224,3 +224,35 @@ if (!document.querySelector('.hero') && !document.querySelector('.page-hero')) {
 
   document.addEventListener('mouseup', function () { active = null; });
 })();
+
+// === Deep links to a single project (e.g. /portfolio#park-avenue) ===
+// The portfolio page is long and image-heavy, so the browser's own jump to an
+// anchor can fire before layout has settled and end up at the top of the page.
+// Re-run the jump once everything has loaded. CSS scroll-margin-top keeps the
+// heading clear of the fixed header.
+(function () {
+  function jumpToHash(instant) {
+    if (!location.hash) return;
+    var target = null;
+    try {
+      target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    } catch (e) {
+      return;
+    }
+    if (!target) return;
+    target.scrollIntoView({ behavior: instant ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  if (location.hash) {
+    // 'load' waits for images, so the target's final position is known.
+    // Deliberately not requestAnimationFrame: it never fires while the tab is
+    // hidden, so a link opened in a background tab would stay at the top.
+    window.addEventListener('load', function () {
+      jumpToHash(true);
+      setTimeout(function () { jumpToHash(true); }, 80);
+    });
+  }
+
+  // Following a #link while already on the page.
+  window.addEventListener('hashchange', function () { jumpToHash(false); });
+})();

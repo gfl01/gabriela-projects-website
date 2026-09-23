@@ -31,6 +31,12 @@ html {
   font-size: 16px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   font-family: var(--font-body);
   color: var(--color-black);
@@ -746,6 +752,12 @@ img {
   padding: 80px;
   max-width: 1400px;
   margin: 0 auto;
+}
+
+/* Deep links from the home page land on a specific project. The header is
+   fixed, so hold the scroll stop below it rather than under it. */
+.project-section[id] {
+  scroll-margin-top: 110px;
 }
 
 .project-header {
