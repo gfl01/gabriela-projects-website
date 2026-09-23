@@ -221,7 +221,7 @@ img {
   position: absolute;
   inset: 0;
   display: grid;
-  grid-template-columns: 1.15fr 1fr 1.3fr;
+  grid-template-columns: 1.3fr 1fr 1.15fr;
   gap: 4px;
 }
 
@@ -234,14 +234,15 @@ img {
 /* Both outer hero panels are framed on an arch, and neither arch is centred
    in its source photo, so each panel's crop is centred on its own arch. The
    column widths above are sized so both arches clear the crop: the left arch
-   spans 15%-49% of its photo, the right one 33.2%-72.1% of its own -- the
-   right needs the wider column. */
+   (the black steel doors) spans 33.2%-72.1% of its photo and the right one
+   15%-49% of its own, so the left needs the wider column. The black arch is
+   first because the mobile layout hides panels 2 and 3. */
 .hero-bg img:nth-child(1) {
-  object-position: 22% center;
+  object-position: 54.5% center;
 }
 
 .hero-bg img:nth-child(3) {
-  object-position: 54.5% center;
+  object-position: 22% center;
 }
 
 .hero-overlay {
