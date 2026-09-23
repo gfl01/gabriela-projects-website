@@ -251,11 +251,35 @@ img {
   background: rgba(0, 0, 0, 0.35);
 }
 
+/* The middle hero photo is very bright (white marble, white ceiling), so a flat
+   35% dim still leaves the title crossing patches that measure only about 3:1
+   against white text. This scrim darkens the centre, where the text actually
+   sits, and fades out before the edges so the photographs keep their punch.
+   Kept on a pseudo-element so .hero-overlay's own rgba stays a single flat
+   value -- tools/make-og-image.py parses that number out of this file. */
+.hero-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 62% 46% at 50% 47%,
+                              rgba(0, 0, 0, 0.42) 0%,
+                              rgba(0, 0, 0, 0.24) 45%,
+                              rgba(0, 0, 0, 0) 72%);
+}
+
 .hero-content {
   position: relative;
   z-index: 2;
   text-align: center;
   padding: 20px;
+}
+
+/* Belt and braces: the scrim handles the broad area, this keeps fine strokes
+   legible over any bright detail inside it. */
+.hero-content h1,
+.hero-content .tagline,
+.hero-content .hero-locations {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.32), 0 2px 16px rgba(0, 0, 0, 0.45);
 }
 
 .hero-content .hero-logo {
@@ -294,7 +318,7 @@ img {
   font-weight: 500;
   letter-spacing: 3.5px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .hero-scroll {
