@@ -256,3 +256,20 @@ if (!document.querySelector('.hero') && !document.querySelector('.page-hero')) {
   // Following a #link while already on the page.
   window.addEventListener('hashchange', function () { jumpToHash(false); });
 })();
+
+// === Count phone and email clicks as leads ===
+// GA4's built-in "outbound click" tracking only covers http(s) links to other
+// domains, so tel: and mailto: clicks are invisible to it by default. For a
+// contractor a tap-to-call is worth as much as a form submission, so both are
+// reported here. No-ops when Analytics is absent or blocked.
+document.addEventListener('click', function (e) {
+  const link = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+  if (!link || typeof gtag !== 'function') return;
+
+  const isPhone = link.getAttribute('href').startsWith('tel:');
+  gtag('event', 'generate_lead', {
+    event_category: 'contact',
+    event_label: isPhone ? 'Phone tap' : 'Email click',
+    method: isPhone ? 'phone' : 'email'
+  });
+});
