@@ -284,6 +284,19 @@ img {
   letter-spacing: 2px;
 }
 
+/* Naming the towns in the hero is deliberate: local ranking follows the
+   places actually written on the page, and a Glen Ridge homeowner reads
+   "Glen Ridge" as "works on houses like mine". */
+.hero-content .hero-locations {
+  margin-top: 18px;
+  font-family: var(--font-body);
+  font-size: clamp(10px, 1.1vw, 12px);
+  font-weight: 500;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
 .hero-scroll {
   position: absolute;
   bottom: 40px;
@@ -1529,6 +1542,14 @@ img {
 }
 
 @media (max-width: 768px) {
+
+  /* Long service-area line vs. a narrow phone: tighten the tracking so it
+     wraps to two tidy lines instead of breaking mid-town-name. */
+  .hero-content .hero-locations {
+    letter-spacing: 1.8px;
+    margin-top: 14px;
+    line-height: 1.8;
+  }
   .site-header {
     padding: 0 24px;
     height: 70px;
