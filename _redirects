@@ -1,0 +1,6 @@
+# Cloudflare reads this file for permanent redirects (served by Workers Static Assets).
+# Old addresses that Google or other sites still know about go to the page that
+# replaced them, so visitors land somewhere useful and search credit carries over.
+/home        /  301
+/home.html   /  301
+/index       /  301
