@@ -68,7 +68,7 @@
       <p>It takes about a minute. Tell us a little about your home and what you have in mind, and we'll get back to you within one business day to set up your free consultation.</p>
     </div>
 
-    <form class="project-form reveal" id="projectForm" action="https://formsubmit.co/info@gabrielaprojects.com" method="POST">
+    <form class="project-form reveal" id="projectForm" action="https://formsubmit.co/9fea90cd46687e7b7ff42da6bed6ff03" method="POST">
       <!-- Honeypot for spam -->
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <!-- Disable captcha page -->
@@ -397,15 +397,20 @@
         'New inquiry: ' + property + (town ? ' in ' + town : '') + ' - Gabriela Projects';
       formData.set('_subject', document.getElementById('formSubject').value);
 
-      fetch(form.action, {
+      // FormSubmit's AJAX endpoint answers {"success": "true"} only when the email
+      // actually went out. The plain endpoint answered 200 even for a form that was
+      // never activated, so visitors saw "Thank you" while nothing was delivered.
+      fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
         method: 'POST',
-        body: formData,
+        body: JSON.stringify(Object.fromEntries(formData)),
         headers: {
+          'Content-Type': 'application/json',
           'Accept': 'application/json'
         }
       })
-      .then(response => {
-        if (response.ok) {
+      .then(response => response.ok ? response.json() : Promise.reject(new Error('HTTP ' + response.status)))
+      .then(data => {
+        if (String(data.success) === 'true') {
           // Count the enquiry in Analytics. Fired only on a confirmed success,
           // so the number means real leads rather than submit-button clicks.
           if (typeof gtag === 'function') {

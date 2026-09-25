@@ -209,7 +209,7 @@ footer{border-top:1px solid var(--line); padding-block:28px 40px; display:flex; 
           <li><span>Instagram</span> <a href="https://www.instagram.com/gabrielaprojects/">@gabrielaprojects</a></li>
         </ul>
       </div>
-      <form id="qform" action="https://formsubmit.co/info@gabrielaprojects.com" method="POST">
+      <form id="qform" action="https://formsubmit.co/9fea90cd46687e7b7ff42da6bed6ff03" method="POST">
         <!-- Same FormSubmit inbox as /get-started. Honeypot for spam, no captcha page. -->
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
         <input type="hidden" name="_captcha" value="false">
@@ -256,13 +256,18 @@ footer{border-top:1px solid var(--line); padding-block:28px 40px; display:flex; 
     qsubmit.textContent = 'Sending...';
     qerror.hidden = true;
 
-    fetch(qform.action, {
+    // AJAX endpoint: {"success": "true"} only when the email actually went out.
+    fetch(qform.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
       method: 'POST',
-      body: new FormData(qform),
-      headers: { 'Accept': 'application/json' }
+      body: JSON.stringify(Object.fromEntries(new FormData(qform))),
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
     })
     .then(function (response) {
-      if (!response.ok) throw new Error('Submission failed');
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.json();
+    })
+    .then(function (data) {
+      if (String(data.success) !== 'true') throw new Error(data.message || 'Not delivered');
       // Fired only on a confirmed success, so it counts real leads.
       if (typeof gtag === 'function') {
         gtag('event', 'generate_lead', {
