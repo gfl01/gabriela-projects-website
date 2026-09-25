@@ -18,7 +18,7 @@ import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://gabrielaprojects.com"
-PROFILE = "https://www.google.com/maps/place/?q=place_id:ChIJV9o5SZi7KCYRHaxZRhk0vlA"
+PROFILE = "https://www.google.com/maps/search/?api=1&query=Gabriela%20Projects&query_place_id=ChIJV9o5SZi7KCYRHaxZRhk0vlA"
 
 # Keep in step with the Google Business Profile (hours, towns, phone).
 BUSINESS = {
