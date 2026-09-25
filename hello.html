@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSTQMN7L34"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZSTQMN7L34');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Gabriela Projects: design-build kitchens, baths and full-home renovations in New Jersey and New York City.">
+<title>Gabriela Projects Hello</title>
+<link rel="canonical" href="https://gabrielaprojects.com/hello">
+<link rel="icon" type="image/svg+xml" href="/images/common/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+:root{
+  --paper:#F6F3EE; --panel:#FFFFFF; --ink:#1E1F1C; --muted:#5E625A; --line:#DAD5CC;
+  --sage:#556C55; --sage-ink:#FFFFFF; --sage-soft:#E4EAE2; --timber:#2B2724;
+  --display:"Bebas Neue", "Oswald", Impact, "Arial Narrow", sans-serif;
+  --serif:"Lora", Georgia, "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#151714; --panel:#1E211D; --ink:#EEEBE4; --muted:#A9ADA3; --line:#343832;
+    --sage:#8FAE8C; --sage-ink:#10140F; --sage-soft:#243024; --timber:#EEEBE4;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#151714; --panel:#1E211D; --ink:#EEEBE4; --muted:#A9ADA3; --line:#343832;
+  --sage:#8FAE8C; --sage-ink:#10140F; --sage-soft:#243024; --timber:#EEEBE4;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper); color:var(--ink); font-family:var(--serif); font-size:17px; line-height:1.6; padding-inline:20px}
+.wrap{max-width:1040px; margin:0 auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sage); outline-offset:3px; border-radius:4px}
+
+/* top bar */
+.top{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:22px}
+.brand{display:flex; align-items:center; gap:12px; text-decoration:none}
+.mark{width:40px; height:40px; background:var(--timber); color:var(--paper); display:grid; place-items:center; font-family:var(--display); font-size:30px; line-height:1; padding-top:3px}
+.brand b{font-family:var(--display); font-weight:400; font-size:24px; letter-spacing:.04em}
+.top .es{font-style:italic; color:var(--muted); font-size:15px}
+
+/* hero */
+.hero{display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; padding-block:24px 56px}
+.eyebrow{font-style:italic; color:var(--sage); font-size:16px; margin:0 0 10px}
+h1{font-family:var(--display); font-weight:400; font-size:clamp(52px,8vw,92px); line-height:.92; letter-spacing:.01em; margin:0 0 20px; text-wrap:balance}
+.lede{font-size:19px; max-width:34ch; margin:0 0 28px}
+.actions{display:flex; flex-wrap:wrap; gap:12px}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:0 22px; font-family:var(--display); font-size:22px; letter-spacing:.05em; text-decoration:none; border:2px solid var(--ink); background:transparent; color:var(--ink); cursor:pointer; transition:background .15s, color .15s}
+.btn.primary{background:var(--sage); border-color:var(--sage); color:var(--sage-ink)}
+.btn:hover{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.links{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+.pill{display:inline-flex; align-items:center; gap:8px; min-height:42px; padding:0 16px; border:1px solid var(--line); background:var(--panel); color:var(--ink); text-decoration:none; font-size:15px; font-weight:500; border-radius:999px; transition:border-color .15s, color .15s}
+.pill:hover{border-color:var(--sage); color:var(--sage)}
+.phone{margin-top:14px; color:var(--muted); font-size:15px}
+.phone span{user-select:all; color:var(--ink); font-variant-numeric:tabular-nums}
+
+.photo{margin:0; position:relative}
+.photo img{display:block; width:100%; aspect-ratio:4/3.3; object-fit:cover; border:10px solid var(--panel); box-shadow:0 1px 0 var(--line), 0 18px 40px -24px rgba(0,0,0,.45)}
+.photo figcaption{font-size:14px; color:var(--muted); margin-top:10px; font-style:italic}
+
+/* work */
+section{padding-block:48px; border-top:1px solid var(--line)}
+h2{font-family:var(--display); font-weight:400; font-size:44px; letter-spacing:.02em; line-height:1; margin:0 0 8px}
+.sub{color:var(--muted); margin:0 0 28px; max-width:60ch}
+.projects{display:grid; grid-template-columns:repeat(2,1fr); gap:24px}
+.proj{background:var(--panel); border:1px solid var(--line); display:flex; flex-direction:column; text-decoration:none; color:inherit; transition:border-color .15s, transform .15s}
+.proj:hover{border-color:var(--sage); transform:translateY(-2px)}
+.proj .more{display:inline-block; margin-top:12px; font-family:var(--display); font-size:20px; letter-spacing:.05em; color:var(--sage)}
+.proj .img{overflow:hidden}
+.proj .img{aspect-ratio:3/2; background:var(--sage-soft); display:grid; place-items:center; color:var(--muted); font-style:italic; font-size:15px; text-align:center; padding:16px}
+.proj .img img{width:100%; height:100%; object-fit:cover; object-position:center 30%}
+.proj .body{padding:18px 20px 22px}
+.proj h3{font-family:var(--display); font-weight:400; font-size:28px; letter-spacing:.03em; margin:0}
+.proj .where{font-style:italic; color:var(--sage); font-size:15px; margin:0 0 8px}
+.proj p{margin:0; font-size:16px}
+.ig{margin-top:24px; font-size:16px}
+.ig a{color:var(--sage); font-weight:500}
+
+/* steps */
+.steps{display:grid; grid-template-columns:repeat(3,1fr); gap:28px; list-style:none; padding:0; margin:0; counter-reset:s}
+.steps li{counter-increment:s; border-top:3px solid var(--timber); padding-top:14px}
+.steps li::before{content:"Step " counter(s); display:block; font-style:italic; color:var(--sage); font-size:15px}
+.steps b{display:block; font-family:var(--display); font-weight:400; font-size:26px; letter-spacing:.03em}
+.steps p{margin:4px 0 0; font-size:16px; color:var(--muted)}
+
+/* quote */
+.quote{display:grid; grid-template-columns:1fr 1.3fr; gap:40px}
+form{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.field{display:flex; flex-direction:column; gap:6px}
+.field.full{grid-column:1/-1}
+label{font-size:14px; font-weight:500}
+input,select,textarea{font:inherit; font-size:16px; color:var(--ink); background:var(--panel); border:1px solid var(--line); border-bottom:2px solid var(--ink); padding:12px 12px; border-radius:0; width:100%}
+textarea{min-height:110px; resize:vertical}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chips label{font-weight:400; font-size:15px; border:1px solid var(--line); background:var(--panel); padding:8px 14px; cursor:pointer}
+.chips input{position:absolute; opacity:0; width:1px; height:1px}
+.chips input:checked + span{color:var(--sage-ink)}
+.chips label:has(input:checked){background:var(--sage); border-color:var(--sage); color:var(--sage-ink)}
+.chips label:has(input:focus-visible){outline:3px solid var(--sage); outline-offset:2px}
+.note{grid-column:1/-1; background:var(--sage-soft); padding:14px 16px; font-size:15px}
+.contact-list{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:10px; font-size:16px}
+.contact-list span{color:var(--muted); display:inline-block; min-width:84px; font-style:italic}
+.sent{align-self:start; background:var(--sage-soft); border-top:3px solid var(--sage); padding:22px 24px}
+.sent h3{font-family:var(--display); font-weight:400; font-size:30px; letter-spacing:.03em; margin:0 0 4px}
+.sent p{margin:0}
+.form-error{grid-column:1/-1; margin:0; color:#A33A2A; font-size:15px}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .form-error{color:#E8907F} }
+:root[data-theme="dark"] .form-error{color:#E8907F}
+
+footer{border-top:1px solid var(--line); padding-block:28px 40px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted)}
+
+@media (max-width:760px){
+  .hero,.quote{grid-template-columns:1fr}
+  .hero{gap:28px}
+  .projects,.steps{grid-template-columns:1fr}
+  form{grid-template-columns:1fr}
+  .top .es{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/" aria-label="Gabriela Projects home"><span class="mark">G</span><b>Gabriela Projects</b></a>
+    <span class="es">Se habla español</span>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Design-Build · New Jersey &amp; New York City</p>
+      <h1>You found our little house.</h1>
+      <p class="lede">We design and build kitchens, baths and full-home renovations. One team takes your project from the first sketch to the final walkthrough.</p>
+      <div class="actions">
+        <a class="btn primary" href="#quote">Get a free quote</a>
+        <a class="btn" href="tel:+18624022031">Call us</a>
+      </div>
+      <div class="links">
+        <a class="pill" href="https://www.instagram.com/gabrielaprojects/"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a>
+        <a class="pill" href="/"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>Website</a>
+      </div>
+      <p class="phone">Or call or text <span>(862) 402-2031</span></p>
+    </div>
+    <figure class="photo">
+      <img src="/images/hello/montclair-tudor.jpg" alt="White stucco Tudor house with dark half-timbered gables and a covered front porch">
+      <figcaption>Montclair Tudor, whole-home renovation</figcaption>
+    </figure>
+  </div>
+
+  <section id="work">
+    <h2>Recent work</h2>
+    <p class="sub">We rethink how a home works, not just how it looks. Both of these projects started with a new layout.</p>
+    <div class="projects">
+      <a class="proj" href="/portfolio#montclair-house">
+        <div class="img"><img src="/images/hello/montclair-tudor.jpg" alt="Front of the renovated Montclair Tudor" loading="lazy"></div>
+        <div class="body">
+          <h3>The Montclair Tudor</h3>
+          <p class="where">Montclair, NJ</p>
+          <p>A whole-home renovation where we completely reworked the layout to fit how the family lives today.</p>
+          <span class="more">See the project →</span>
+        </div>
+      </a>
+      <a class="proj" href="/portfolio#park-avenue">
+        <div class="img"><img src="/images/portfolio/park-avenue/gallery-01.jpg" alt="Park Avenue kitchen with a marble waterfall island and black range" loading="lazy"></div>
+        <div class="body">
+          <h3>Park Avenue Pre-War</h3>
+          <p class="where">Upper East Side, NYC</p>
+          <p>A pre-war co-op with a full layout redesign, custom arched wood doors and every room planned around the client.</p>
+          <span class="more">See the project →</span>
+        </div>
+      </a>
+    </div>
+    <p class="ig"><a href="/portfolio">See the full portfolio</a> · More photos and before-and-afters on Instagram: <a href="https://www.instagram.com/gabrielaprojects/">@gabrielaprojects</a></p>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <p class="sub">Clear steps and one point of contact the whole way through.</p>
+    <ol class="steps">
+      <li><b>Tell us about it</b><p>Send the form or call. We'll set up a visit to see the space and hear what you want.</p></li>
+      <li><b>Design &amp; pricing</b><p>You get a layout, finishes and a clear price before any work starts.</p></li>
+      <li><b>We build it</b><p>Our team and trusted trades build it, and we manage the schedule and details.</p></li>
+    </ol>
+  </section>
+
+  <section id="quote">
+    <div class="quote">
+      <div>
+        <h2>Get a free quote</h2>
+        <p class="sub">Tell us a little about your project. We usually reply within one business day.</p>
+        <ul class="contact-list">
+          <li><span>Call/text</span> <a href="tel:+18624022031">(862) 402-2031</a></li>
+          <li><span>Email</span> <a href="mailto:info@gabrielaprojects.com">info@gabrielaprojects.com</a></li>
+          <li><span>Instagram</span> <a href="https://www.instagram.com/gabrielaprojects/">@gabrielaprojects</a></li>
+        </ul>
+      </div>
+      <form id="qform" action="https://formsubmit.co/info@gabrielaprojects.com" method="POST">
+        <!-- Same FormSubmit inbox as /get-started. Honeypot for spam, no captcha page. -->
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New Quote Request (Car tag / hello page) - Gabriela Projects">
+        <input type="hidden" name="source" value="Car tag / hello page">
+        <div class="field"><label for="q-name">Name</label><input id="q-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="q-phone">Phone</label><input id="q-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="q-email">Email</label><input id="q-email" name="email" type="email" autocomplete="email"></div>
+        <div class="field"><label for="q-town">Town</label><input id="q-town" name="town" placeholder="e.g. Montclair, NJ"></div>
+        <div class="field full"><label>Project type</label>
+          <div class="chips">
+            <label><input type="radio" name="type" value="Kitchen" id="t-k" checked><span>Kitchen</span></label>
+            <label><input type="radio" name="type" value="Bathroom" id="t-b"><span>Bathroom</span></label>
+            <label><input type="radio" name="type" value="Whole home" id="t-w"><span>Whole home</span></label>
+            <label><input type="radio" name="type" value="Other" id="t-o"><span>Something else</span></label>
+          </div>
+        </div>
+        <div class="field full"><label for="q-msg">Tell us about your project</label><textarea id="q-msg" name="message" placeholder="What would you like to change?"></textarea></div>
+        <p class="form-error" id="qerror" role="alert" hidden>Something went wrong. Please try again, or call (862) 402-2031.</p>
+        <div class="field full"><button class="btn primary" type="submit" id="qsubmit">Send my request</button></div>
+      </form>
+      <div class="sent" id="qsent" tabindex="-1" hidden>
+        <h3>Request sent</h3>
+        <p>Thanks, we'll be in touch within one business day.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Gabriela Projects LLC · Saddle Brook, NJ · Serving NJ &amp; NYC</span>
+    <a href="https://gabrielaprojects.com">gabrielaprojects.com</a>
+  </footer>
+</div>
+<script>
+  // Sent the same way as the /get-started form, so it lands in the same inbox.
+  const qform = document.getElementById('qform');
+  const qsubmit = document.getElementById('qsubmit');
+  const qerror = document.getElementById('qerror');
+  const qsent = document.getElementById('qsent');
+
+  qform.addEventListener('submit', function (e) {
+    e.preventDefault();
+    qsubmit.disabled = true;
+    qsubmit.textContent = 'Sending...';
+    qerror.hidden = true;
+
+    fetch(qform.action, {
+      method: 'POST',
+      body: new FormData(qform),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function (response) {
+      if (!response.ok) throw new Error('Submission failed');
+      // Fired only on a confirmed success, so it counts real leads.
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', {
+          event_category: 'contact',
+          event_label: 'Car tag / hello page form'
+        });
+      }
+      qform.hidden = true;
+      qsent.hidden = false;
+      qsent.focus();
+    })
+    .catch(function () {
+      qsubmit.disabled = false;
+      qsubmit.textContent = 'Send my request';
+      qerror.hidden = false;
+    });
+  });
+
+  // Count phone taps and email clicks as leads, as js/main.js does on the other pages.
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+    if (!link || typeof gtag !== 'function') return;
+    const isPhone = link.getAttribute('href').startsWith('tel:');
+    gtag('event', 'generate_lead', {
+      event_category: 'contact',
+      event_label: isPhone ? 'Phone tap' : 'Email click',
+      method: isPhone ? 'phone' : 'email'
+    });
+  });
+</script>
+
+</body>
+</html>
