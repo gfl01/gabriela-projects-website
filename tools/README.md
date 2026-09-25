@@ -47,3 +47,17 @@ git config core.hooksPath tools/git-hooks
 
 The hook only rewrites the file when it would actually change, stages it for
 you, and warns rather than blocking the commit if it cannot run.
+
+## `make-structured-data.py` — business details for Google
+
+```bash
+python3 tools/make-structured-data.py
+```
+
+Every public page carries a block of schema.org data (name, Glen Ridge
+address, hours, service towns, phone, founder, Google Business Profile link,
+plus a breadcrumb on inner pages). Google reads it for search results, so it
+has to match the Google Business Profile. **Edit the details in the script,
+never in the pages** — each run replaces the block between the
+`STRUCTURED DATA` markers on every page. Re-run it after changing a page's
+`<title>` or adding a page to its `PAGES` list.

@@ -14,12 +14,18 @@
   --color-black: #1a1a1a;
   --color-dark: #2c2c2c;
   --color-charcoal: #3a3a3a;
-  --color-gray: #888;
+  /* Hint and placeholder text: 4.8-5.3:1 on the site's white and cream
+     backgrounds (#888 was 3.2-3.5:1, under the 4.5:1 minimum). */
+  --color-gray: #6b6b6b;
   --color-light-gray: #d4d4d4;
   --color-off-white: #f5f3f0;
   --color-cream: #faf8f5;
   --color-white: #ffffff;
   --color-gold: #b8976a;
+  /* Gold for TEXT on light backgrounds. The brand gold above is only 2.6-2.7:1
+     there, under the 4.5:1 readability minimum; this shade is 4.7-5.2:1.
+     Lines, fills and gold on dark backgrounds keep the brand gold. */
+  --color-gold-text: #86673c;
   --color-gold-light: #d4b896;
   --font-heading: 'Cormorant Garamond', 'Georgia', serif;
   --font-body: 'Montserrat', 'Helvetica Neue', sans-serif;
@@ -434,7 +440,7 @@ img {
   font-weight: 600;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   margin-bottom: 16px;
 }
 
@@ -612,7 +618,7 @@ img {
   font-family: var(--font-heading);
   font-size: 56px;
   font-weight: 300;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   line-height: 1;
   margin-bottom: 20px;
 }
@@ -711,7 +717,7 @@ img {
   font-size: 20px;
   font-weight: 300;
   letter-spacing: 6px;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   margin-bottom: 30px;
 }
 
@@ -946,7 +952,7 @@ img {
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   font-weight: 500;
 }
 
@@ -1159,7 +1165,7 @@ img {
 }
 
 .form-label .required {
-  color: var(--color-gold);
+  color: var(--color-gold-text);
 }
 
 .form-hint {
@@ -1576,7 +1582,7 @@ img {
   font-family: var(--font-heading);
   font-size: 36px;
   font-weight: 300;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   line-height: 1;
   margin-bottom: 16px;
 }
@@ -1604,7 +1610,7 @@ img {
   font-weight: 600;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   margin-bottom: 8px;
 }
 
@@ -1685,7 +1691,7 @@ img {
   font-family: var(--font-heading);
   font-size: 56px;
   font-weight: 300;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   line-height: 1;
 }
 
