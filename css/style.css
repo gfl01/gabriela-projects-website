@@ -276,6 +276,7 @@ img {
 
 /* Belt and braces: the scrim handles the broad area, this keeps fine strokes
    legible over any bright detail inside it. */
+.hero-content .hero-brand,
 .hero-content h1,
 .hero-content .tagline,
 .hero-content .hero-locations {
@@ -289,23 +290,63 @@ img {
   filter: brightness(0) invert(1);
 }
 
+/* The wordmark keeps the brand's letter-spaced look; the h1 below it says
+   what we do and where, which is what Google and a first-time visitor read. */
+.hero-content .hero-brand {
+  font-family: var(--font-heading);
+  font-size: clamp(15px, 1.6vw, 20px);
+  font-weight: 400;
+  color: var(--color-white);
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
 .hero-content h1 {
   font-family: var(--font-heading);
-  font-size: clamp(32px, 5vw, 64px);
+  font-size: clamp(34px, 4.6vw, 62px);
   font-weight: 300;
+  line-height: 1.12;
   color: var(--color-white);
-  letter-spacing: 10px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
+  max-width: 900px;
+  margin: 0 auto 18px;
 }
 
 .hero-content .tagline {
   font-family: var(--font-heading);
-  font-size: clamp(16px, 2vw, 22px);
+  font-size: clamp(16px, 1.8vw, 21px);
   font-weight: 300;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.85);
-  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.5px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.btn-solid {
+  display: inline-block;
+  padding: 16px 36px;
+  border: 1px solid var(--color-white);
+  background: var(--color-white);
+  color: var(--color-black);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: all var(--transition);
+}
+
+.btn-solid:hover {
+  background: transparent;
+  color: var(--color-white);
 }
 
 /* Naming the towns in the hero is deliberate: local ranking follows the
@@ -348,6 +389,30 @@ img {
 @keyframes pulse {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 0.9; }
+}
+
+/* === Proof Strip (under the hero) === */
+.proof-strip {
+  background: var(--color-black);
+  color: rgba(255, 255, 255, 0.82);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 0;
+  padding: 22px 40px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.proof-strip span {
+  padding: 0 22px;
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.proof-strip span:first-child {
+  border-left: none;
 }
 
 /* === Section Spacing === */
@@ -590,6 +655,47 @@ img {
   background: var(--color-gold);
 }
 
+/* === Where We Work === */
+/* Follows the services section, which already has 120px of bottom padding. */
+.section.areas {
+  padding-top: 20px;
+}
+
+.areas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 960px;
+  margin: 40px auto 0;
+}
+
+.area-card {
+  border-top: 1px solid var(--color-gold);
+  padding-top: 28px;
+}
+
+.area-card h3 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--color-black);
+}
+
+.area-card .area-note {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+  margin: 6px 0 16px;
+}
+
+.area-card p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--color-charcoal);
+}
+
 /* === Values / Process Banner === */
 .values-banner {
   background: var(--color-off-white);
@@ -654,6 +760,19 @@ img {
   color: var(--color-white);
   margin-bottom: 30px;
   letter-spacing: 2px;
+}
+
+.cta-section h2:has(+ p) {
+  margin-bottom: 14px;
+}
+
+.cta-section p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 560px;
+  margin: 0 auto 30px;
+  padding: 0 24px;
 }
 
 .btn-outline {
@@ -1182,6 +1301,66 @@ img {
   background: rgba(184, 151, 106, 0.05);
 }
 
+/* Short form layout: contact fields and short choices sit two to a row */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 32px;
+}
+
+.form-row .form-group {
+  margin-bottom: 28px;
+}
+
+.form-row .form-label {
+  margin-bottom: 2px;
+}
+
+.radio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* The optional qualifying questions, collapsed by default */
+.form-more {
+  border-top: 1px solid var(--color-light-gray);
+  border-bottom: 1px solid var(--color-light-gray);
+  padding: 22px 0;
+  margin-bottom: 10px;
+}
+
+.form-more summary {
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-black);
+  list-style-position: inside;
+}
+
+.form-more summary span {
+  font-weight: 400;
+  color: var(--color-charcoal);
+}
+
+.form-more[open] summary {
+  margin-bottom: 30px;
+}
+
+.form-reassure {
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--color-charcoal);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .form-row,
+  .radio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Submit Button */
 .form-submit {
   text-align: center;
@@ -1630,7 +1809,46 @@ img {
   }
 
   .hero {
-    min-height: 500px;
+    min-height: 640px;
+  }
+
+  .hero-content .hero-brand {
+    letter-spacing: 5px;
+    margin-bottom: 16px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 26px;
+  }
+
+  .hero-actions a {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+
+  .proof-strip {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 22px 24px;
+    letter-spacing: 1.8px;
+  }
+
+  .proof-strip span {
+    border-left: none;
+    padding: 0;
+  }
+
+  .areas-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
 
   .hero-bg {
