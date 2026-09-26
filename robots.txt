@@ -6,3 +6,6 @@ Sitemap: https://gabrielaprojects.com/sitemap.xml
 # Block private portfolio from crawlers
 Disallow: /portfolio2
 Disallow: /portfolio2.html
+
+# Private client app (sign-in only)
+Disallow: /selections/

@@ -174,6 +174,23 @@ img {
 }
 
 /* Hamburger */
+/* Tap-to-call in the header, phones only (desktop has the Get Started button). */
+.header-phone {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  margin-right: 4px;
+  color: var(--color-white);
+  z-index: 1003;
+}
+
+.site-header.scrolled .header-phone {
+  color: var(--color-black);
+}
+
 .hamburger {
   display: none;
   background: none;
@@ -921,6 +938,21 @@ img {
   color: var(--color-white);
   letter-spacing: 8px;
   text-transform: uppercase;
+  text-align: center;
+  padding: 0 24px;
+}
+
+/* The short title keeps the page's look; this line inside the same h1 tells
+   Google (and the visitor) what the page is actually about. */
+.page-hero-sub {
+  display: block;
+  margin-top: 14px;
+  font-size: clamp(16px, 1.8vw, 21px);
+  font-style: italic;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
 /* === Portfolio Page === */
@@ -1551,6 +1583,202 @@ img {
   background: var(--color-gold);
 }
 
+/* === Content pages (services, towns, guides) ===
+   Built by tools/build-content-pages.py. Long-form reading: one comfortable
+   column, the site's serif for headings and sans for body text. */
+.breadcrumbs {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 24px 0;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--color-charcoal);
+}
+
+.breadcrumbs a {
+  color: var(--color-gold-text);
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs .sep {
+  margin: 0 8px;
+  color: var(--color-gray);
+}
+
+.article {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 36px 24px 90px;
+  color: var(--color-charcoal);
+}
+
+.article .lede {
+  font-family: var(--font-heading);
+  font-size: clamp(21px, 2.2vw, 25px);
+  line-height: 1.55;
+  color: var(--color-black);
+  margin-bottom: 36px;
+}
+
+.article h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-black);
+  margin: 56px 0 18px;
+}
+
+.article h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-black);
+  margin: 32px 0 10px;
+}
+
+.article p {
+  font-size: 16px;
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+
+.article a:not(.btn-outline):not(.related-card) {
+  color: var(--color-gold-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article ul,
+.article ol {
+  margin: 0 0 22px;
+  padding-left: 22px;
+}
+
+.article li {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.article ul li::marker {
+  color: var(--color-gold);
+}
+
+.article ol li::marker {
+  color: var(--color-gold-text);
+  font-weight: 600;
+}
+
+.article strong {
+  color: var(--color-black);
+  font-weight: 600;
+}
+
+.article figure {
+  margin: 36px 0;
+}
+
+.article figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.article figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-charcoal);
+}
+
+.article .callout {
+  border-left: 3px solid var(--color-gold);
+  background: var(--color-cream);
+  padding: 22px 26px;
+  margin: 30px 0;
+}
+
+.article .callout p:last-child,
+.article .callout ul:last-child {
+  margin-bottom: 0;
+}
+
+.article .callout-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold-text);
+  margin-bottom: 10px;
+}
+
+.article .article-meta {
+  font-size: 13px;
+  color: var(--color-charcoal);
+  border-top: 1px solid var(--color-light-gray);
+  padding-top: 22px;
+  margin-top: 56px;
+}
+
+.article .sources li {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.related {
+  margin-top: 56px;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.related-card {
+  display: block;
+  border: 1px solid var(--color-light-gray);
+  padding: 20px 22px;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.related-card:hover {
+  border-color: var(--color-gold);
+  background: var(--color-cream);
+}
+
+.related-card .related-kind {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-gold-text);
+  margin-bottom: 6px;
+}
+
+.related-card .related-title {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--color-black);
+}
+
+@media (max-width: 600px) {
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+  .article p,
+  .article li {
+    font-size: 15px;
+  }
+}
+
 /* === How It Works Page === */
 .hiw-intro {
   max-width: 700px;
@@ -1812,6 +2040,10 @@ img {
 
   .hamburger {
     display: block;
+  }
+
+  .header-phone {
+    display: flex;
   }
 
   .hero {

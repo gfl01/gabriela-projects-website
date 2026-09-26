@@ -10,3 +10,9 @@ images/portfolio/Park Ave - Before and After photos website
 
 # Draft logo explorations and their preview pages; not part of the site.
 LOGO_NEW
+
+# Source text for the built service/town/guide pages (tools/build-content-pages.py).
+content-pages
+
+# Helper scripts for maintaining the site; not part of it.
+tools

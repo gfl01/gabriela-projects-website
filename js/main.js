@@ -23,9 +23,9 @@ function updateHeader() {
 
   if (!isHome && headerLogo) {
     if (overHero && !header.classList.contains('scrolled')) {
-      headerLogo.src = 'images/common/logo-white.svg';
+      headerLogo.src = '/images/common/logo-white.svg';
     } else {
-      headerLogo.src = 'images/common/logo.svg';
+      headerLogo.src = '/images/common/logo.svg';
     }
   }
 }
