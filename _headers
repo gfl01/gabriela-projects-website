@@ -37,3 +37,8 @@
 # HTML stays uncached so content edits go live immediately.
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+
+# Selections app: always fetch the newest page and scripts (it changes often).
+/selections/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow
