@@ -5,3 +5,7 @@
 #   images/portfolio/montclair-house/, images/portfolio/park-avenue/
 images/portfolio/Montclair House - Before and after for website/
 images/portfolio/Park Ave - Before and After photos website/
+
+# Personal Claude Code settings
+.claude/settings.local.json
+CLAUDE.local.md
