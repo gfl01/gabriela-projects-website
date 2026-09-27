@@ -141,6 +141,15 @@
     async delete(id){ await sb.storage.from(BUCKET).remove([id]); }
   };
 
+  // ---------- finishes catalog (read-only "finishes" table from schema_finishes.sql) ----------
+  const catalog = {
+    async list(){
+      const { data, error } = await sb.from('finishes').select('*').eq('is_active', true).order('sort_order');
+      if(error) throw err(error);
+      return data;
+    }
+  };
+
   // ---------- downloads ----------
   const downloads = { async save({ filename, data }){ const a = document.createElement('a'); a.href = URL.createObjectURL(data); a.download = filename; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); } };
 
@@ -153,6 +162,7 @@
       if(name === 'user') return user;
       if(name === 'assets') return (await isDesigner()) ? assets : null;
       if(name === 'downloads') return downloads;
+      if(name === 'catalog') return catalog;
       return null;
     }
   };

@@ -121,6 +121,10 @@ main{max-width:1360px;margin:0 auto;padding-inline:16px;padding-block:18px 60px;
 .lpick button[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 1.5px var(--ink)}
 .lpick svg{width:100%;height:auto}
 .opt .p.up{color:var(--accent)}
+.slot-h .catb{margin-left:auto} .slot-h .catb + .edit{margin-left:0}
+.catf{display:flex;flex-wrap:wrap;gap:6px}
+.catf .btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.catg{margin:6px 0 0;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);font-weight:700}
 .link{font-size:12.5px;color:var(--accent);font-weight:600}
 .opt .vlink{font-size:12px;font-weight:600;color:var(--accent);text-decoration:underline;margin-top:4px;align-self:flex-start;cursor:pointer}
 
@@ -261,7 +265,7 @@ details.more .ofields{margin-top:8px}
 </style>
 <script src="vendor/supabase.js?v=2.117.2"></script>
 <script src="config.js?v=1"></script>
-<script src="backend.js?v=2"></script>
+<script src="backend.js?v=3"></script>
 </head>
 <body>
 <header class="band">
@@ -434,6 +438,50 @@ const TEMPLATES = {
 const TEXTURES = [['plain','Solid / paint'],['subway','Subway tile 3×6'],['square','Square tile'],['large','Large tile'],['mosaic','Mosaic 2×2'],['hex','Hex mosaic'],['checker','Checkerboard (diagonal)'],['plank','Wood plank'],['herringbone','Herringbone'],['wood','Wood grain'],['reeded','Reeded / fluted'],['marble','Stone veining'],['grid','Steel grid (doors)'],['photo','Real photo (uses the option photo)']];
 const TWO_TONE = ['marble','checker','hex'];
 
+// ================= finishes catalog =================
+// The Supabase "finishes" table (or finishes/finishes.json when it can't be reached). Each finish slot draws from these categories.
+const CAT_FOR = {cabinets:['Cabinetry'], island:['Cabinetry'], counter:['Countertop'], backsplash:['Wall tile'], wall:['Wall tile'],
+  floor:['Flooring','Floor tile'], paint:['Paint'], accent:['Paint'], metal:['Metal finish'], vanity:['Vanity'], shower:['Shower glass'],
+  range:['Appliance finish'], appliance:['Appliance finish']};
+const CAT_ROOMS = {kitchen:['kitchen'], bath:['bathroom'], powder:['bathroom'], laundry:['kitchen','bathroom'], room:['bedroom','living']};
+const catImg = slug => `finishes/${encodeURIComponent(slug)}.webp`;
+const catFits = (r, f) => (f.rooms||[]).some(x => (CAT_ROOMS[r.type]||[]).includes(x));
+async function loadCatalog(){
+  let rows = null;
+  try{ const c = window.claude, cat = c && c.use ? await c.use('catalog') : null; if(cat && cat.list) rows = await cat.list(); }catch(e){}
+  if(!rows || !rows.length){ try{ rows = await (await fetch('finishes/finishes.json')).json(); }catch(e){ rows = []; } }
+  S.catalog = rows; render();
+}
+function catalogFor(r, k){
+  const cats = CAT_FOR[k]; if(!cats || !S.catalog) return [];
+  return S.catalog.filter(f => cats.includes(f.category))
+    .sort((a,b) => catFits(r,b) - catFits(r,a) || (b.popularity||0) - (a.popularity||0) || (a.sort_order||0) - (b.sort_order||0));
+}
+// a catalog finish as a slot option: its color and a matching pattern paint the drawing; shape (style, width) carries over from the current pick
+function catalogOption(f, cur){
+  const sub = String(f.subcategory||'').toLowerCase(), slug = f.slug, wood = /^wood/.test(f.color_family||'');
+  let texture = 'plain', style, angle;
+  switch(f.category){
+    case 'Countertop': texture = /calacatta|carrara|quartzite|marble/.test(slug) ? 'marble' : sub==='wood' ? 'wood' : 'plain'; break;
+    case 'Cabinetry': texture = wood ? 'wood' : 'plain'; style = sub==='slab' ? 'slab' : 'shaker'; break;
+    case 'Wall tile': texture = {subway:'subway', zellige:'square', mosaic:'mosaic', dimensional:'reeded'}[sub] || 'large'; if(/vertical/.test(slug)) angle = 90; break;
+    case 'Floor tile': texture = /hex/.test(slug) ? 'hex' : sub==='mosaic' ? 'mosaic' : 'large'; break;
+    case 'Flooring': texture = /herringbone/.test(slug) ? 'herringbone' : sub==='carpet' ? 'plain' : 'plank'; break;
+    case 'Vanity': texture = wood ? 'wood' : 'plain'; style = sub==='floating' ? 'floating_doors' : 'cabinet'; break;
+    case 'Shower glass': style = 'frameless'; break;
+  }
+  const size = f.size && f.size!=='—' ? f.size : '';
+  const o = {id:'cat-'+slug, name:f.name, detail:[f.finish, size].filter(Boolean).join(' · '), color:okHex(f.color_hex), texture, price:0,
+    catalog:slug, imgUrl:catImg(slug), tier:f.price_tier||'', finish:f.finish||'', dims:size,
+    notes:[f.notes, f.example_brands ? `Example brands: ${f.example_brands}.` : ''].filter(Boolean).join(' '), addedBy: role()==='designer' ? 'designer' : 'client'};
+  const st = style || (cur && cur.style); if(st) o.style = st;
+  if(angle) o.angle = angle;
+  if(cur && cur.width) o.width = cur.width;
+  if(cur && cur.color2 && f.category==='Appliance finish') o.color2 = cur.color2;
+  Object.keys(o).forEach(k => { if(o[k]==='') delete o[k]; });
+  return o;
+}
+
 function roomFromTemplate(type, name){
   const t = TEMPLATES[type]; const slots = {};
   t.slots.filter(s => s.k!=='accent').forEach(s => { const options = s.opts.map((o,i)=>({id:`${s.k}${i+1}`, url:'', ...o})); slots[s.k] = {options, chosen:options[0].id}; });
@@ -512,9 +560,9 @@ function patternRaw(id, o){
     case 'reeded': return base(1.6,10)+`<rect width=".35" height="10" fill="${shade(c, dark?.18:-.15)}"/><rect x=".5" width=".25" height="10" fill="${shade(c, dark?.1:.1)}" opacity=".8"/></pattern>`;
     case 'marble': { const v = c2 || g;
       return base(64,64)+`<path d="M-4 20C10 12 24 30 40 18S60 8 70 14" stroke="${v}" stroke-width="${c2?1.4:.55}" fill="none" opacity="${c2?.8:.55}"/><path d="M-2 50C18 42 30 60 48 50S62 44 68 48" stroke="${v}" stroke-width="${c2?.9:.35}" fill="none" opacity="${c2?.7:.5}"/><path d="M20 66C26 52 34 40 30 28M44 64C50 56 46 44 56 36" stroke="${v}" stroke-width="${c2?.6:.3}" fill="none" opacity=".5"/></pattern>`; }
-    case 'photo': { if(!o.img) return base(10,10)+`</pattern>`;
+    case 'photo': { const src = o.img ? blob(o.img) : o.imgUrl; if(!src) return base(10,10)+`</pattern>`;
       const pw = +o.photoW || 48, ph = pw * (+o.imgRatio || .6);
-      return `<pattern id="${id}" width="${f(pw)}" height="${f(ph)}" patternUnits="userSpaceOnUse"><rect width="${f(pw)}" height="${f(ph)}" fill="${c}"/><image href="${esc(blob(o.img))}" width="${f(pw)}" height="${f(ph)}" preserveAspectRatio="xMidYMid slice"/></pattern>`; }
+      return `<pattern id="${id}" width="${f(pw)}" height="${f(ph)}" patternUnits="userSpaceOnUse"><rect width="${f(pw)}" height="${f(ph)}" fill="${c}"/><image href="${esc(src)}" width="${f(pw)}" height="${f(ph)}" preserveAspectRatio="xMidYMid slice"/></pattern>`; }
     default: return base(10,10)+`</pattern>`;
   }
 }
@@ -1812,12 +1860,14 @@ function thumbHTML(r, o){
   if(r.type==='kitchen' && ['bar','long','knob','mix','cup','tknob','edge','latch','nohw'].includes(o.style) && !S.photos[photoKey(r.id, o.id)] && (r.slots.metal && r.slots.metal.options.some(x=>x.id===o.id))) return pullThumb(o);
   if(inSlot('hood') && !S.photos[photoKey(r.id, o.id)]) return hoodThumb(o);
   if(inSlot('crown') && !S.photos[photoKey(r.id, o.id)]) return crownThumb(o);
-  const ph = S.photos[photoKey(r.id, o.id)]; return ph ? `<img src="${esc(ph)}" alt="">` : swatchSVG(o);
+  const ph = S.photos[photoKey(r.id, o.id)]; if(ph) return `<img src="${esc(ph)}" alt="">`;
+  return o.imgUrl ? `<img src="${esc(o.imgUrl)}" alt="" loading="lazy">` : swatchSVG(o);
 }
 
 // ================= data =================
 async function init(){
   const c = window.claude;
+  loadCatalog();
   const [db, user, assets, downloads] = c && c.use ? await Promise.all([c.use('db'), c.use('user'), c.use('assets'), c.use('downloads')]) : [null,null,null,null];
   S.assets = assets; S.downloads = downloads;
   if(!db){
@@ -1879,6 +1929,26 @@ async function pick(k, oid){
   const slots = JSON.parse(JSON.stringify(r.slots)); slots[k].chosen = oid;
   const ok = await saveRoom(r, {slots, approved:null});
   if(ok && wasApproved) toast(`Approval cleared. Approve the ${r.name.toLowerCase()} again when you're happy.`);
+}
+// choosing from the catalog adds that finish to the slot's options and selects it
+async function pickCatalog(k, slug){
+  const r = room(), f = (S.catalog||[]).find(x=>x.slug===slug); if(!r || !f || !canPick() || !r.slots[k]) return;
+  const slots = JSON.parse(JSON.stringify(r.slots)), s = slots[k], label = (tplOf(r).slots.find(x=>x.k===k)||{}).label || 'this finish';
+  let o = s.options.find(x=>x.catalog===slug);
+  if(!o){
+    o = catalogOption(f, s.options.find(x=>x.id===s.chosen) || s.options[0]);
+    // a client's earlier catalog picks are swapped out, so the designer's options stay the main list
+    if(o.addedBy==='client') s.options = s.options.filter(x => x.addedBy!=='client');
+    s.options.push(o);
+  }
+  S.drawer = null; renderOverlay();
+  if(s.chosen === o.id && r.slots[k].options.some(x=>x.id===o.id)) return;
+  s.chosen = o.id;
+  const wasApproved = !!r.approved;
+  if(await saveRoom(r, {slots, approved:null})){
+    toast(wasApproved ? `${f.name} chosen. Approval cleared, approve the ${r.name.toLowerCase()} again when you're happy.` : `${f.name} chosen for ${label.toLowerCase()}`);
+    setTimeout(() => jump(k), 60);
+  }
 }
 
 // ================= schedule rows =================
@@ -2038,10 +2108,10 @@ function stageHTML(r){
     const s = r.slots[sl.k], cur = chosen(r, sl.k);
     const sub = [cur?.name, cur?.detail].filter(Boolean).join(' · ');
     return `<section class="slot" id="slot-${sl.k}" data-k="${sl.k}">
-      <div class="slot-h"><h3>${esc(sl.label)}</h3><span class="cur">${esc(sub)}</span>${cur?.url?`<a class="link" href="${esc(hrefOf(cur.url))}" target="_blank" rel="noopener">View product</a>`:''}${canManage()?`<button class="btn sm edit" data-act="editSlot" data-k="${sl.k}">Edit options</button>`:''}</div>
+      <div class="slot-h"><h3>${esc(sl.label)}</h3><span class="cur">${esc(sub)}</span>${cur?.url?`<a class="link" href="${esc(hrefOf(cur.url))}" target="_blank" rel="noopener">View product</a>`:''}${canPick() && catalogFor(r, sl.k).length?`<button class="btn sm catb" data-act="catalog" data-k="${sl.k}">Browse catalog</button>`:''}${canManage()?`<button class="btn sm edit" data-act="editSlot" data-k="${sl.k}">Edit options</button>`:''}</div>
       <div class="opts">${s.options.map(o => { const on = o.id===s.chosen; return `<button class="opt" aria-pressed="${on}" data-act="pick" data-k="${sl.k}" data-o="${esc(o.id)}" ${canPick()?'':'disabled'}>
         <div class="thumb">${thumbHTML(r,o)}${on?'<span class="check" aria-hidden="true">✓</span>':''}</div>
-        <div class="meta"><span class="n">${esc(o.name)}</span><span class="d">${esc(o.detail||'')}</span>${o.style||o.width?`<span class="st">${esc([styleLabel(r.type,sl.k,o.style), o.width?o.width+'" wide':''].filter(Boolean).join(' · '))}</span>`:''}<span class="p ${+o.price?'up':''}">${+o.price?'+'+money(o.price)+' upgrade':'Included'}</span>${o.url?`<span class="vlink" role="link" tabindex="0" data-act="openLink" data-url="${esc(hrefOf(o.url))}">View product ↗</span>`:''}</div></button>`; }).join('')}</div>
+        <div class="meta"><span class="n">${esc(o.name)}</span><span class="d">${esc(o.detail||'')}</span>${o.style||o.width?`<span class="st">${esc([styleLabel(r.type,sl.k,o.style), o.width?o.width+'" wide':''].filter(Boolean).join(' · '))}</span>`:''}<span class="p ${+o.price?'up':''}">${+o.price?'+'+money(o.price)+' upgrade':o.tier?`Price tier ${esc(o.tier)}`:'Included'}</span>${o.url?`<span class="vlink" role="link" tabindex="0" data-act="openLink" data-url="${esc(hrefOf(o.url))}">View product ↗</span>`:''}</div></button>`; }).join('')}</div>
     </section>`;
   }).join('');
   return `<div class="stage">
@@ -2134,7 +2204,7 @@ function renderOverlay(){
   if(!d){ o.innerHTML=''; return; }
   if(d.rendered && !d.dirty) return;
   const st = o.querySelector('.dbody')?.scrollTop;
-  const inner = d.kind==='slot' ? slotEditHTML(d) : d.kind==='project' ? projectHTML(d) : d.kind==='spec' ? specHTML(d) : d.kind==='plan' ? planHTML(d) : d.kind==='layout' ? layoutHTML(d) : d.kind==='render' ? renderHTML(d) : roomHTML(d);
+  const inner = d.kind==='slot' ? slotEditHTML(d) : d.kind==='catalog' ? catalogHTML(d) : d.kind==='project' ? projectHTML(d) : d.kind==='spec' ? specHTML(d) : d.kind==='plan' ? planHTML(d) : d.kind==='layout' ? layoutHTML(d) : d.kind==='render' ? renderHTML(d) : roomHTML(d);
   o.innerHTML = `<div class="scrim" data-act="close"></div><aside class="drawer${d.kind==='layout'?' wide':''}" role="dialog" aria-modal="true">${inner}</aside>`;
   d.rendered = true; d.dirty = false;
   if(st) o.querySelector('.dbody').scrollTop = st;
@@ -2148,9 +2218,24 @@ function lightboxHTML(){
 const roomOptions = sel => `<option value="general" ${sel==='general'?'selected':''}>Whole home</option>` + S.rooms.filter(r=>r.type!=='general').map(r=>`<option value="${esc(r.id)}" ${r.id===sel?'selected':''}>${esc(r.name)}</option>`).join('');
 function fld(id, label, val, cls='', attrs=''){ return `<div class="f ${cls}"><label for="${id}">${label}</label><input id="${id}" value="${esc(val)}" ${attrs}></div>`; }
 
+function catalogHTML(d){
+  const r = room(), sl = tplOf(r).slots.find(x=>x.k===d.k), cur = chosen(r, d.k);
+  const all = catalogFor(r, d.k), subs = [...new Set(all.map(f=>f.subcategory).filter(Boolean))];
+  const list = d.sub ? all.filter(f=>f.subcategory===d.sub) : all;
+  const card = f => { const on = !!cur && cur.catalog===f.slug, size = f.size && f.size!=='—' ? f.size : '';
+    return `<button class="opt" aria-pressed="${on}" data-act="pickCat" data-k="${d.k}" data-slug="${esc(f.slug)}">
+      <div class="thumb"><img src="${esc(catImg(f.slug))}" alt="" loading="lazy">${on?'<span class="check" aria-hidden="true">✓</span>':''}</div>
+      <div class="meta"><span class="n">${esc(f.name)}</span><span class="d">${esc([f.finish, size].filter(Boolean).join(' · '))}</span><span class="st">${esc(f.subcategory||'')}</span><span class="p">${esc(f.price_tier||'')}${+f.popularity>=4?' · Popular':''}</span></div></button>`; };
+  const fit = list.filter(f=>catFits(r,f)), rest = list.filter(f=>!catFits(r,f));
+  const group = (t, xs) => xs.length ? `<h4 class="catg">${t}</h4><div class="opts">${xs.map(card).join('')}</div>` : '';
+  return `<div class="dhead"><h3>${esc(sl.label)} · catalog</h3><button class="btn ghost" data-act="close">Close</button></div>
+    <div class="dbody"><p>Pick a finish and the drawing updates right away. Colors on screen are approximate${d.k==='paint'||d.k==='accent'?'. Check paint against a real color chip before approving':''}.</p>
+    ${subs.length>1?`<div class="catf" role="group" aria-label="Filter by type">${['',...subs].map(s=>`<button class="btn sm" aria-pressed="${(d.sub||'')===s}" data-act="catSub" data-sub="${esc(s)}">${esc(s||'All')}</button>`).join('')}</div>`:''}
+    ${fit.length && rest.length ? group('Suggested for this room', fit) + group('More from the catalog', rest) : `<div class="opts">${list.map(card).join('')}</div>`}</div>`;
+}
 function slotEditHTML(d){
   const r = room(), sl = tplOf(r).slots.find(x=>x.k===d.k);
-  const rows = d.options.map((o,i) => { const ph = o.img ? blob(o.img) : (d.photos[o.id] !== undefined ? d.photos[o.id] : S.photos[photoKey(r.id,o.id)]); return `<div class="orow" data-i="${i}">
+  const rows = d.options.map((o,i) => { const ph = o.img ? blob(o.img) : (d.photos[o.id] !== undefined ? d.photos[o.id] : S.photos[photoKey(r.id,o.id)]) || o.imgUrl; return `<div class="orow" data-i="${i}">
     <div class="thumb dropzone" tabindex="0" data-paste="${i}" title="Click, then paste a copied image (Ctrl/Cmd+V), or drop an image file here">${ph?`<img src="${esc(ph)}" alt="">`:swatchSVG(o)}<span class="dz-hint">Paste or drop photo</span></div>
     <div class="ofields">
       <div class="f"><label for="on${i}">Name</label><input id="on${i}" data-f="name" value="${esc(o.name)}"></div>
@@ -2192,7 +2277,7 @@ async function saveSlot(){
   const d = S.drawer, r = room();
   if(d.options.some(o=>!String(o.name||'').trim())){ toast('Every option needs a name.'); return; }
   const slots = JSON.parse(JSON.stringify(r.slots));
-  const keep = ['id','name','detail','color','color2','texture','price','url','img','manufacturer','model','finish','dims','qty','location','notes','category','providedBy','style','width','frame','photoW','imgRatio','angle'];
+  const keep = ['id','name','detail','color','color2','texture','price','url','img','imgUrl','catalog','tier','addedBy','manufacturer','model','finish','dims','qty','location','notes','category','providedBy','style','width','frame','photoW','imgRatio','angle'];
   slots[d.k].options = d.options.map(o => { const x={}; keep.forEach(k=>{ if(o[k]!==undefined && o[k]!=='') x[k]=o[k]; }); x.name=x.name.trim(); x.color=okHex(o.color); x.texture=o.texture||'plain'; x.price=+o.price||0; if(x.width) x.width=+x.width||undefined; if(!x.width) delete x.width; if(x.frame) x.frame=+x.frame||undefined; if(!x.frame) delete x.frame; if(x.photoW) x.photoW=+x.photoW||48; if(x.imgRatio) x.imgRatio=+x.imgRatio; if(x.angle!==undefined){ x.angle = +x.angle || 0; if(!x.angle) delete x.angle; } if(!TWO_TONE.includes(x.texture) && d.k!=='range' && d.k!=='stools') delete x.color2; return x; });
   if(!slots[d.k].options.some(o=>o.id===slots[d.k].chosen)) slots[d.k].chosen = slots[d.k].options[0].id;
   const btn = document.querySelector('[data-act="saveSlot"]'); if(btn) btn.disabled = true;
@@ -2840,7 +2925,10 @@ document.addEventListener('click', async e => {
     case 'editSlot': { const r=room(); S.drawer={kind:'slot', k:t.dataset.k, options:JSON.parse(JSON.stringify(r.slots[t.dataset.k].options)), photos:{}, removed:[]}; renderOverlay(); break; }
     case 'addOpt': readSlotForm(); d.options.push({id:'o'+newId(), name:'', detail:'', color:'#cccccc', texture:'plain', price:0, url:''}); redraw(); break;
     case 'rmOpt': { readSlotForm(); const [o] = d.options.splice(+t.dataset.i,1); d.removed.push(o.id); delete d.photos[o.id]; redraw(); break; }
-    case 'rmPhoto': { readSlotForm(); const o = d.options[+t.dataset.i]; delete o.img; d.photos[o.id] = ''; redraw(); break; }
+    case 'rmPhoto': { readSlotForm(); const o = d.options[+t.dataset.i]; delete o.img; delete o.imgUrl; d.photos[o.id] = ''; redraw(); break; }
+    case 'catalog': S.drawer = {kind:'catalog', k:t.dataset.k, sub:''}; renderOverlay(); break;
+    case 'catSub': d.sub = t.dataset.sub; redraw(); break;
+    case 'pickCat': pickCatalog(t.dataset.k, t.dataset.slug); break;
     case 'saveSlot': saveSlot(); break;
     case 'close': S.drawer=null; renderOverlay(); break;
     case 'newProject': S.drawer={kind:'project'}; renderOverlay(); break;
