@@ -367,6 +367,11 @@ const TEMPLATES = {
       {name:'Dome pendants',detail:'Brass',color:'#B8924A',texture:'plain',style:'dome',price:0},
       {name:'Cylinder pendants',detail:'Matte black',color:'#222222',texture:'plain',style:'cylinder',price:0},
       {name:'Glass globes',detail:'Polished nickel',color:'#BDB9B1',texture:'plain',style:'globe',price:180},
+      {name:'Cone pendants',detail:'Matte white',color:'#ECEBE6',texture:'plain',style:'cone',price:0},
+      {name:'Drum pendants',detail:'Linen shade',color:'#E3D9C6',texture:'plain',style:'drum',price:120},
+      {name:'Schoolhouse pendants',detail:'Milk glass, aged brass',color:'#A57C3C',texture:'plain',style:'bell',price:150},
+      {name:'Lantern pendants',detail:'Clear glass, matte black frame',color:'#222222',texture:'plain',style:'lantern',price:300},
+      {name:'Woven pendants',detail:'Natural rattan',color:'#C8A472',texture:'plain',style:'woven',price:200},
       {name:'Linear LED bar',detail:'Matte black',color:'#222222',texture:'plain',style:'linear',price:450}]}
   ]},
   bath:{label:'Bathroom', slots:[
@@ -603,7 +608,7 @@ const STYLE_SETS = {
   sink:[['undermount','Undermount sink'],['vessel','Vessel sink'],['block','Integrated stone sink']],
   faucet:[['single','Single-hole faucet'],['widespread','Widespread faucet'],['wall','Wall-mounted faucet']],
   mirror:[['rect','Rectangle mirror'],['pill','Pill mirror'],['round','Round mirror'],['arch','Arched mirror']],
-  pendant:[['cylinder','Cylinder pendants'],['dome','Dome pendants'],['globe','Globe pendants'],['linear','Linear bar']],
+  pendant:[['cylinder','Cylinder pendants'],['dome','Dome pendants'],['globe','Globe pendants'],['cone','Cone pendants'],['drum','Drum shade pendants'],['bell','Schoolhouse / milk glass'],['lantern','Glass lantern pendants'],['woven','Woven / rattan pendants'],['linear','Linear bar']],
   pull:[['bar','Bar pulls (5")'],['long','Long bar pulls (10")'],['knob','Round knobs'],['mix','Knobs on doors · bar pulls on drawers'],['cup','Knobs on doors · cup pulls on drawers'],['tknob','T-knobs'],['edge','Edge / tab pulls'],['latch','Latches · vintage'],['nohw','No hardware (push to open)']],
   door:[['shaker','Shaker · 2¼" frame'],['shaker4','Shaker · 4" flat frame'],['slim','Slim shaker · 1" frame'],['slab','Flat slab'],['inset','Beaded inset'],['glass','Glass-front uppers']],
   hood:[['chimney','Stainless chimney'],['insert','Custom wood (painted, insert)'],['plaster','Curved plaster'],['box','Box to ceiling'],['slim','Slim under-cabinet'],['nohood','No hood']],
@@ -874,13 +879,25 @@ function kitchenScene(r, ids){
     for(let i=0;i<heads;i++){ const t = (i+.5)/heads*len; s += alongX ? box(x0+t-1.2,y0+4.8,57,2.4,2.4,4,light,slot) : box(x0+4.8,y0+t-1.2,57,2.4,2.4,4,light,slot); }
   } else lamps.forEach(([x,y]) => {
     const top=P(x,y,H), c1=P(x,y,60), cord = `<line x1="${top[0]}" y1="${top[1]}" x2="${c1[0]}" y2="${f(c1[1]-8)}" stroke="${shade(light,-.3)}" stroke-width=".4"/>`;
-    let shape;
-    if(lStyle==='dome') shape = `<path d="M${f(c1[0]-7)} ${c1[1]}Q${c1[0]} ${f(c1[1]-12)} ${f(c1[0]+7)} ${c1[1]}Z" fill="${light}"/><ellipse cx="${c1[0]}" cy="${c1[1]}" rx="7" ry="2.2" fill="${shade(light,-.25)}"/><ellipse cx="${c1[0]}" cy="${f(c1[1]+.3)}" rx="4" ry="1.2" fill="#fff6d8"/>`;
-    else if(lStyle==='globe') shape = `<rect x="${f(c1[0]-1.2)}" y="${f(c1[1]-10)}" width="2.4" height="2" fill="${light}"/><circle cx="${c1[0]}" cy="${f(c1[1]-3)}" r="5.5" fill="#f6f0dc" stroke="${light}" stroke-width=".6" opacity=".95"/>`;
-    else shape = `<rect x="${f(c1[0]-2.6)}" y="${f(c1[1]-10)}" width="5.2" height="10" fill="${light}"/><ellipse cx="${c1[0]}" cy="${c1[1]}" rx="2.6" ry=".9" fill="#fff6d8"/>`;
-    s += `<g class="s" data-slot="${slot}">${cord}${shape}</g>`;
+    s += `<g class="s" data-slot="${slot}">${cord}${pendantShape(lStyle, c1, light)}</g>`;
   });
   return {W,D,H,body:s};
+}
+
+// one pendant, drawn from the bottom-center point c1 (60" above the floor); the cord comes down to 8 units above it
+function pendantShape(st, c1, light){
+  const [x, y] = c1, dk = shade(light, -.25), glow = '#fff6d8';
+  switch(st){
+    case 'dome': return `<path d="M${f(x-7)} ${y}Q${x} ${f(y-12)} ${f(x+7)} ${y}Z" fill="${light}"/><ellipse cx="${x}" cy="${y}" rx="7" ry="2.2" fill="${dk}"/><ellipse cx="${x}" cy="${f(y+.3)}" rx="4" ry="1.2" fill="${glow}"/>`;
+    case 'globe': return `<rect x="${f(x-1.2)}" y="${f(y-10)}" width="2.4" height="2" fill="${light}"/><circle cx="${x}" cy="${f(y-3)}" r="5.5" fill="#f6f0dc" stroke="${light}" stroke-width=".6" opacity=".95"/>`;
+    case 'cone': return `<path d="M${f(x-1.4)} ${f(y-10)}H${f(x+1.4)}L${f(x+5.5)} ${y}H${f(x-5.5)}Z" fill="${light}"/><ellipse cx="${x}" cy="${y}" rx="5.5" ry="1.8" fill="${dk}"/><ellipse cx="${x}" cy="${f(y+.2)}" rx="3.4" ry="1.1" fill="${glow}"/>`;
+    case 'drum': return `<rect x="${f(x-6.5)}" y="${f(y-6)}" width="13" height="6" fill="${light}"/><ellipse cx="${x}" cy="${f(y-6)}" rx="6.5" ry="2" fill="${shade(light, .12)}"/><ellipse cx="${x}" cy="${y}" rx="6.5" ry="2" fill="${dk}"/><ellipse cx="${x}" cy="${f(y+.2)}" rx="4.4" ry="1.3" fill="${glow}"/>`;
+    case 'bell': return `<rect x="${f(x-2)}" y="${f(y-10)}" width="4" height="2" fill="${light}"/><path d="M${f(x-2.2)} ${f(y-8)}Q${f(x-2.6)} ${f(y-4)} ${f(x-5)} ${f(y-1)}H${f(x+5)}Q${f(x+2.6)} ${f(y-4)} ${f(x+2.2)} ${f(y-8)}Z" fill="#f5f2ea" stroke="${shade(light,-.1)}" stroke-width=".35"/><ellipse cx="${x}" cy="${f(y-1)}" rx="5" ry="1.5" fill="${glow}"/>`;
+    case 'lantern': return `<path d="M${f(x-4.2)} ${f(y-10)}L${x} ${f(y-12.5)}L${f(x+4.2)} ${f(y-10)}Z" fill="${light}"/><rect x="${f(x-3.5)}" y="${f(y-10)}" width="7" height="10" fill="#dfeaee" fill-opacity=".75" stroke="${light}" stroke-width=".7"/><path d="M${x} ${f(y-10)}V${y}" stroke="${light}" stroke-width=".45"/><circle cx="${x}" cy="${f(y-5)}" r="1.4" fill="${glow}"/><rect x="${f(x-4.2)}" y="${f(y-.6)}" width="8.4" height="1.2" fill="${light}"/>`;
+    case 'woven': { const ln = shade(light, -.3);
+      return `<path d="M${f(x-7.5)} ${y}Q${x} ${f(y-13)} ${f(x+7.5)} ${y}Z" fill="${light}"/><path d="M${f(x-5.6)} ${y}Q${x} ${f(y-9.8)} ${f(x+5.6)} ${y}M${f(x-3.6)} ${y}Q${x} ${f(y-6.4)} ${f(x+3.6)} ${y}M${f(x-3.8)} ${f(y-4.6)}L${f(x-1.4)} ${y}M${f(x+3.8)} ${f(y-4.6)}L${f(x+1.4)} ${y}M${x} ${f(y-6.4)}V${y}" stroke="${ln}" stroke-width=".3" fill="none"/><ellipse cx="${x}" cy="${y}" rx="7.5" ry="2.2" fill="${shade(light,-.35)}"/><ellipse cx="${x}" cy="${f(y+.3)}" rx="4.2" ry="1.2" fill="${glow}"/>`; }
+    default: return `<rect x="${f(x-2.6)}" y="${f(y-10)}" width="5.2" height="10" fill="${light}"/><ellipse cx="${x}" cy="${y}" rx="2.6" ry=".9" fill="${glow}"/>`;
+  }
 }
 
 function roomScene(r, ids){
@@ -925,12 +942,15 @@ const ITEM_DEFS = {
   bench:    {label:'Bench / banquette', rooms:['kitchen'], w:48, d:18, color:'#c3b59d'},
   table:    {label:'Round table', rooms:['kitchen'], w:30, d:30, color:'#b08d67'},
   counter:  {label:'Counter / desk', rooms:['kitchen'], w:30, d:18, color:'#c9c3b8'},
+  pendants: {label:'Pendant lights', rooms:['kitchen'], w:60, d:12, color:'#b8924a'},
   partition:{label:'Wall / partition', rooms:['kitchen','bath','powder'], w:4, d:36, color:'#6b6964'},
   void:     {label:'Cut-out (not part of room)', rooms:['kitchen','bath','powder'], w:24, d:24, color:'#9b9890'},
   door:     {label:'Door', rooms:['kitchen','bath','powder'], w:32, d:4, color:'#444'},
   window:   {label:'Window', rooms:['kitchen','bath','powder'], w:36, d:4, color:'#7fb2c9'}
 };
 const WALL_ITEMS = ['door','window'];
+// how many lights a placed "Pendant lights" item holds: the number set in the layout editor, else one per ~22" of its length
+const pendantCount = it => Math.max(1, Math.min(8, Math.round(+it.n) || Math.round(Math.max(+it.w, +it.d)/22) || 1));
 ITEM_DEFS.glass = {label:'Glass panel / shower door', rooms:['bath','powder'], w:30, d:2, color:'#4f9bbd'};
 ITEM_DEFS.stool = {label:'Counter stool', rooms:['kitchen'], w:17, d:17, color:'#8a6d4f'};
 ITEM_DEFS.column = {label:'Column', rooms:['kitchen','bath','powder'], w:12, d:12, color:'#4a4845'};
@@ -1152,6 +1172,7 @@ function zRange(it, H){
     case 'range': return [0, 43];
     case 'hoodp': return [it.hz0, it.hz1];
     case 'stool': return [0, 40];
+    case 'pendants': return [(+it.z0 || 60) - 10, H];
     case 'saddle': return [0, 1];
     case 'corner': return it.lvl==='wall' ? [+it.z0 || 56, (+it.z1 || 90) + 5] : [0, 36];
     case 'island': return [0, 37];
@@ -1409,8 +1430,9 @@ function planScene(r, ids){
     let top = H; items.forEach(q => { if((q.t==='uppers' || (q.t==='corner' && q.lvl==='wall')) && q.x < it.x + it.w - 1 && q.x + q.w > it.x + 1 && q.y < it.y + it.d - 1 && q.y + q.d > it.y + 1) top = Math.min(top, +q.z0 || 56); });
     return {t:'hoodp', ref:it, x:it.x, y:it.y, w:it.w, d:it.d, face:faceOf(it), hz0: Math.min(60, top - 4), hz1: top, i:-2}; });
   const objs = depthOrder(items.filter(it=>!WALL_ITEMS.includes(it.t) && it.t!=='void' && it.t!=='zone').concat(vwalls, hoods), H);
-  const lamps = [];
-  const runFace = (it, fill, col, flat, nDoors, z0, z1, slot, pullsZ, vertical) => {
+  // pendant lights: one group per island (automatic) or per placed "Pendant lights" item; placed ones replace the automatic ones
+  const lampGroups = [], placedLamps = items.some(it=>it.t==='pendants');
+  const runFace =(it, fill, col, flat, nDoors, z0, z1, slot, pullsZ, vertical) => {
     const fc = faceOf(it); let o = {};
     if(fc==='s'){ o.front = doors(it.x, it.x+it.w, z0, z1, nDoors, col, flat); }
     if(fc==='e'){ o.side = doors(it.y, it.y+it.d, z0, z1, nDoors, col, flat); }
@@ -1711,9 +1733,13 @@ function planScene(r, ids){
         s += box(tx0,ty0,35,tx1-tx0,ty1-ty0,1.6,topF,topK);
         // stools
         autoStools(it).forEach(p2 => { s += stoolSVG(p2, r.slots.stools ? ch('stools') : null, metal); });
-        const alongX = it.w >= it.d, n = Math.max(2, Math.min(4, Math.round((alongX?it.w:it.d)/22)));
-        for(let k=0;k<n;k++) lamps.push(alongX ? [it.x+(k+.5)*it.w/n, it.y+it.d/2] : [it.x+it.w/2, it.y+(k+.5)*it.d/n]);
+        if(!placedLamps){ const alongX = it.w >= it.d, n = Math.max(2, Math.min(4, Math.round((alongX?it.w:it.d)/22))), g = [];
+          for(let k=0;k<n;k++) g.push(alongX ? [it.x+(k+.5)*it.w/n, it.y+it.d/2, 60] : [it.x+it.w/2, it.y+(k+.5)*it.d/n, 60]);
+          lampGroups.push(g); }
         break; }
+      case 'pendants': { const alongX = it.w >= it.d, n = pendantCount(it), z = +it.z0 || 60, g = [];
+        for(let k=0;k<n;k++) g.push(alongX ? [it.x+(k+.5)*it.w/n, it.y+it.d/2, z] : [it.x+it.w/2, it.y+(k+.5)*it.d/n, z]);
+        lampGroups.push(g); break; }
       case 'bench': {
         s += box(it.x,it.y,0,it.w,it.d,17,F('cabinets'),'cabinets') + box(it.x+1,it.y+1,17,it.w-2,it.d-2,4,'#ece6da',null);
         if(fc==='s') s += box(it.x+1,it.y,21,it.w-2,5,12,'#e4ddcf',null); else if(fc==='e') s += box(it.x,it.y+1,21,5,it.d-2,12,'#e4ddcf',null);
@@ -1751,24 +1777,23 @@ function planScene(r, ids){
     }
     if(nearTall) s = s.slice(0, s0) + `<g opacity=".2">${s.slice(s0)}</g>`;
   });
-  if(kitchen && lamps.length){
+  if(kitchen && lampGroups.length){
     const slot = r.slots.lights ? 'lights' : 'metal', lStyle = (Lt && Lt.style) || 'cylinder';
-    if(lStyle==='linear'){
-      const xs = lamps.map(l=>l[0]), ys = lamps.map(l=>l[1]), alongX = Math.max(...xs)-Math.min(...xs) >= Math.max(...ys)-Math.min(...ys);
-      const x0 = Math.min(...xs)-6, y0 = Math.min(...ys)-6, ln = alongX ? Math.max(...xs)-Math.min(...xs)+12 : Math.max(...ys)-Math.min(...ys)+12;
-      const st = alongX ? [x0, y0+6] : [x0+6, y0], en = alongX ? [x0+ln, y0+6] : [x0+6, y0+ln];
-      const cord = ([x,y]) => { const t = P(x,y,H), b = P(x,y,63); return `<line x1="${t[0]}" y1="${t[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${shade(light,-.3)}" stroke-width=".4"/>`; };
-      s += `<g class="s" data-slot="${slot}">${cord(st)}${cord(en)}</g>`;
-      s += alongX ? box(x0,y0+5,61,ln,2,2,light,slot) : box(x0+5,y0,61,2,ln,2,light,slot);
-      const heads = Math.max(3, Math.round(ln/10));
-      for(let i=0;i<heads;i++){ const t = (i+.5)/heads*ln; s += alongX ? box(x0+t-1.2,y0+4.8,57,2.4,2.4,4,light,slot) : box(x0+4.8,y0+t-1.2,57,2.4,2.4,4,light,slot); }
-    } else lamps.forEach(([x,y]) => {
-      const top=P(x,y,H), c1=P(x,y,60), cord = `<line x1="${top[0]}" y1="${top[1]}" x2="${c1[0]}" y2="${f(c1[1]-8)}" stroke="${shade(light,-.3)}" stroke-width=".4"/>`;
-      let shape;
-      if(lStyle==='dome') shape = `<path d="M${f(c1[0]-7)} ${c1[1]}Q${c1[0]} ${f(c1[1]-12)} ${f(c1[0]+7)} ${c1[1]}Z" fill="${light}"/><ellipse cx="${c1[0]}" cy="${c1[1]}" rx="7" ry="2.2" fill="${shade(light,-.25)}"/><ellipse cx="${c1[0]}" cy="${f(c1[1]+.3)}" rx="4" ry="1.2" fill="#fff6d8"/>`;
-      else if(lStyle==='globe') shape = `<rect x="${f(c1[0]-1.2)}" y="${f(c1[1]-10)}" width="2.4" height="2" fill="${light}"/><circle cx="${c1[0]}" cy="${f(c1[1]-3)}" r="5.5" fill="#f6f0dc" stroke="${light}" stroke-width=".6" opacity=".95"/>`;
-      else shape = `<rect x="${f(c1[0]-2.6)}" y="${f(c1[1]-10)}" width="5.2" height="10" fill="${light}"/><ellipse cx="${c1[0]}" cy="${c1[1]}" rx="2.6" ry=".9" fill="#fff6d8"/>`;
-      s += `<g class="s" data-slot="${slot}">${cord}${shape}</g>`;
+    lampGroups.forEach(lamps => {
+      const zb = lamps[0][2];   // bottom of the lights
+      if(lStyle==='linear'){
+        const xs = lamps.map(l=>l[0]), ys = lamps.map(l=>l[1]), alongX = Math.max(...xs)-Math.min(...xs) >= Math.max(...ys)-Math.min(...ys);
+        const x0 = Math.min(...xs)-6, y0 = Math.min(...ys)-6, ln = alongX ? Math.max(...xs)-Math.min(...xs)+12 : Math.max(...ys)-Math.min(...ys)+12;
+        const st = alongX ? [x0, y0+6] : [x0+6, y0], en = alongX ? [x0+ln, y0+6] : [x0+6, y0+ln];
+        const cord = ([x,y]) => { const t = P(x,y,H), b = P(x,y,zb+3); return `<line x1="${t[0]}" y1="${t[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${shade(light,-.3)}" stroke-width=".4"/>`; };
+        s += `<g class="s" data-slot="${slot}">${cord(st)}${cord(en)}</g>`;
+        s += alongX ? box(x0,y0+5,zb+1,ln,2,2,light,slot) : box(x0+5,y0,zb+1,2,ln,2,light,slot);
+        const heads = Math.max(3, Math.round(ln/10));
+        for(let i=0;i<heads;i++){ const t = (i+.5)/heads*ln; s += alongX ? box(x0+t-1.2,y0+4.8,zb-3,2.4,2.4,4,light,slot) : box(x0+4.8,y0+t-1.2,zb-3,2.4,2.4,4,light,slot); }
+      } else lamps.forEach(([x,y,z]) => {
+        const top=P(x,y,H), c1=P(x,y,z), cord = `<line x1="${top[0]}" y1="${top[1]}" x2="${c1[0]}" y2="${f(c1[1]-8)}" stroke="${shade(light,-.3)}" stroke-width=".4"/>`;
+        s += `<g class="s" data-slot="${slot}">${cord}${pendantShape(lStyle, c1, light)}</g>`;
+      });
     });
   }
   // cut-away front and right walls: a low base line plus their openings, see-through
@@ -1855,11 +1880,18 @@ function pullThumb(o){
   const dp = doorPull(st), wp = drawerPull(st);
   return `<svg viewBox="0 0 60 60" aria-hidden="true"><rect width="60" height="60" fill="#e9e7e1"/>${drawer}${dr}${piece(wp,30,14,false)}${piece(dp,26,32,true)}${piece(dp,34,32,true)}</svg>`;
 }
+function pendantThumb(o){
+  const c = okHex(o.color), bg = '<rect width="60" height="60" fill="#e9e7e1"/><rect y="0" width="60" height="6" fill="#f6f5f1"/>';
+  if(o.style==='linear') return `<svg viewBox="0 0 60 60" aria-hidden="true">${bg}<path d="M16 6V30M44 6V30" stroke="${shade(c,-.3)}" stroke-width=".8"/><rect x="10" y="30" width="40" height="4" fill="${c}"/>${[16,24,32,40].map(x=>`<rect x="${x}" y="34" width="4" height="4" fill="${shade(c,-.15)}"/>`).join('')}</svg>`;
+  const top = {dome:6, woven:6.5, drum:8, lantern:12.5}[o.style] || 10;   // height of the shade above its bottom edge
+  return `<svg viewBox="0 0 60 60" aria-hidden="true">${bg}<path d="M30 6V${f(48 - top*2.6)}" stroke="${shade(c,-.3)}" stroke-width=".8"/><g transform="translate(30 48) scale(2.6) translate(-30 -48)">${pendantShape(o.style||'cylinder', [30,48], c)}</g></svg>`;
+}
 function thumbHTML(r, o){
   const inSlot = k => r.slots && r.slots[k] && r.slots[k].options.some(x=>x.id===o.id);
   if(o.img) return `<img src="${esc(blob(o.img))}" alt="">`;
   if(r.type==='kitchen' && ['bar','long','knob','mix','cup','tknob','edge','latch','nohw'].includes(o.style) && !S.photos[photoKey(r.id, o.id)] && (r.slots.metal && r.slots.metal.options.some(x=>x.id===o.id))) return pullThumb(o);
   if(inSlot('hood') && !S.photos[photoKey(r.id, o.id)]) return hoodThumb(o);
+  if(r.type==='kitchen' && inSlot('lights') && !S.photos[photoKey(r.id, o.id)]) return pendantThumb(o);
   if(inSlot('crown') && !S.photos[photoKey(r.id, o.id)]) return crownThumb(o);
   const ph = S.photos[photoKey(r.id, o.id)]; if(ph) return `<img src="${esc(ph)}" alt="">`;
   return o.imgUrl ? `<img src="${esc(o.imgUrl)}" alt="" loading="lazy">` : swatchSVG(o);
@@ -2234,6 +2266,11 @@ function catalogHTML(d){
     ${subs.length>1?`<div class="catf" role="group" aria-label="Filter by type">${['',...subs].map(s=>`<button class="btn sm" aria-pressed="${(d.sub||'')===s}" data-act="catSub" data-sub="${esc(s)}">${esc(s||'All')}</button>`).join('')}</div>`:''}
     ${fit.length && rest.length ? group('Suggested for this room', fit) + group('More from the catalog', rest) : `<div class="opts">${list.map(card).join('')}</div>`}</div>`;
 }
+// the app's built-in options for this finish that the room doesn't have yet (rooms keep the options they were created with)
+function missingStd(d){
+  const sl = tplOf(room()).slots.find(x=>x.k===d.k); if(!sl) return [];
+  return sl.opts.filter(o => !d.options.some(x => x.name===o.name && (x.style||'')===(o.style||'')));
+}
 function slotEditHTML(d){
   const r = room(), sl = tplOf(r).slots.find(x=>x.k===d.k);
   const rows = d.options.map((o,i) => { const ph = o.img ? blob(o.img) : (d.photos[o.id] !== undefined ? d.photos[o.id] : S.photos[photoKey(r.id,o.id)]) || o.imgUrl; return `<div class="orow" data-i="${i}">
@@ -2266,7 +2303,7 @@ function slotEditHTML(d){
       ${ph?`<button class="btn sm ghost" data-act="rmPhoto" data-i="${i}">Remove photo</button>`:''}<span class="sp"></span>${d.options.length>1?`<button class="btn sm ghost" data-act="rmOpt" data-i="${i}">Remove option</button>`:''}</div>
     </div></div>`; }).join('');
   return `<div class="dhead"><h3>${esc(sl.label)} options</h3><button class="btn ghost" data-act="close">Close</button></div>
-    <div class="dbody"><p>Color and texture drive the room drawing. A photo replaces the swatch on the option card. To use the real product photo: on the supplier's page right-click the photo, choose <b>Copy Image</b>, then click the thumbnail here and paste (Ctrl/Cmd+V). You can also drop an image file on it.</p>${rows}<button class="btn" data-act="addOpt">+ Add option</button></div>
+    <div class="dbody"><p>Color and texture drive the room drawing. A photo replaces the swatch on the option card. To use the real product photo: on the supplier's page right-click the photo, choose <b>Copy Image</b>, then click the thumbnail here and paste (Ctrl/Cmd+V). You can also drop an image file on it.</p>${rows}<div class="oacts"><button class="btn" data-act="addOpt">+ Add option</button>${missingStd(d).length?`<button class="btn" data-act="addStd">+ Add ${missingStd(d).length} standard option${missingStd(d).length>1?'s':''}</button>`:''}</div></div>
     <div class="dfoot"><span class="sp"></span><button class="btn" data-act="close">Cancel</button><button class="btn accent" data-act="saveSlot">Save options</button></div>`;
 }
 function readSlotForm(){
@@ -2552,7 +2589,10 @@ function planSVG(d){
     if(it.t==='stool'){ const cx = x+w/2, cy = y+dd/2, rr = Math.min(w,dd)/2 - 1, fc = it.face||'n';
       const back = fc==='n' ? `M${f(x+2)} ${f(y+dd-1)}H${f(x+w-2)}` : fc==='s' ? `M${f(x+2)} ${f(y+1)}H${f(x+w-2)}` : fc==='w' ? `M${f(x+w-1)} ${f(y+2)}V${f(y+dd-2)}` : `M${f(x+1)} ${f(y+2)}V${f(y+dd-2)}`;
       g += `<g class="pi${sel?' sel':''}" data-uid="${it.uid}"><circle cx="${f(cx)}" cy="${f(cy)}" r="${f(rr)}" fill="${def.color}" fill-opacity=".35" stroke="${sel?'var(--accent)':def.color}" stroke-width="${sel?1.4:.8}"/><path d="${back}" stroke="${def.color}" stroke-width="2.2"/></g>`; return; }
-    if(it.t==='glass'){ const alongY = dd > w; let gs = `<rect x="${x}" y="${y}" width="${w}" height="${dd}" fill="${def.color}" fill-opacity=".55" stroke="${def.color}" stroke-width="${sel?1.4:.8}"/>`;
+    if(it.t==='pendants'){ const alongX = w >= dd, n = pendantCount(it), rr =Math.max(2, Math.min(5, Math.min(w,dd)/2 - 1));
+      let dots = ''; for(let k=0;k<n;k++){ const cx = alongX ? x+(k+.5)*w/n : x+w/2, cy = alongX ? y+dd/2 : y+(k+.5)*dd/n; dots += `<circle cx="${f(cx)}" cy="${f(cy)}" r="${f(rr)}" fill="${def.color}" fill-opacity=".35" stroke="${def.color}" stroke-width=".8"/><path d="M${f(cx-rr*.55)} ${f(cy-rr*.55)}L${f(cx+rr*.55)} ${f(cy+rr*.55)}M${f(cx+rr*.55)} ${f(cy-rr*.55)}L${f(cx-rr*.55)} ${f(cy+rr*.55)}" stroke="${def.color}" stroke-width=".6"/>`; }
+      g += `<g class="pi${sel?' sel':''} up" data-uid="${it.uid}"><rect x="${x}" y="${y}" width="${w}" height="${dd}" fill="transparent" stroke="${sel?'var(--accent)':def.color}" stroke-width="${sel?1.4:.7}" stroke-dasharray="3 2"/>${dots}</g>`; return; }
+    if(it.t==='glass'){ const alongY = dd > w; let gs =`<rect x="${x}" y="${y}" width="${w}" height="${dd}" fill="${def.color}" fill-opacity=".55" stroke="${def.color}" stroke-width="${sel?1.4:.8}"/>`;
       if(it.door){ const L = alongY ? dd : w, dw = Math.min(L, +it.dw || 24), st = (it.hinge||'start')==='start', sg = it.swing==='-' ? -1 : 1;
         if(alongY){ const cx = x + w/2, hy = st ? y : y + dd, cy = st ? hy + dw : hy - dw, ox = cx + sg*dw, sweep = st ? (sg>0?0:1) : (sg>0?1:0);
           gs += `<path d="M${f(cx)} ${f(cy)}A${f(dw)} ${f(dw)} 0 0 ${sweep} ${f(ox)} ${f(hy)}" class="pl-swing" style="stroke:var(--accent);stroke-dasharray:none;stroke-width:.7"/><path d="M${f(cx)} ${f(hy)}L${f(ox)} ${f(hy)}" stroke="var(--accent)" stroke-width="1"/>`; }
@@ -2611,7 +2651,8 @@ function inspectorHTML(d){
   } else {
     h += L('le_x','From left wall',it.x) + L('le_y','From back wall',it.y) + `<div class="f w2"></div>` + L('le_w','Size left–right',it.w) + L('le_d','Size front–back',it.d);
     if(['vanity','toilet','base','sink','uppers','tall','fridge','range','bench','tub','counter','stool'].includes(it.t)) h += `<div class="f w2"><label for="le_face">${it.t==='stool'?'Seat faces':'Front faces'}</label><select id="le_face" data-le="le_face">${['s','e','n','w'].map(k=>`<option value="${k}" ${fc===k?'selected':''}>${({s:'Toward room (front)',e:'Right',n:'Back wall',w:'Left'})[k]}</option>`).join('')}</select></div>`;
-    if(it.t==='island' && (it.stools||'s')!=='none') h += `<div class="f w6"><button class="btn sm" data-act="leSplitStools">Place stools one by one (move or remove each)</button></div>`;
+    if(it.t==='pendants') h += `<div class="f w2"><label for="le_n">Number of lights</label><input id="le_n" data-le="le_n" type="number" min="1" max="8" step="1" value="${esc(it.n||'')}" placeholder="Auto"></div>` + L('le_z0','Bottom of lights (from floor)', +it.z0 || 60) + `<p class="le-hint f w6">Lights are spaced evenly along the dashed box. Placing pendants here replaces the automatic ones over the island. Pick the style and finish under Pendants.</p>`;
+    if(it.t==='island' && (it.stools||'s')!=='none') h +=`<div class="f w6"><button class="btn sm" data-act="leSplitStools">Place stools one by one (move or remove each)</button></div>`;
     if(it.t==='island'){ const ax = it.w >= it.d; h += `<div class="f w2"><label for="le_wf">Waterfall</label><select id="le_wf" data-le="le_wf">${[['','Match option (stone = all sides)'],['none','No waterfall'],['a',ax?'Left end':'Back end'],['b',ax?'Right end':'Front end'],['both','Both ends'],['full','Solid stone all around']].map(([k,l])=>`<option value="${k}" ${(it.wf||'')===k?'selected':''}>${l}</option>`).join('')}</select></div>`; }
     if(['base','sink','island'].includes(it.t)) h += `<div class="f w2"><label for="le_fronts">Fronts</label><select id="le_fronts" data-le="le_fronts">${[['doors','Doors'],['drawers','Drawers'],['drawer_doors','Drawer over doors']].concat(it.t==='base'?[['blind','Blind corner (door + blind panel)'],['dw','Dishwasher · panel-ready'],['dws','Dishwasher · stainless']]:[]).map(([k,l])=>`<option value="${k}" ${(it.fronts||'doors')===k?'selected':''}>${l}</option>`).join('')}</select></div>`;
     if(it.t==='base' && it.fronts==='blind') h += `<div class="f w2"><label for="le_bside">Blind side</label><select id="le_bside" data-le="le_bside"><option value="left" ${it.bside==='left'?'selected':''}>Left (facing the doors)</option><option value="right" ${(it.bside||'right')==='right'?'selected':''}>Right (facing the doors)</option></select></div>` + L('le_bw','Blind width', +it.bw || 24);
@@ -2810,7 +2851,8 @@ function leField(e){
   if(key==='le_utype'){ const v = e.target.value; if(v==='wall'){ it.z0=56; it.z1=90; } if(v==='ceiling'){ it.z0=Math.max(54,+it.z0||56); it.z1=96; } if(v==='counter'){ it.z0=36; it.z1=96; } leRefresh(true); return true; }
   if(key==='le_ucl'){ it.ucl = e.target.checked; leRefresh(true); return true; }
   if(key==='le_ucltemp'){ it.uclTemp = e.target.value; leRefresh(false); return true; }
-  if(key==='le_nd'){ const v = Math.round(parseLen(e.target.value)); if(v>0) it.nd = Math.min(12,v); else delete it.nd; e.target.value = it.nd ? it.nd : ''; leRefresh(false); return true; }
+  if(key==='le_n'){ const v = Math.round(+e.target.value); if(v>0) it.n = Math.min(8,v); else delete it.n; e.target.value = it.n || ''; leRefresh(false); return true; }
+  if(key==='le_nd'){const v = Math.round(parseLen(e.target.value)); if(v>0) it.nd = Math.min(12,v); else delete it.nd; e.target.value = it.nd ? it.nd : ''; leRefresh(false); return true; }
   if(key==='le_curb'){ it.curb = e.target.checked; leRefresh(true); return true; }
   if(key==='le_cmat'){ it.curbMat = e.target.value; leRefresh(false); return true; }
   if(key==='le_design'){ it.design = e.target.value; leRefresh(true); return true; }
@@ -2924,6 +2966,7 @@ document.addEventListener('click', async e => {
     case 'lbNext': S.lb.i = (S.lb.i + 1) % S.lb.list.length; renderOverlay(); break;
     case 'lbClose': S.lb = null; renderOverlay(); break;
     case 'editSlot': { const r=room(); S.drawer={kind:'slot', k:t.dataset.k, options:JSON.parse(JSON.stringify(r.slots[t.dataset.k].options)), photos:{}, removed:[]}; renderOverlay(); break; }
+    case 'addStd': { readSlotForm(); const add = missingStd(d); add.forEach(o => d.options.push({url:'', ...o, id:'o'+newId()+Math.random().toString(36).slice(2,5)})); redraw(); toast(`${add.length} option${add.length>1?'s':''} added. Save options to keep them.`); break; }
     case 'addOpt': readSlotForm(); d.options.push({id:'o'+newId(), name:'', detail:'', color:'#cccccc', texture:'plain', price:0, url:''}); redraw(); break;
     case 'rmOpt': { readSlotForm(); const [o] = d.options.splice(+t.dataset.i,1); d.removed.push(o.id); delete d.photos[o.id]; redraw(); break; }
     case 'rmPhoto': { readSlotForm(); const o = d.options[+t.dataset.i]; delete o.img; delete o.imgUrl; d.photos[o.id] = ''; redraw(); break; }
