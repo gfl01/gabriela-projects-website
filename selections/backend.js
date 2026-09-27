@@ -133,8 +133,9 @@
   const assets = {
     async upload(file, id){
       id = id || hex();
-      const { error } = await sb.storage.from(BUCKET).upload(id, file, { contentType: file.type || 'image/jpeg', upsert: true, cacheControl: '31536000' });
-      if(error) throw err(error);
+      // new random name each time, so no "replace" is needed (replacing would need extra storage permissions)
+      const { error } = await sb.storage.from(BUCKET).upload(id, file, { contentType: file.type || 'image/jpeg', upsert: false, cacheControl: '31536000' });
+      if(error && !/exist|duplicate/i.test(error.message || '')) throw err(error);
       return { id, url: window.GP_BLOB(id), sizeBytes: file.size, contentType: file.type };
     },
     async delete(id){ await sb.storage.from(BUCKET).remove([id]); }
@@ -172,18 +173,28 @@
     document.body.appendChild(box);
     box.querySelector('input').onchange = async e => {
       const f = e.target.files[0]; if(!f) return;
-      const stEl = box.querySelector('.st'), bundle = JSON.parse(await f.text());
-      const A = Object.entries(bundle.assets || {}), D = Object.entries(bundle.docs || {});
-      let n = 0;
-      for(const [id, dataUrl] of A){ const b = await (await fetch(dataUrl)).blob(); await assets.upload(b, id); stEl.textContent = `Photos ${++n} / ${A.length}`; }
-      n = 0;
-      for(let i = 0; i < D.length; i += 200){
-        const rows = D.slice(i, i + 200).map(([path, data]) => ({ path, coll: collOf(path), project_id: projectOf(path), data }));
-        const { error } = await sb.from('docs').upsert(rows); if(error){ stEl.textContent = 'Error: ' + error.message; return; }
-        n += rows.length; stEl.textContent = `Records ${n} / ${D.length}`;
-      }
-      stEl.textContent = `Done: ${A.length} photos and ${D.length} records imported. Reloading…`;
-      setTimeout(() => { location.hash = ''; location.reload(); }, 1500);
+      const stEl = box.querySelector('.st'), show = (t, bad) => { stEl.textContent = t; stEl.style.color = bad ? '#B03A2A' : ''; };
+      try{
+        show('Reading the file…');
+        const bundle = JSON.parse(await f.text());
+        const A = Object.entries(bundle.assets || {}), D = Object.entries(bundle.docs || {}), failed = [];
+        let n = 0;
+        for(const [id, dataUrl] of A){
+          try{ const b = await (await fetch(dataUrl)).blob(); await assets.upload(b, id); }
+          catch(x){ failed.push(`${id.slice(0,6)}: ${x.message}`); console.error('photo upload failed', id, x); }
+          show(`Photos ${++n} / ${A.length}${failed.length ? ` (${failed.length} failed)` : ''}`);
+        }
+        n = 0;
+        for(let i = 0; i < D.length; i += 100){
+          const rows = D.slice(i, i + 100).map(([path, data]) => ({ path, coll: collOf(path), project_id: projectOf(path), data }));
+          const { error } = await sb.from('docs').upsert(rows);
+          if(error){ show('Saving records stopped: ' + error.message, true); console.error(error); return; }
+          n += rows.length; show(`Records ${n} / ${D.length}`);
+        }
+        if(failed.length){ show(`Records imported, but ${failed.length} of ${A.length} photos failed: ${failed[0]}`, true); return; }
+        show(`Done: ${A.length} photos and ${D.length} records imported. Reloading…`);
+        setTimeout(() => { location.hash = ''; location.reload(); }, 1500);
+      }catch(x){ show('Import stopped: ' + (x.message || x), true); console.error(x); }
     };
   }
 })();
