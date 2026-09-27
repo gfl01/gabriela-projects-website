@@ -556,7 +556,8 @@ function patternRaw(id, o){
     case 'herringbone': { const a=24/Math.SQRT2, h=4*Math.SQRT2; let d='';
       for(let k=-1;k<=4;k++){ d+=`M0 ${f(k*h)}L${f(a)} ${f(k*h-3*h)}`; d+=`M${f(a)} ${f(k*h-3*h+h/2)}L${f(2*a)} ${f(k*h+h/2)}`; }
       return base(2*a,h)+`<rect x="${f(a)}" width="${f(a)}" height="${f(h)}" fill="${shade(c, dark?.12:-.12)}"/><path d="${d}M0 0V${f(h)}M${f(a)} 0V${f(h)}" stroke="${g}" stroke-width=".45" fill="none"/></pattern>`; }
-    case 'wood': return base(10,48)+`<path d="M2 0C2.6 12 1.6 30 2.2 48M5.6 0C5 16 6.2 28 5.5 48M8.4 0C8.8 18 8 30 8.6 48" stroke="${g}" stroke-width=".25" fill="none" opacity=".7"/></pattern>`;
+    // faint, uneven grain close to the wood color, so veneer reads as smooth wood rather than stripes
+    case 'wood': return base(18,72)+`<path d="M3 0C3.8 20 2.4 44 3.4 72M11.5 0C10.8 26 12.4 46 11.6 72" stroke="${g2}" stroke-width=".3" fill="none" opacity=".55"/><path d="M7 10C7.4 22 6.8 34 7.2 46M15 30C15.3 42 14.8 52 15.1 64" stroke="${g2}" stroke-width=".2" fill="none" opacity=".4"/></pattern>`;
     case 'reeded': return base(1.6,10)+`<rect width=".35" height="10" fill="${shade(c, dark?.18:-.15)}"/><rect x=".5" width=".25" height="10" fill="${shade(c, dark?.1:.1)}" opacity=".8"/></pattern>`;
     case 'marble': { const v = c2 || g;
       return base(64,64)+`<path d="M-4 20C10 12 24 30 40 18S60 8 70 14" stroke="${v}" stroke-width="${c2?1.4:.55}" fill="none" opacity="${c2?.8:.55}"/><path d="M-2 50C18 42 30 60 48 50S62 44 68 48" stroke="${v}" stroke-width="${c2?.9:.35}" fill="none" opacity="${c2?.7:.5}"/><path d="M20 66C26 52 34 40 30 28M44 64C50 56 46 44 56 36" stroke="${v}" stroke-width="${c2?.6:.3}" fill="none" opacity=".5"/></pattern>`; }
