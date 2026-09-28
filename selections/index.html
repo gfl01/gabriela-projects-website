@@ -315,6 +315,8 @@ const HOOD_OPTS = [
   {name:'Plaster hood',detail:'Smooth curved plaster · with insert',color:'#ECE8E0',texture:'plain',style:'plaster',price:2600},
   {name:'Box hood',detail:'Matte black · to ceiling',color:'#2A2A2A',texture:'plain',style:'box',price:900},
   {name:'Slim under-cabinet hood',detail:'Stainless · under an upper cabinet',color:'#C9CAC8',texture:'plain',style:'slim',price:0},
+  {name:'Pro chimney hood 48"',detail:'Stainless · wall mount',color:'#C9CAC8',texture:'plain',style:'chimney',price:1200},
+  {name:'Custom wood hood',detail:'Stained white oak · with insert',color:'#C29B6B',texture:'wood',style:'insert',price:2400},
   {name:'No hood',detail:'Downdraft or recirculating',color:'#E4E3DE',texture:'plain',style:'nohood',price:0}];
 const CROWN_OPTS = [
   {name:'No crown',detail:'Cabinets end square at the top',color:'#EFEEEA',texture:'plain',style:'none',price:0},
@@ -348,8 +350,25 @@ const TEMPLATES = {
       {name:'Professional range',detail:'Stainless steel',color:'#C9CAC8',texture:'plain',style:'pro',price:0},
       {name:'French range',detail:'Matte black, brass trim',color:'#2B2C2E',color2:'#B8924A',texture:'plain',style:'french',price:4500},
       {name:'Slide-in range',detail:'Black stainless',color:'#3A3B3D',texture:'plain',style:'slidein',price:0},
-      {name:'Induction range',detail:'Stainless, glass top',color:'#C9CAC8',texture:'plain',style:'induction',price:800}]},
+      {name:'Induction range',detail:'Stainless, glass top',color:'#C9CAC8',texture:'plain',style:'induction',price:800},
+      {name:'Gas range 30"',detail:'Stainless · freestanding',color:'#C9CAC8',texture:'plain',style:'slidein',price:0},
+      {name:'Dual-fuel range 48"',detail:'Stainless · 6 burners and griddle',color:'#C9CAC8',texture:'plain',style:'pro',price:5500}]},
     {k:'hood',label:'Range hood',cat:'Appliances',opts:HOOD_OPTS},
+    // built-in appliances: the drawing follows the chosen option wherever the layout has a refrigerator, dishwasher, sink or microwave drawer
+    {k:'fridge',label:'Refrigerator',cat:'Appliances',opts:[
+      {name:'Built-in refrigerator 36"',detail:'Panel-ready · French door',color:'#EFEEEA',texture:'plain',style:'panel',price:0},
+      {name:'Built-in refrigerator 36"',detail:'Stainless · French door',color:'#C9CAC8',texture:'plain',style:'steel',price:0},
+      {name:'Built-in column pair 30" + 18"',detail:'Panel-ready refrigerator and freezer',color:'#EFEEEA',texture:'plain',style:'column',price:6500}]},
+    {k:'dishwasher',label:'Dishwasher',cat:'Appliances',opts:[
+      {name:'Built-in dishwasher 24"',detail:'Panel-ready · fully integrated',color:'#EFEEEA',texture:'plain',style:'panel',price:0},
+      {name:'Built-in dishwasher 24"',detail:'Stainless · hidden controls',color:'#C9CAC8',texture:'plain',style:'steel',price:0}]},
+    {k:'microwave',label:'Microwave',cat:'Appliances',opts:[
+      {name:'Microwave drawer 24"',detail:'Stainless · under the counter',color:'#C9CAC8',texture:'plain',style:'drawer',price:0},
+      {name:'Microwave drawer 24"',detail:'Black stainless · under the counter',color:'#3A3B3D',texture:'plain',style:'drawer',price:0}]},
+    {k:'sink',label:'Kitchen sink',cat:'Plumbing',opts:[
+      {name:'Undermount sink 32"',detail:'Stainless · single bowl',color:'#B9BCBF',texture:'plain',style:'under',price:0},
+      {name:'Undermount sink 32"',detail:'Black composite · single bowl',color:'#2E2E30',texture:'plain',style:'under',price:150},
+      {name:'Farmhouse sink 33"',detail:'White fireclay · apron front',color:'#F4F3EF',texture:'plain',style:'apron',price:450}]},
     {k:'crown',label:'Crown moulding',cat:'Moldings & trims',opts:CROWN_OPTS},
     {k:'backsplash',label:'Backsplash',cat:'Tiles',opts:[
       {name:'Subway 3×6',detail:'White · gloss',color:'#F1F0EC',texture:'subway',price:0},
@@ -615,6 +634,9 @@ const STYLE_SETS = {
   crown:[['none','No crown'],['flat','Flat fascia (modern)'],['cove','Cove'],['stepped','Stepped (transitional)'],['ogee','Classic ogee (traditional)']],
   stool:[['backless','Backless · 4 legs'],['lowback','Low back'],['saddle','Wood saddle'],['upholstered','Upholstered, high back'],['barrel','Barrel / wraparound back'],['spindle','Spindle back (Windsor)'],['ladder','Ladder back'],['metal','Metal café (Tolix style)'],['woven','Woven seat, low back'],['pedestal','Round pedestal · swivel'],['pedestalback','Round pedestal with back']],
   range:[['pro','Professional'],['french','French range · trim'],['slidein','Slide-in'],['induction','Induction · glass top']],
+  fridge:[['panel','Panel-ready · French door'],['steel','Metal finish · French door'],['column','Panel-ready column pair']],
+  dishwasher:[['panel','Panel-ready'],['steel','Metal finish']],
+  ksink:[['under','Undermount'],['apron','Farmhouse / apron front']],
   shower:[['frameless','Frameless glass'],['grid','Steel grid']],
   laundry:[['stacked','Stacked'],['side','Side by side']]
 };
@@ -627,6 +649,9 @@ function styleSet(type, k){
   if((k==='cabinets'||k==='island') && type==='kitchen') return STYLE_SETS.door;
   if(k==='shower') return STYLE_SETS.shower;
   if(k==='range') return STYLE_SETS.range;
+  if(k==='fridge') return STYLE_SETS.fridge;
+  if(k==='dishwasher') return STYLE_SETS.dishwasher;
+  if(k==='sink' && type==='kitchen') return STYLE_SETS.ksink;
   if(k==='stools') return STYLE_SETS.stool;
   if(k==='crown') return STYLE_SETS.crown;
   if(k==='hood') return STYLE_SETS.hood;
@@ -1276,6 +1301,8 @@ function planScene(r, ids){
   const F=k=>r.slots[k]?`url(#${ids}-${k})`:'#dcdad4', ch=k=>chosen(r,k)||{color:'#cccccc'};
   const bathy = r.type!=='kitchen', kitchen = r.type==='kitchen';
   const M = ch('metal'), metal = okHex(M.color), Lt = r.slots.lights ? ch('lights') : null, light = Lt ? okHex(Lt.color) : metal;
+  // built-in appliance picks (rooms made before these finishes existed fall back to the room / layout settings)
+  const FRo = r.slots.fridge ? ch('fridge') : null, DWo = r.slots.dishwasher ? ch('dishwasher') : null, MWo = r.slots.microwave ? ch('microwave') : null, SKo = r.slots.sink ? ch('sink') : null;
   const cabO = ch('cabinets'), islO = ch('island'), cab = okHex(cabO.color), isl = okHex(islO.color);
   const cabFlat = doorSpec(cabO), islFlat = doorSpec(islO), pStyle = doorPull(M.style || 'bar'), pDrw = drawerPull(M.style || 'bar');
   const Sh = r.slots.shower ? ch('shower') : null, grid = Sh && (Sh.style==='grid' || (!Sh.style && Sh.texture==='grid')), fr = Sh ? okHex(Sh.color) : metal;
@@ -1590,7 +1617,7 @@ function planScene(r, ids){
     if(!mw) { const n = Math.max(1, Math.round((u1-u0)/per)); return [frontSet(u0,u1,z0,z1,n,col,spec,style), pullSet(m,u0,u1,z0,z1,n,style)]; }
     const m0 = Math.max(u0, Math.min(u1 - MW_W, u0 + mw.at)), m1 = m0 + MW_W, k = n0 => Math.max(1, Math.round(n0/per));
     let face = frontSet(u0, m0, z0, z1, k(m0-u0), col, spec, style) + frontSet(m1, u1, z0, z1, k(u1-m1), col, spec, style) + doors(m0, m1, z0, MW_Z0, 1, col, spec);
-    face += `<rect x="${f(m0+.8)}" y="${f(-z1+.8)}" width="${f(MW_W-1.6)}" height="${f(z1-MW_Z0-1.6)}" rx=".6" fill="#1c1d20" stroke="${metal}" stroke-width=".35"/><rect x="${f(m0+2.5)}" y="${f(-z1+3)}" width="${f(MW_W-9)}" height="${f(z1-MW_Z0-6)}" fill="#2b2d31"/><rect x="${f(m0+MW_W-5)}" y="${f(-z1+3)}" width="3" height="1.2" fill="#5d6166"/>`;
+    face += `<rect x="${f(m0+.8)}" y="${f(-z1+.8)}" width="${f(MW_W-1.6)}" height="${f(z1-MW_Z0-1.6)}" rx=".6" fill="${MWo ? okHex(MWo.color) : '#1c1d20'}" stroke="${metal}" stroke-width=".35"/><rect x="${f(m0+2.5)}" y="${f(-z1+3)}" width="${f(MW_W-9)}" height="${f(z1-MW_Z0-6)}" fill="#2b2d31"/><rect x="${f(m0+MW_W-5)}" y="${f(-z1+3)}" width="3" height="1.2" fill="#5d6166"/>`;
     const pl = pullSet(m, u0, m0, z0, z1, k(m0-u0), style) + pullSet(m, m1, u1, z0, z1, k(u1-m1), style) + pulls(m, m0, m1, MW_Z0-3.5, 1, metal, false, pDrw)
       + `<g transform="${m}" class="s" data-slot="metal"><rect x="${f(m0+4)}" y="${f(-z1+2.1)}" width="${f(MW_W-8)}" height=".8" rx=".4" fill="${metal}"/></g>`;
     return [face, pl];
@@ -1649,11 +1676,12 @@ function planScene(r, ids){
         s += toe(it, fc);
         if(it.fronts==='dw' || it.fronts==='dws'){
           // dishwasher: one tall front (panel-ready = cabinet door with a drawer-style top rail; stainless = steel with a bar handle)
-          const steel = it.fronts==='dws', col = steel ? '#C9CAC8' : cab, m = fc==='e' ? mYZ(it.x+it.w) : mXZ(it.y+it.d), u0 = fc==='e' ? it.y : it.x, u1 = u0 + len(it);
-          let fr = steel ? `<rect x="${f(u0+.8)}" y="-34" width="${f(u1-u0-1.6)}" height="29.5" fill="#C9CAC8" stroke="#9a9c9e" stroke-width=".4"/><rect x="${f(u0+.8)}" y="-34" width="${f(u1-u0-1.6)}" height="3" fill="#b5b7b8"/>`
+          // the Dishwasher finish decides panel-ready vs metal; without it, the layout's choice does
+          const steel = DWo ? DWo.style==='steel' : it.fronts==='dws', sc = DWo && steel ? okHex(DWo.color) : '#C9CAC8', m = fc==='e' ? mYZ(it.x+it.w) : mXZ(it.y+it.d), u0 = fc==='e' ? it.y : it.x, u1 = u0 + len(it);
+          let fr = steel ? `<rect x="${f(u0+.8)}" y="-34" width="${f(u1-u0-1.6)}" height="29.5" fill="${sc}" stroke="${shade(sc,-.2)}" stroke-width=".4"/><rect x="${f(u0+.8)}" y="-34" width="${f(u1-u0-1.6)}" height="3" fill="${shade(sc,-.08)}"/>`
                          : doors(u0, u1, 4, 34.5, 1, cab, noGlass(cabFlat));
           const o = fc==='e' ? {side:fr} : fc==='s' ? {front:fr} : {};
-          s += box(it.x, it.y, 4, it.w, it.d, 30.5, steel ? '#C9CAC8' : F('cabinets'), steel ? null : 'cabinets', o);
+          s += box(it.x, it.y, 4, it.w, it.d, 30.5, steel ? sc : F('cabinets'), steel ? (DWo ? 'dishwasher' : null) : 'cabinets', o);
           if(fc==='s' || fc==='e') s += steel ? `<g transform="${m}" class="s" data-slot="metal"><rect x="${f(u0+3)}" y="-30.5" width="${f(u1-u0-6)}" height="1" rx=".5" fill="#8d8f91"/></g>` : pulls(m, u0, u1, 31, 1, metal, false, pDrw);
         }
         else if(!it.fronts || it.fronts==='doors') s += runFace(it, F('cabinets'), cab, noGlass(cabFlat), nd(it,18), 4, 34.5, 'cabinets', 31, false);
@@ -1662,9 +1690,13 @@ function planScene(r, ids){
           if(fc==='s'){ const [fa, pu] = run(mXZ(it.y+it.d), it.x, it.x+it.w); o.front = fa; pl = pu; }
           if(fc==='e'){ const [fa, pu] = run(mYZ(it.x+it.w), it.y, it.y+it.d); o.side = fa; pl = pu; }
           s += box(it.x, it.y, 4, it.w, it.d, 30.5, F('cabinets'), 'cabinets', o) + pl; }
+        // farmhouse sink: its apron front shows between the doors and the counter
+        if(it.t==='sink' && SKo && SKo.style==='apron' && (fc==='s' || fc==='e')){
+          const m = fc==='e' ? mYZ(it.x+it.w+.3) : mXZ(it.y+it.d+.3), u0 = fc==='e' ? it.y : it.x, aw = Math.min(33, len(it)-2), a0 = u0 + (len(it)-aw)/2, ac = okHex(SKo.color);
+          s += `<g transform="${m}" class="s" data-slot="sink"><rect x="${f(a0)}" y="-35" width="${f(aw)}" height="10" fill="${ac}" stroke="${shade(ac,-.25)}" stroke-width=".35"/><path d="M${f(a0+.6)} -25.6H${f(a0+aw-.6)}" stroke="${shade(ac,-.12)}" stroke-width=".5"/></g>`; }
         let top = '';
         const sideways = fc==='e' || fc==='w';
-        if(it.t==='sink'){ const sw = Math.min(22, len(it)-6), k = shade(okHex(ch('counter').color),-.28);
+        if(it.t==='sink'){ const sw = Math.min(22, len(it)-6), k = SKo ? shade(okHex(SKo.color), lum(okHex(SKo.color)) < .45 ? .12 : -.12) : shade(okHex(ch('counter').color),-.28);
           top = fc==='e' ? `<rect x="${f(it.x+4)}" y="${f(it.y+it.d/2-sw/2)}" width="15" height="${f(sw)}" rx="1.5" fill="${k}"/>`
             : fc==='w' ? `<rect x="${f(it.x+it.w-19)}" y="${f(it.y+it.d/2-sw/2)}" width="15" height="${f(sw)}" rx="1.5" fill="${k}"/>`
             : fc==='n' ? `<rect x="${f(it.x+it.w/2-sw/2)}" y="${f(it.y+it.d-19)}" width="${f(sw)}" height="15" rx="1.5" fill="${k}"/>`
@@ -1695,7 +1727,9 @@ function planScene(r, ids){
       case 'panel': s += box(it.x, it.y, 0, it.w, it.d, +it.h || 90, F('cabinets'), 'cabinets'); break;
       case 'saddle': { const c = saddleColor(it.mat); s += box(it.x, it.y, 0, it.w, it.d, .75, c, null, {topExtra:`<path d="M${f(it.x+.5)} ${f(it.y+.5)}${it.w>=it.d?`H${f(it.x+it.w-.5)}`:`V${f(it.y+it.d-.5)}`}" stroke="${shade(c, lum(c)<.45?.2:-.12)}" stroke-width=".3"/>`}); break; }
       case 'fridge': {
-        const panel = !!r.panelFridge, fill = panel ? F('cabinets') : '#C9CAC8', h = +it.h || 84, T = 1.5;
+        // the Refrigerator finish decides panel-ready / metal and French door vs column pair; without it, the room setting does
+        const panel = FRo ? FRo.style!=='steel' : !!r.panelFridge, fill = panel ? F('cabinets') : (FRo ? okHex(FRo.color) : '#C9CAC8'), h = +it.h || 84, T = 1.5;
+        const colPair = !!FRo && FRo.style==='column', bodySlot = FRo ? 'fridge' : panel ? 'cabinets' : null;
         // side panels (left / right as seen facing the fridge) and an optional cabinet above, between the panels
         const ax = fc==='e' || fc==='w', lowDir = ax ? 'n' : 'w', leftLow = OH_SIDE[fc].left === lowDir, sp = it.fp || 'none';
         const pLow = sp==='both' || (sp==='left' && leftLow) || (sp==='right' && !leftLow), pHigh = sp==='both' || (sp==='left' && !leftLow) || (sp==='right' && leftLow);
@@ -1703,11 +1737,14 @@ function planScene(r, ids){
         const R = (u0, u1) => ax ? [it.x, u0, it.w, u1 - u0] : [u0, it.y, u1 - u0, it.d];
         const panelBox = (u0, u1) => { const [x,y,w,d] = R(u0, u1); return box(x, y, 0, w, d, Math.max(it.bridge ? topP : (+it.bz1 || h), h), F('cabinets'), 'cabinets'); };
         if(pLow) s += panelBox(a0, a0 + T);
-        { const [x,y,w,d] = R(b0, b1), c = (b0 + b1)/2;
-          const split = `<path d="M${f(c)} ${-h+4}V-4" stroke="rgba(0,0,0,.3)" stroke-width=".5"/>`;
-          s += box(x, y, 0, w, d, h, fill, panel ? 'cabinets' : null, fc==='e' ? {side:split} : fc==='s' ? {front:split} : {});
+        { const [x,y,w,d] = R(b0, b1), c = colPair ? b0 + (b1 - b0)*.62 : (b0 + b1)/2, ln = 'rgba(0,0,0,.3)';
+          // French door: two doors over a freezer drawer; column pair: a wide refrigerator next to a narrow freezer
+          const split = colPair ? `<path d="M${f(c)} ${-h+4}V-4" stroke="${ln}" stroke-width=".5"/>`
+            : `<path d="M${f(c)} ${-h+4}V-31" stroke="${ln}" stroke-width=".5"/><path d="M${f(b0+.8)} -30H${f(b1-.8)}" stroke="${ln}" stroke-width=".5"/>`;
+          s += box(x, y, 0, w, d, h, fill, bodySlot, fc==='e' ? {side:split} : fc==='s' ? {front:split} : {});
           const m = fc==='e' ? mYZ(it.x+it.w) : mXZ(it.y+it.d);
-          if(fc==='e' || fc==='s') s += `<g transform="${m}" class="s" data-slot="metal"><rect x="${f(c-2.6)}" y="-60" width="1" height="24" fill="${metal}"/><rect x="${f(c+1.6)}" y="-60" width="1" height="24" fill="${metal}"/></g>`;
+          if(fc==='e' || fc==='s') s += colPair ? `<g transform="${m}" class="s" data-slot="metal"><rect x="${f(c-2.6)}" y="-64" width="1" height="30" fill="${metal}"/><rect x="${f(c+1.6)}" y="-64" width="1" height="30" fill="${metal}"/></g>`
+            : `<g transform="${m}" class="s" data-slot="metal"><rect x="${f(c-2.6)}" y="-60" width="1" height="24" fill="${metal}"/><rect x="${f(c+1.6)}" y="-60" width="1" height="24" fill="${metal}"/><rect x="${f(c-8)}" y="-27.5" width="16" height="1" fill="${metal}"/></g>`;
           if(it.bridge){ const nb = (b1 - b0) > 30 ? 2 : 1, fr = doors(b0, b1, h, topP, nb, cab, noGlass(cabFlat));
             s += box(x, y, h, w, d, topP - h, F('cabinets'), 'cabinets', fc==='e' ? {side:fr} : fc==='s' ? {front:fr} : {});
             if(fc==='e' || fc==='s') s += pulls(m, b0, b1, h + 3, nb, metal, true, pStyle); } }
@@ -2118,7 +2155,7 @@ function roomsHTML(){
   let h = `<nav class="tabs" role="tablist" aria-label="Rooms">${S.rooms.map(x=>`<button class="tab" role="tab" aria-selected="${x.id===S.rid}" data-act="room" data-id="${esc(x.id)}"><span class="dot ${x.type==='general'?'none':x.approved?'ok':''}" title="${x.type==='general'?'':x.approved?'Approved':'Choosing finishes'}"></span>${esc(x.name)}</button>`).join('')}${canManage()?'<button class="tab add" data-act="addRoom">+ Room</button>':''}</nav>`;
   const r = room();
   if(!r) return h + `<div class="empty"><h3>No rooms yet</h3><p>${isDesigner()?'Add a kitchen, bathroom or other room to start choosing finishes.':'Rooms will appear here once they are ready for you.'}</p>${canManage()?'<button class="btn accent" data-act="addRoom">+ Add room</button>':''}</div>`;
-  if(canManage()) h += `<div class="acts">${PLAN_TEMPLATES[r.type]?'<button class="btn sm accent" data-act="editLayout">Edit layout</button>':''}${r.type==='kitchen' && !r.slots.hood ? '<button class="btn sm" data-act="addFinish" data-k="hood">+ Range hood</button>' : ''}${r.type==='kitchen' && !r.slots.crown ? '<button class="btn sm" data-act="addFinish" data-k="crown">+ Crown moulding</button>' : ''}<button class="btn sm" data-act="roomSettings">Room settings</button><button class="btn sm" data-act="addSpec" data-room="${esc(r.id)}">+ Add item to ${esc(r.name)}</button></div>`;
+  if(canManage()) h += `<div class="acts">${PLAN_TEMPLATES[r.type]?'<button class="btn sm accent" data-act="editLayout">Edit layout</button>':''}${tplOf(r).slots.filter(sl => sl.k!=='accent' && !r.slots[sl.k]).map(sl => `<button class="btn sm" data-act="addFinish" data-k="${sl.k}">+ ${esc(sl.label)}</button>`).join('')}<button class="btn sm" data-act="roomSettings">Room settings</button><button class="btn sm" data-act="addSpec" data-room="${esc(r.id)}">+ Add item to ${esc(r.name)}</button></div>`;
   if(r.type==='general') return h + `<div class="picks">${roomSpecsHTML(r, true)}</div>`;
   return h + stageHTML(r);
 }
@@ -2380,7 +2417,7 @@ function roomHTML(d){
     ${LAYOUTS[t]?`<div class="f w6" style="grid-column:auto"><label>Layout</label><div class="lpick">${LAYOUTS[t].map(([k,l])=>`<button type="button" data-act="rlayout" data-l="${k}" aria-pressed="${(d.layout||LAYOUTS[t][0][0])===k}">${sceneSVG({id:'x',...(d.id?JSON.parse(JSON.stringify(room())):roomFromTemplate(t)),type:t,layout:k,plan:null},'mini')}${esc(l)}</button>`).join('')}</div></div>`:''}
     <div class="ofields"><div class="f w6"><label for="rn">Room name</label><input id="rn" value="${esc(d.name)}" placeholder="${esc(TEMPLATES[t].label)}"></div>
     ${t==='bath'||t==='powder'?`<div class="f"><label for="rw">Tile wainscot height (in)</label><input id="rw" type="number" min="0" max="96" value="${esc(d.wainscot||'')}" placeholder="None"></div>`:''}
-    ${t==='kitchen'?`<label class="chk f"><input id="rpf" type="checkbox" ${d.panelFridge?'checked':''}> Panel-ready refrigerator</label>`:''}
+    ${t==='kitchen' && r && !r.slots.fridge ?`<label class="chk f"><input id="rpf" type="checkbox" ${d.panelFridge?'checked':''}> Panel-ready refrigerator</label>`:''}
     </div>
     ${d.id?'':'<p>Rooms start with sample options for every finish. Edit them to match what you are offering this client.</p>'}
   </div>
@@ -2429,11 +2466,14 @@ function millworkList(r, turn){
   const fronts = (it, n) => ({drawers:`a stack of 3 drawers${n>1?` (${n} stacks side by side)`:''}`, drawer_doors:`${n} drawer${n>1?'s':''} over ${n} door${n>1?'s':''}`, blind:'a blind-corner cabinet: one door plus a plain blind panel'}[it.fronts] || `${n} door${n>1?'s':''}`);
   const desc = it => { const L = len(it), n = Math.max(1, Math.round(L/18));
     switch(it.t){
-      case 'base': if(it.fronts==='dw'||it.fronts==='dws') return `${it.fronts==='dws'?'stainless':'panel-ready (matches cabinet doors)'} dishwasher ${fL(L)} wide`;
+      case 'base': if(it.fronts==='dw'||it.fronts==='dws'){ const dw = r.slots.dishwasher ? chosen(r,'dishwasher') : null, steel = dw ? dw.style==='steel' : it.fronts==='dws';
+          return `built-in ${steel ? (dw ? colorWord(okHex(dw.color)) + ' metal' : 'stainless') : 'panel-ready (matches cabinet doors)'} dishwasher ${fL(L)} wide`; }
         return `base cabinet ${fL(L)} wide with ${fronts(it,n)}${it.cooktop?', cooktop in the counter':''}${+it.oh?`, countertop overhangs ${fL(+it.oh)}`:''}`;
-      case 'sink': return `sink base ${fL(L)} wide with ${n} door${n>1?'s':''}, undermount sink and faucet on top`;
+      case 'sink': { const sk = r.slots.sink ? chosen(r,'sink') : null;
+        return `sink base ${fL(L)} wide with ${n} door${n>1?'s':''}, ${sk && sk.style==='apron' ? `${colorWord(okHex(sk.color))} farmhouse sink with an apron front` : sk ? `${colorWord(okHex(sk.color))} undermount sink` : 'undermount sink'} and faucet on top`; }
       case 'range': return `freestanding range ${fL(L)} wide`;
-      case 'fridge': return `refrigerator ${fL(L)} wide${r.panelFridge?' with cabinet-panel fronts':''}${it.fp&&it.fp!=='none'?`, cabinet side panel${it.fp==='both'?'s on both sides':' on the '+it.fp+' side'}`:''}${it.bridge?', with a cabinet above it':''}`;
+      case 'fridge': { const fr = r.slots.fridge ? chosen(r,'fridge') : null, panel = fr ? fr.style!=='steel' : r.panelFridge;
+        return `built-in ${fr && fr.style==='column' ? 'refrigerator and freezer column pair' : 'French-door refrigerator'} ${fL(L)} wide${panel?' with cabinet-panel fronts':fr?`, ${colorWord(okHex(fr.color))} metal`:''}${it.fp&&it.fp!=='none'?`, cabinet side panel${it.fp==='both'?'s on both sides':' on the '+it.fp+' side'}`:''}${it.bridge?', with a cabinet above it':''}`; }
       case 'tall': return `tall pantry cabinet ${fL(L)} wide, ${fL(+it.h||90)} tall, ${n} door${n>1?'s':''} per section`;
       case 'uppers': { const z0 = +it.z0||56, z1 = +it.z1||90, nd = +it.nd || Math.max(1, Math.round(L/18));
         return `${z0<=37?'counter-to-ceiling':'wall'} cabinet ${fL(L)} wide, from ${fL(z0)} to ${fL(z1)} above the floor, ${nd} door${nd>1?'s':''}${it.ucl?', under-cabinet lighting':''}`; }
@@ -2655,7 +2695,10 @@ function inspectorHTML(d){
     if(it.t==='pendants') h += `<div class="f w2"><label for="le_n">Number of lights</label><input id="le_n" data-le="le_n" type="number" min="1" max="8" step="1" value="${esc(it.n||'')}" placeholder="Auto"></div>` + L('le_z0','Bottom of lights (from floor)', +it.z0 || 60) + `<p class="le-hint f w6">Lights are spaced evenly along the dashed box. Placing pendants here replaces the automatic ones over the island. Pick the style and finish under Pendants.</p>`;
     if(it.t==='island' && (it.stools||'s')!=='none') h +=`<div class="f w6"><button class="btn sm" data-act="leSplitStools">Place stools one by one (move or remove each)</button></div>`;
     if(it.t==='island'){ const ax = it.w >= it.d; h += `<div class="f w2"><label for="le_wf">Waterfall</label><select id="le_wf" data-le="le_wf">${[['','Match option (stone = all sides)'],['none','No waterfall'],['a',ax?'Left end':'Back end'],['b',ax?'Right end':'Front end'],['both','Both ends'],['full','Solid stone all around']].map(([k,l])=>`<option value="${k}" ${(it.wf||'')===k?'selected':''}>${l}</option>`).join('')}</select></div>`; }
-    if(['base','sink','island'].includes(it.t)) h += `<div class="f w2"><label for="le_fronts">Fronts</label><select id="le_fronts" data-le="le_fronts">${[['doors','Doors'],['drawers','Drawers'],['drawer_doors','Drawer over doors']].concat(it.t==='base'?[['blind','Blind corner (door + blind panel)'],['dw','Dishwasher · panel-ready'],['dws','Dishwasher · stainless']]:[]).map(([k,l])=>`<option value="${k}" ${(it.fronts||'doors')===k?'selected':''}>${l}</option>`).join('')}</select></div>`;
+    if(['base','sink','island'].includes(it.t)) h += `<div class="f w2"><label for="le_fronts">Fronts</label><select id="le_fronts" data-le="le_fronts">${[['doors','Doors'],['drawers','Drawers'],['drawer_doors','Drawer over doors']].concat(it.t!=='base' ? [] : room().slots.dishwasher
+      // the Dishwasher finish sets panel-ready vs stainless, so the layout only says where it goes
+      ? [['blind','Blind corner (door + blind panel)'],['dw','Dishwasher']].concat(it.fronts==='dws' ? [['dws','Dishwasher']] : [])
+      : [['blind','Blind corner (door + blind panel)'],['dw','Dishwasher · panel-ready'],['dws','Dishwasher · stainless']]).map(([k,l])=>`<option value="${k}" ${(it.fronts||'doors')===k?'selected':''}>${l}</option>`).join('')}</select></div>`;
     if(it.t==='base' && it.fronts==='blind') h += `<div class="f w2"><label for="le_bside">Blind side</label><select id="le_bside" data-le="le_bside"><option value="left" ${it.bside==='left'?'selected':''}>Left (facing the doors)</option><option value="right" ${(it.bside||'right')==='right'?'selected':''}>Right (facing the doors)</option></select></div>` + L('le_bw','Blind width', +it.bw || 24);
     if(it.t==='island'){ const ax2 = +it.w >= +it.d;
       h += `<div class="f w2"><label for="le_cab">Cabinets face</label><select id="le_cab" data-le="le_cab">${[['auto','Every open side'],['s','Front (bottom of plan)'],['e','Right'],['n','Back (top of plan)'],['w','Left']].map(([k,l])=>`<option value="${k}" ${(it.cab||'auto')===k?'selected':''}>${l}</option>`).join('')}</select></div>`;
@@ -2998,8 +3041,12 @@ document.addEventListener('click', async e => {
     case 'rtype': readRoomForm(d); d.type=t.dataset.t; d.layout=null; redraw(); break;
     case 'rlayout': readRoomForm(d); d.layout=t.dataset.l; redraw(); break;
     case 'editLayout': openLayoutEditor(); break;
-    case 'addFinish': { const r = room(), k = t.dataset.k; if(!r || r.slots[k]) break; const src = k==='hood' ? HOOD_OPTS : CROWN_OPTS, options = src.map((o,i)=>({id:`${k}${i+1}`, url:'', ...o}));
-      if(await saveRoom(r, {slots:{...JSON.parse(JSON.stringify(r.slots)), [k]:{options, chosen:`${k}1`}}})){ toast(`${k==='hood'?'Range hood':'Crown moulding'} added. Pick a style below.`); setTimeout(()=>jump(k), 80); } break; }
+    case 'addFinish': { const r = room(), k = t.dataset.k, sl = r && tplOf(r).slots.find(x=>x.k===k); if(!r || !sl || r.slots[k]) break;
+      const options = sl.opts.map((o,i)=>({id:`${k}${i+1}`, url:'', ...o}));
+      // start from what the drawing already showed: a stainless fridge or dishwasher stays stainless
+      const steelNow = (k==='fridge' && !r.panelFridge) || (k==='dishwasher' && (r.plan?.items||[]).some(it=>it.fronts==='dws'));
+      const chosen = (steelNow && options.find(o=>o.style==='steel')?.id) || options[0].id;
+      if(await saveRoom(r, {slots:{...JSON.parse(JSON.stringify(r.slots)), [k]:{options, chosen}}})){ toast(`${sl.label} added. Pick one below.`); setTimeout(()=>jump(k), 80); } break; }
     case 'leAdd': { const def = ITEM_DEFS[t.dataset.t], p = d.plan; const it = WALL_ITEMS.includes(t.dataset.t) ? {t:t.dataset.t, wall:'back', a:Math.round(+p.W/2 - def.w/2), len:def.w, uid:newId()} : {t:t.dataset.t, x:Math.round(+p.W/2 - def.w/2), y:Math.round(+p.D/2 - def.d/2), w:def.w, d:def.d, uid:newId()};
       if(['vanity','base','sink','uppers','tall','fridge','range','bench'].includes(it.t)) it.y = 0;
       if(it.t==='panel'){ it.y = 0; it.h = 90; }
