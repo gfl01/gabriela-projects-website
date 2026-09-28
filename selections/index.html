@@ -1430,8 +1430,28 @@ function planScene(r, ids){
     let top = H; items.forEach(q => { if((q.t==='uppers' || (q.t==='corner' && q.lvl==='wall')) && q.x < it.x + it.w - 1 && q.x + q.w > it.x + 1 && q.y < it.y + it.d - 1 && q.y + q.d > it.y + 1) top = Math.min(top, +q.z0 || 56); });
     return {t:'hoodp', ref:it, x:it.x, y:it.y, w:it.w, d:it.d, face:faceOf(it), hz0: Math.min(60, top - 4), hz1: top, i:-2}; });
   const objs = depthOrder(items.filter(it=>!WALL_ITEMS.includes(it.t) && it.t!=='void' && it.t!=='zone').concat(vwalls, hoods), H);
-  // pendant lights: one group per island (automatic) or per placed "Pendant lights" item; placed ones replace the automatic ones
-  const lampGroups = [], placedLamps = items.some(it=>it.t==='pendants');
+  // pendant lights: one group per island (automatic) or per placed "Pendant lights" item; placed ones replace the automatic ones.
+  // Each group is drawn in the island's / item's place in the depth order, so nearer things (a column, a tall cabinet) cover it.
+  const placedLamps = items.some(it=>it.t==='pendants');
+  const drawLamps = lamps => {
+    if(!kitchen || !lamps.length) return '';
+    const slot = r.slots.lights ? 'lights' : 'metal', lStyle = (Lt && Lt.style) || 'cylinder', zb = lamps[0][2];   // zb: bottom of the lights
+    let o = '';
+    if(lStyle==='linear'){
+      const xs = lamps.map(l=>l[0]), ys = lamps.map(l=>l[1]), alongX = Math.max(...xs)-Math.min(...xs) >= Math.max(...ys)-Math.min(...ys);
+      const x0 = Math.min(...xs)-6, y0 = Math.min(...ys)-6, ln = alongX ? Math.max(...xs)-Math.min(...xs)+12 : Math.max(...ys)-Math.min(...ys)+12;
+      const st = alongX ? [x0, y0+6] : [x0+6, y0], en = alongX ? [x0+ln, y0+6] : [x0+6, y0+ln];
+      const cord = ([x,y]) => { const t = P(x,y,H), b = P(x,y,zb+3); return `<line x1="${t[0]}" y1="${t[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${shade(light,-.3)}" stroke-width=".4"/>`; };
+      o += `<g class="s" data-slot="${slot}">${cord(st)}${cord(en)}</g>`;
+      o += alongX ? box(x0,y0+5,zb+1,ln,2,2,light,slot) : box(x0+5,y0,zb+1,2,ln,2,light,slot);
+      const heads = Math.max(3, Math.round(ln/10));
+      for(let i=0;i<heads;i++){ const t = (i+.5)/heads*ln; o += alongX ? box(x0+t-1.2,y0+4.8,zb-3,2.4,2.4,4,light,slot) : box(x0+4.8,y0+t-1.2,zb-3,2.4,2.4,4,light,slot); }
+    } else lamps.forEach(([x,y,z]) => {
+      const top=P(x,y,H), c1=P(x,y,z), cord = `<line x1="${top[0]}" y1="${top[1]}" x2="${c1[0]}" y2="${f(c1[1]-8)}" stroke="${shade(light,-.3)}" stroke-width=".4"/>`;
+      o += `<g class="s" data-slot="${slot}">${cord}${pendantShape(lStyle, c1, light)}</g>`;
+    });
+    return o;
+  };
   const runFace =(it, fill, col, flat, nDoors, z0, z1, slot, pullsZ, vertical) => {
     const fc = faceOf(it); let o = {};
     if(fc==='s'){ o.front = doors(it.x, it.x+it.w, z0, z1, nDoors, col, flat); }
@@ -1735,11 +1755,11 @@ function planScene(r, ids){
         autoStools(it).forEach(p2 => { s += stoolSVG(p2, r.slots.stools ? ch('stools') : null, metal); });
         if(!placedLamps){ const alongX = it.w >= it.d, n = Math.max(2, Math.min(4, Math.round((alongX?it.w:it.d)/22))), g = [];
           for(let k=0;k<n;k++) g.push(alongX ? [it.x+(k+.5)*it.w/n, it.y+it.d/2, 60] : [it.x+it.w/2, it.y+(k+.5)*it.d/n, 60]);
-          lampGroups.push(g); }
+          s += drawLamps(g); }
         break; }
       case 'pendants': { const alongX = it.w >= it.d, n = pendantCount(it), z = +it.z0 || 60, g = [];
         for(let k=0;k<n;k++) g.push(alongX ? [it.x+(k+.5)*it.w/n, it.y+it.d/2, z] : [it.x+it.w/2, it.y+(k+.5)*it.d/n, z]);
-        lampGroups.push(g); break; }
+        s += drawLamps(g); break; }
       case 'bench': {
         s += box(it.x,it.y,0,it.w,it.d,17,F('cabinets'),'cabinets') + box(it.x+1,it.y+1,17,it.w-2,it.d-2,4,'#ece6da',null);
         if(fc==='s') s += box(it.x+1,it.y,21,it.w-2,5,12,'#e4ddcf',null); else if(fc==='e') s += box(it.x,it.y+1,21,5,it.d-2,12,'#e4ddcf',null);
@@ -1777,25 +1797,6 @@ function planScene(r, ids){
     }
     if(nearTall) s = s.slice(0, s0) + `<g opacity=".2">${s.slice(s0)}</g>`;
   });
-  if(kitchen && lampGroups.length){
-    const slot = r.slots.lights ? 'lights' : 'metal', lStyle = (Lt && Lt.style) || 'cylinder';
-    lampGroups.forEach(lamps => {
-      const zb = lamps[0][2];   // bottom of the lights
-      if(lStyle==='linear'){
-        const xs = lamps.map(l=>l[0]), ys = lamps.map(l=>l[1]), alongX = Math.max(...xs)-Math.min(...xs) >= Math.max(...ys)-Math.min(...ys);
-        const x0 = Math.min(...xs)-6, y0 = Math.min(...ys)-6, ln = alongX ? Math.max(...xs)-Math.min(...xs)+12 : Math.max(...ys)-Math.min(...ys)+12;
-        const st = alongX ? [x0, y0+6] : [x0+6, y0], en = alongX ? [x0+ln, y0+6] : [x0+6, y0+ln];
-        const cord = ([x,y]) => { const t = P(x,y,H), b = P(x,y,zb+3); return `<line x1="${t[0]}" y1="${t[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${shade(light,-.3)}" stroke-width=".4"/>`; };
-        s += `<g class="s" data-slot="${slot}">${cord(st)}${cord(en)}</g>`;
-        s += alongX ? box(x0,y0+5,zb+1,ln,2,2,light,slot) : box(x0+5,y0,zb+1,2,ln,2,light,slot);
-        const heads = Math.max(3, Math.round(ln/10));
-        for(let i=0;i<heads;i++){ const t = (i+.5)/heads*ln; s += alongX ? box(x0+t-1.2,y0+4.8,zb-3,2.4,2.4,4,light,slot) : box(x0+4.8,y0+t-1.2,zb-3,2.4,2.4,4,light,slot); }
-      } else lamps.forEach(([x,y,z]) => {
-        const top=P(x,y,H), c1=P(x,y,z), cord = `<line x1="${top[0]}" y1="${top[1]}" x2="${c1[0]}" y2="${f(c1[1]-8)}" stroke="${shade(light,-.3)}" stroke-width=".4"/>`;
-        s += `<g class="s" data-slot="${slot}">${cord}${pendantShape(lStyle, c1, light)}</g>`;
-      });
-    });
-  }
   // cut-away front and right walls: a low base line plus their openings, see-through
   const rY0 = cK==='br' ? CE.b : 0, rY1 = cK==='fr' ? D - CE.b : D, fX0 = cK==='fl' ? CE.a : 0, fX1 = cK==='fr' ? W - CE.a : W;
   if(!OPEN.has('right')) minus(rY0, rY1, voids.filter(v=>v.x1 > W-.5).map(v=>[v.y0, v.y1])).forEach(([a,b]) => { s += face(mYZ(W), a, -3, b-a, 3, '#c9c6be', .12, null); });
