@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Local dev server that mirrors how Cloudflare serves this site.
 
-Production serves extensionless URLs (/portfolio, not /portfolio.html) and a
+Production serves extensionless URLs (/projects, not /projects.html) and a
 custom 404 page. Plain `python3 -m http.server` does neither, so every internal
 link 404s locally. This keeps local preview honest.
 
@@ -19,8 +19,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 class SiteHandler(SimpleHTTPRequestHandler):
     def translate_path(self, path):
         local = super().translate_path(path)
-        # /portfolio -> /portfolio.html, when the bare path isn't a real file
-        if not os.path.exists(local) and not path.rstrip("/").endswith(".html"):
+        # /projects -> /projects.html, when the bare path isn't a real file.
+        # A folder of the same name (projects/, holding the story pages) doesn't
+        # count unless it has its own index.html -- Cloudflare works the same way.
+        bare = not os.path.exists(local) or (
+            os.path.isdir(local) and not os.path.exists(os.path.join(local, "index.html")))
+        if bare and not path.rstrip("/").endswith(".html"):
             candidate = local.rstrip("/") + ".html"
             if os.path.isfile(candidate):
                 return candidate

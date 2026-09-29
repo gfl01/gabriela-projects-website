@@ -273,3 +273,34 @@ document.addEventListener('click', function (e) {
     method: isPhone ? 'phone' : 'email'
   });
 });
+
+// === Project card photo carousels (/projects) ===
+// The track is a plain scroll-snap row, so swiping works on its own; this adds
+// the arrow buttons and keeps the dots in step with whichever photo is showing.
+(function () {
+  var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.card-carousel').forEach(function (carousel) {
+    var track = carousel.querySelector('.card-track');
+    var count = track ? track.children.length : 0;
+    var dots = carousel.querySelectorAll('.card-dots span');
+    if (count < 2) return;
+
+    function current() {
+      return Math.round(track.scrollLeft / track.clientWidth);
+    }
+
+    function go(i) {
+      i = (i + count) % count; // wrap around at either end
+      track.scrollTo({ left: i * track.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
+    }
+
+    carousel.querySelector('.card-prev').addEventListener('click', function () { go(current() - 1); });
+    carousel.querySelector('.card-next').addEventListener('click', function () { go(current() + 1); });
+
+    track.addEventListener('scroll', function () {
+      var i = current();
+      dots.forEach(function (dot, j) { dot.classList.toggle('active', i === j); });
+    }, { passive: true });
+  });
+})();

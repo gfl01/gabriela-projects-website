@@ -8,8 +8,8 @@ Small helper scripts for the site. Nothing here is served to visitors.
 python3 tools/devserver.py 8080
 ```
 
-Serves the site the way Cloudflare does: extensionless URLs (`/portfolio`, not
-`/portfolio.html`) and the custom `404.html` for unknown paths. Plain
+Serves the site the way Cloudflare does: extensionless URLs (`/projects`, not
+`/projects.html`) and the custom `404.html` for unknown paths. Plain
 `python3 -m http.server` does neither, so every internal link 404s under it.
 
 ## `make-og-image.py` — the link-preview image

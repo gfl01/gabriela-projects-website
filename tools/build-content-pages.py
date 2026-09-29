@@ -43,10 +43,12 @@ SITE = "https://gabrielaprojects.com"
 
 # Hand-edited pages that belong in the sitemap, in addition to the built ones.
 STATIC_PAGES = [("/", "1.0"), ("/services", "0.8"), ("/how-it-works", "0.8"),
-                ("/portfolio", "0.8"), ("/get-started", "0.9")]
+                ("/projects", "0.8"), ("/projects/park-avenue", "0.7"),
+                ("/projects/upper-east-side", "0.7"), ("/projects/montclair-tudor", "0.7"),
+                ("/get-started", "0.9")]
 
 NAV_HREF = {"home": "/", "services": "/services", "how-it-works": "/how-it-works",
-            "portfolio": "/portfolio", "get-started": "/get-started"}
+            "projects": "/projects", "get-started": "/get-started"}
 
 
 def read(path):

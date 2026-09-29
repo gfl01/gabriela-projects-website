@@ -4,3 +4,9 @@
 /home        /  301
 /home.html   /  301
 /index       /  301
+
+# Portfolio was renamed Projects (2026-09-29). Browsers keep the #fragment across
+# a redirect, so /portfolio#park-avenue lands on the Park Avenue card.
+/portfolio        /projects  301
+/portfolio/       /projects  301
+/portfolio.html   /projects  301

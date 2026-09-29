@@ -61,13 +61,17 @@ BUSINESS = {
                    "Historic Home Renovation"],
 }
 
-# Hand-edited pages: file -> (URL path, breadcrumb name or None for no breadcrumb).
+# Hand-edited pages: file -> (URL path, breadcrumb name or None for no breadcrumb,
+# optional (parent name, parent URL) for a middle breadcrumb).
 # Pages built from content-pages/ are added automatically (see content_pages()).
 PAGES = {
     "index.html": ("/", None),
     "services.html": ("/services", "Services"),
     "how-it-works.html": ("/how-it-works", "How It Works"),
-    "portfolio.html": ("/portfolio", "Portfolio"),
+    "projects.html": ("/projects", "Projects"),
+    "projects/park-avenue.html": ("/projects/park-avenue", "Park Avenue Apartment Renovation", ("Projects", "/projects")),
+    "projects/upper-east-side.html": ("/projects/upper-east-side", "Upper East Side Apartment Renovation", ("Projects", "/projects")),
+    "projects/montclair-tudor.html": ("/projects/montclair-tudor", "Montclair Tudor House Renovation", ("Projects", "/projects")),
     "get-started.html": ("/get-started", "Get Started"),
     "hello.html": ("/hello", None),
 }
@@ -140,7 +144,7 @@ def graph(path, crumb, title, parent=None, article=None):
 
 
 def main():
-    jobs = [(name, path, crumb, None, None) for name, (path, crumb) in PAGES.items()]
+    jobs = [(name, v[0], v[1], v[2] if len(v) > 2 else None, None) for name, v in PAGES.items()]
     for m in content_pages():
         parent = tuple(m["parent"].split("|")) if m.get("parent") else None
         article = None
